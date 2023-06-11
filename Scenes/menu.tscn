@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://bewhxvxg5a2pj"]
+
+[ext_resource type="Script" path="res://Scipts/menu.cs" id="1_43naw"]
+[ext_resource type="PackedScene" uid="uid://c21ipsgx17ggo" path="res://Scenes/options_menu.tscn" id="1_cphnr"]
+
+[node name="menu" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.176471)
+
+[node name="OptionsMenu" parent="Control" instance=ExtResource("1_cphnr")]
+visible = true
+layout_mode = 1
+offset_left = 0.0
+offset_top = 8.0
+offset_right = 1152.0
+offset_bottom = 656.0
+
+[node name="HSlider" parent="Control/OptionsMenu/CenterContainer/VBoxContainer/HBoxContainer/Control" index="1"]
+process_mode = 3
+
+[node name="HSlider" parent="Control/OptionsMenu/CenterContainer/VBoxContainer/HBoxContainer2/Control" index="1"]
+process_mode = 3
+
+[node name="Button" parent="Control/OptionsMenu/Control2" index="0"]
+process_mode = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+process_mode = 3
+texture_filter = 3
+offset_left = 77.0
+offset_top = 366.0
+offset_right = 163.0
+offset_bottom = 467.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.78413, 2.54324)
+script = ExtResource("1_43naw")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer"]
+process_mode = 3
+layout_mode = 2
+
+[node name="Button" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+action_mode = 0
+text = "Play"
+
+[node name="Button3" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+action_mode = 0
+text = "Options"
+
+[node name="Button2" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+action_mode = 0
+text = "Credits"
+
+[connection signal="pressed" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="Play"]
+[connection signal="pressed" from="BoxContainer/VBoxContainer/Button3" to="BoxContainer" method="Options"]
+
+[editable path="Control/OptionsMenu"]
