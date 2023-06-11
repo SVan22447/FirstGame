@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx6boi3jgec1o"]
+
+[sub_resource type="Gradient" id="Gradient_pr8vs"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lih5j"]
+gradient = SubResource("Gradient_pr8vs")
+width = 20
+height = 20
+
+[node name="Button" type="Button"]
+offset_left = 1100.0
+offset_top = 7.0
+offset_right = 1141.0
+offset_bottom = 47.0
+icon = SubResource("GradientTexture2D_lih5j")
+flat = true
+expand_icon = true

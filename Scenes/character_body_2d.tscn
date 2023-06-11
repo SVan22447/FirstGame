@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://55v3djlipigt" path="res://assets/Player/c1.png" id="5_xvoow"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrub3"]
-radius = 6.0
-height = 26.0
+radius = 7.0
+height = 28.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(369, 243)
