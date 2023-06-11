@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwvusyonpnxe2"
+path="res://.godot/imported/step_on_the tree_1.wav-4ae77856f6efc96e8cf9bd9870c12600.sample"
+
+[deps]
+
+source_file="res://Music/step_on_the tree_1.wav"
+dest_files=["res://.godot/imported/step_on_the tree_1.wav-4ae77856f6efc96e8cf9bd9870c12600.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

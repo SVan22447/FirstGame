@@ -64,7 +64,7 @@ position = Vector2(-4, 0)
 show_behind_parent = true
 clip_children = 2
 texture_filter = 3
-position = Vector2(-6.04987e-06, 3.57628e-06)
+position = Vector2(-2.00001, 3.57628e-06)
 texture = ExtResource("3_xa33l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

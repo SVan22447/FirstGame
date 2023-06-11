@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://udf3d5u4u8bl"]
+[gd_scene load_steps=44 format=3 uid="uid://udf3d5u4u8bl"]
 
 [ext_resource type="Script" path="res://Scipts/Test1.cs" id="1_1mupx"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://b10oonlegtt3x" path="res://assets/Other/AnimateHP/emter8.png" id="22_sbih5"]
 [ext_resource type="Texture2D" uid="uid://sqs40bo0wlgi" path="res://assets/Other/AnimateHP/emter9.png" id="23_b5rbq"]
 [ext_resource type="Texture2D" uid="uid://b75qa04dytaqh" path="res://assets/Other/AnimateHP/emter10.png" id="24_o4eot"]
+[ext_resource type="Texture2D" uid="uid://gih558fiy7uq" path="res://assets/Player/sp.png" id="26_5bl2q"]
 [ext_resource type="Texture2D" uid="uid://b6a807jjquena" path="res://assets/Other/1642608884_1-abrakadabra-fun-p-bekgraund-dlya-igri-2.jpg" id="28_bfkcv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvuk7"]
@@ -299,13 +300,6 @@ frame_10/duration = 0.1
 frame_11/texture = ExtResource("16_7vpel")
 frame_11/duration = 0.1
 
-[sub_resource type="Gradient" id="Gradient_pr8vs"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lih5j"]
-gradient = SubResource("Gradient_pr8vs")
-width = 20
-height = 20
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ebj0i"]
 shader = ExtResource("11_n7uwg")
 shader_parameter/lod = 0.259
@@ -348,7 +342,7 @@ target = NodePath("../CharacterBody2D")
 
 [node name="Camera2D" type="Camera2D" parent="CameraProxy"]
 position = Vector2(-3, 4)
-zoom = Vector2(2.38, 2.38)
+zoom = Vector2(2.6, 2.6)
 limit_top = -500
 limit_right = 5000
 limit_bottom = 700
@@ -357,7 +351,7 @@ position_smoothing_speed = 20.0
 editor_draw_limits = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_yq3c4")]
-position = Vector2(826, 399)
+position = Vector2(20, 403)
 collision_layer = 770
 collision_mask = 770
 Speed = 136
@@ -378,7 +372,7 @@ position = Vector2(304, 0)
 shape = SubResource("RectangleShape2D_w2863")
 
 [node name="Zone" type="Area2D" parent="."]
-position = Vector2(866, 431)
+position = Vector2(911, 424)
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("7_k0rtd")
@@ -389,7 +383,7 @@ position = Vector2(1, -78.5)
 shape = SubResource("RectangleShape2D_ue7ww")
 
 [node name="Zone2" type="Area2D" parent="."]
-position = Vector2(-11, 470)
+position = Vector2(450, 480)
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("7_k0rtd")
@@ -462,11 +456,11 @@ offset_bottom = 40.0
 texture_filter = 3
 layout_direction = 1
 layout_mode = 0
-offset_left = 32.0
+offset_left = 25.0
 offset_top = 27.0
-offset_right = 57.0
+offset_right = 50.0
 offset_bottom = 51.0
-scale = Vector2(2.1, 2.1)
+scale = Vector2(2.3, 2.3)
 texture = ExtResource("11_lhw5f")
 
 [node name="HeartUp" type="TextureRect" parent="UI/Control"]
@@ -475,7 +469,7 @@ offset_left = 84.0
 offset_top = 27.0
 offset_right = 219.0
 offset_bottom = 51.0
-scale = Vector2(2.1, 2.1)
+scale = Vector2(2.3, 2.3)
 texture = ExtResource("10_y4wm1")
 stretch_mode = 1
 
@@ -485,17 +479,18 @@ offset_left = 84.0
 offset_top = 27.0
 offset_right = 111.0
 offset_bottom = 51.0
-scale = Vector2(2.1, 2.1)
+scale = Vector2(2.3, 2.3)
 texture = SubResource("AnimatedTexture_l20g3")
 stretch_mode = 1
 
 [node name="Button" type="Button" parent="UI/Control"]
 layout_mode = 0
-offset_left = 1100.0
-offset_top = 7.0
-offset_right = 1141.0
-offset_bottom = 47.0
-icon = SubResource("GradientTexture2D_lih5j")
+offset_left = 25.0
+offset_top = 81.0
+offset_right = 66.0
+offset_bottom = 121.0
+scale = Vector2(1.2, 1.2)
+icon = ExtResource("26_5bl2q")
 flat = true
 expand_icon = true
 
