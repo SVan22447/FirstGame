@@ -6,9 +6,11 @@ public partial class menu : BoxContainer
 {
     PackedScene OptionsInstance;
     Button play;
+    CpuParticles2D Particle;
     Control OptionsV;
     public override void _Ready()
     {
+        Particle =GetNode<CpuParticles2D>("VBoxContainer/CPUParticles2D");
         GetNode<options_menu>("/root/menu/Control/OptionsMenu").Menu = this;
         OptionsV = GetNode<Control>("/root/menu/Control");
         play = GetNode<Button>("VBoxContainer/Button");
@@ -22,6 +24,14 @@ public partial class menu : BoxContainer
     public void Options(){
         this.Visible = !this.Visible;
         OptionsV.Visible = !OptionsV.Visible;
+    }
+    public void PlayParticle(){
+        Particle.Visible = true;
+        Particle.Position=new Vector2(-27.657f,19.66f);
+    }
+    public void OptionsParticle(){
+        Particle.Visible = true;
+        Particle.Position=new Vector2(-27.657f,51.116f);
     }
 }
 
