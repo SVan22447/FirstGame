@@ -360,7 +360,7 @@ editor_draw_limits = true
 position = Vector2(826, 399)
 collision_layer = 770
 collision_mask = 770
-Speed = 130
+Speed = 136
 jumpheight = 26
 
 [node name="Respawn" type="Node2D" parent="."]
