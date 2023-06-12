@@ -25,6 +25,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		double wallJumpLeftTime;
 		double wallJumpRightTime;
 		double LastJump;
+		bool shootBool;
 		[Export]int jumpheight = 25;
 		[ExportSubgroup("Выстрел")]
 		[Export]double recoilX= 1700;
@@ -145,12 +146,13 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 				velocity.Y=jumpVelocity;	    
 			 }
 		}
-		  if (direction.X != 0)  {    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
+		  if (direction.X != 0 && !shootBool)  {    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
 			velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
-		  }else{
+		  }else if(!shootBool){
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
 		  }
 		 if (Input.IsActionJustPressed("Lbm")&&ShootCooldownV<=0){   // выстрел персонажа
+		      shootBool=true;
 			  LastOnGroundTime=0;
 			  wallJumpLeftTime=0;
 			  wallJumpRightTime=0;
@@ -166,6 +168,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 			  var MouseDir = GlobalPosition.DirectionTo(GetGlobalMousePosition());
 			  velocity.X -= (MouseDir.X * (float)recoilX);
 			  velocity.Y -= (MouseDir.Y * (float)recoilY); 
+		}else{
+			shootBool = false;
 		}
 		Velocity = velocity;
 		MoveAndSlide();
