@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://mw3fghr3hmh4"]
 
 [ext_resource type="Script" path="res://Scipts/SoundPlayer.cs" id="1_mbats"]
-[ext_resource type="AudioStream" uid="uid://bodyjemxx4pd0" path="res://Music/sound (2).wav" id="2_ejjup"]
 [ext_resource type="AudioStream" uid="uid://dv2ishr7vx50n" path="res://Music/sound (1).wav" id="2_q6d3v"]
+[ext_resource type="AudioStream" uid="uid://bexsu8kdsgum2" path="res://Music/kill.wav" id="3_cpto8"]
 
 [node name="SoundPlayer" type="Node"]
 script = ExtResource("1_mbats")
@@ -14,5 +14,5 @@ stream = ExtResource("2_q6d3v")
 bus = &"audio"
 
 [node name="Hurt" type="AudioStreamPlayer" parent="AudioPlayers"]
-stream = ExtResource("2_ejjup")
+stream = ExtResource("3_cpto8")
 bus = &"audio"

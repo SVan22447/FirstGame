@@ -19,5 +19,6 @@ public partial class RomaGay : Node
 			    GetNode<CharacterBody2D>("/root/Test1/CharacterBody2D").Visible = false;
 				GetNode<Control>("/root/Test1/UI/GameOverScreen").Visible = true;
 		}
+		GetNode<SoundPlayer>("/root/SoundPlayer").HurtPlayedPlayer();
 	}
 }
