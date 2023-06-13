@@ -29,7 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://sqs40bo0wlgi" path="res://assets/Other/AnimateHP/emter9.png" id="23_b5rbq"]
 [ext_resource type="Texture2D" uid="uid://b75qa04dytaqh" path="res://assets/Other/AnimateHP/emter10.png" id="24_o4eot"]
 [ext_resource type="Texture2D" uid="uid://gih558fiy7uq" path="res://assets/Player/sp.png" id="26_5bl2q"]
-[ext_resource type="Texture2D" path="res://assets/Player/push.png" id="27_hij76"]
+[ext_resource type="Texture2D" uid="uid://b07cgmsnwl0d4" path="res://assets/Player/push.png" id="27_hij76"]
 [ext_resource type="Texture2D" uid="uid://b6a807jjquena" path="res://assets/Other/1642608884_1-abrakadabra-fun-p-bekgraund-dlya-igri-2.jpg" id="28_bfkcv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvuk7"]
