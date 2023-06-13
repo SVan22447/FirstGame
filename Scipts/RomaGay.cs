@@ -21,4 +21,10 @@ public partial class RomaGay : Node
 		}
 		GetNode<SoundPlayer>("/root/SoundPlayer").HurtPlayedPlayer();
 	}
+	public void Hilling(int hill){
+		if (lives < MaxLives){
+				lives +=hill;
+	    }
+		Ui.LoadHearts();
+	}
 }

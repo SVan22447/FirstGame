@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://udf3d5u4u8bl"]
+[gd_scene load_steps=48 format=3 uid="uid://udf3d5u4u8bl"]
 
 [ext_resource type="Script" path="res://Scipts/Test1.cs" id="1_1mupx"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c57ahek24ym8c" path="res://assets/tileset/imba/Tileset-new.png" id="5_u5rua"]
 [ext_resource type="Script" path="res://Scipts/UI.cs" id="7_jo1lu"]
 [ext_resource type="Script" path="res://Scipts/Zone.cs" id="7_k0rtd"]
+[ext_resource type="Script" path="res://Scipts/charge.cs" id="8_gev4h"]
 [ext_resource type="PackedScene" uid="uid://c21ipsgx17ggo" path="res://Scenes/options_menu.tscn" id="10_5nqb6"]
 [ext_resource type="Texture2D" uid="uid://db1b13woi4xsm" path="res://Kit/Base/ппппфыа.png" id="10_y4wm1"]
 [ext_resource type="Texture2D" uid="uid://dp1lt8n77rs71" path="res://assets/Player/afsgddsg.png" id="11_lhw5f"]
@@ -31,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://gih558fiy7uq" path="res://assets/Player/sp.png" id="26_5bl2q"]
 [ext_resource type="Texture2D" uid="uid://b07cgmsnwl0d4" path="res://assets/Player/push.png" id="27_hij76"]
 [ext_resource type="Texture2D" uid="uid://b6a807jjquena" path="res://assets/Other/1642608884_1-abrakadabra-fun-p-bekgraund-dlya-igri-2.jpg" id="28_bfkcv"]
+[ext_resource type="Texture2D" uid="uid://cv2wyxqcxj2yk" path="res://assets/Player/OMGH.png" id="32_iyhi4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvuk7"]
 texture = ExtResource("3_4xvlk")
@@ -479,6 +481,9 @@ terrain_set_0/terrain_1/name = "Terrain 1"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_jhay7")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hxym3"]
+radius = 11.7047
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w2863"]
 size = Vector2(3494, 31)
 
@@ -613,9 +618,26 @@ editor_draw_limits = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_yq3c4")]
 position = Vector2(20, 403)
-collision_layer = 770
+collision_layer = 2818
 collision_mask = 770
 jumpheight = 26
+
+[node name="charge" type="Node2D" parent="."]
+script = ExtResource("8_gev4h")
+
+[node name="ChargeLump" type="Area2D" parent="charge"]
+position = Vector2(-171, 418)
+collision_layer = 0
+collision_mask = 2048
+metadata/_edit_group_ = true
+
+[node name="Omgh" type="Sprite2D" parent="charge/ChargeLump"]
+position = Vector2(0, -0.999969)
+scale = Vector2(1.31818, 1.34615)
+texture = ExtResource("32_iyhi4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="charge/ChargeLump"]
+shape = SubResource("CircleShape2D_hxym3")
 
 [node name="Respawn" type="Node2D" parent="."]
 position = Vector2(440, 391)
@@ -641,7 +663,7 @@ position = Vector2(1, -78.5)
 shape = SubResource("RectangleShape2D_ue7ww")
 
 [node name="Zone2" type="Area2D" parent="Respawn"]
-position = Vector2(-480, 57)
+position = Vector2(-479, 74)
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("7_k0rtd")
@@ -869,6 +891,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "ExitM"
 
+[connection signal="body_entered" from="charge/ChargeLump" to="charge" method="ChargeBullet"]
 [connection signal="body_entered" from="Respawn/Clif" to="Respawn" method="falled"]
 [connection signal="body_entered" from="Respawn/Zone" to="Respawn/Zone" method="CheckPoint"]
 [connection signal="body_entered" from="Respawn/Zone2" to="Respawn/Zone2" method="CheckPoint"]
