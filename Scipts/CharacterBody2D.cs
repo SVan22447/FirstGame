@@ -25,8 +25,9 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		double wallJumpLeftTime;
 		double wallJumpRightTime;
 		double LastJump;
-		bool shootBool;
-		int bulletAmount;
+		public bool shootBool;
+		public int bulletAmount;
+		public bool AddJumping;
 		[Export]int jumpheight = 25;
 		[ExportSubgroup("Выстрел")]
 		[Export]double recoilX= 1700;
