@@ -26,7 +26,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		double wallJumpRightTime;
 		double LastJump;
 		bool shootBool;
-		int bulletAmount;
+		public int bulletAmount;
 		[Export]int jumpheight = 25;
 		[ExportSubgroup("Выстрел")]
 		[Export]double recoilX= 1700;
@@ -151,6 +151,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
 		  }
 		 if (Input.IsActionJustPressed("Lbm")&&(ShootCooldownV<=0||bulletAmount>0)){   // выстрел персонажа
+		       bulletAmount--;
 		      shootBool=true;
 			  LastOnGroundTime=0;
 			  wallJumpLeftTime=0;
