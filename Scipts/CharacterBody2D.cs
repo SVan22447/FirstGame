@@ -25,9 +25,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		double wallJumpLeftTime;
 		double wallJumpRightTime;
 		double LastJump;
-		public bool shootBool;
-		public int bulletAmount;
-		public bool AddJumping;
+		bool shootBool;
 		[Export]int jumpheight = 25;
 		[ExportSubgroup("Выстрел")]
 		[Export]double recoilX= 1700;
@@ -41,6 +39,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		Vector2 direction;
 		Node2D Bow;
 		PackedScene bulletInstance;
+		public bool AddJumping;
+		public int bulletAmount;
 		public Sprite2D sprite;
 		Vector2 velocity;
 		float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -129,7 +129,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		}else{
 			LastOnGroundTime=coyoteTime;
 		}
-		if(LastJump>0&&LastOnGroundTime>0){// прыжок
+		if(LastJump>0&&(LastOnGroundTime>0||AddJumping)){// прыжок
+		        AddJumping = false;
 				LastOnGroundTime=0;
 				IsJumping = true;
 				IsJumping2 = true;
@@ -152,11 +153,16 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
 		  }
 		 if (Input.IsActionJustPressed("Lbm")&&(ShootCooldownV<=0||bulletAmount>0)){   // выстрел персонажа
+		      if (bulletAmount>0){
+                bulletAmount--;
+			  }
 		      shootBool=true;
 			  LastOnGroundTime=0;
 			  wallJumpLeftTime=0;
 			  wallJumpRightTime=0;
-			  ShootCooldownV = ShootCooldown*buff;
+			  if (bulletAmount == 0){
+			     ShootCooldownV = ShootCooldown*buff;
+			  }
 			  var bullet =  (CharacterBody2D)bulletInstance.Instantiate();
 			  bullet.GlobalPosition = GetNode<Node2D>("Bow/Node2D").GlobalPosition;
 			  bullet.RotationDegrees= GetNode<Node2D>("Bow/Node2D").GlobalRotationDegrees;
