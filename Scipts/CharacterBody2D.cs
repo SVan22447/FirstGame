@@ -1,9 +1,7 @@
 using Godot;
 using Godot.Collections;
 using DialogueManagerRuntime;
-
-public partial class CharacterBody2D : Godot.CharacterBody2D
-{
+public partial class CharacterBody2D : Godot.CharacterBody2D{
 	#region переменные
 		[Export]public int Speed = 125;
 		[Export]PackedScene BallonX;
@@ -30,18 +28,20 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		[ExportSubgroup("Выстрел")]
 		[Export]double recoilX= 1700;
 		[Export]double recoilY=215;
-		[Export(PropertyHint.Range,"0.01,2")]double ShootCooldown = 0.6;
+		[Export(PropertyHint.Range,"0.01,2")] public double ShootCooldown = 0.6;
 		Resource DialogueResource;
 		string dialogue = "start";
 		public double ShootCooldownV;
-		double buff = 1;
+		public double buff = 1;
 		Vector2 MouseDirection;
 		Vector2 direction;
 		Node2D Bow;
+		public TextureProgressBar RechargeCir;
 		PackedScene bulletInstance;
 		public bool AddJumping;
 		public int bulletAmount;
 		public Sprite2D sprite;
+		UI ui;
 		Vector2 velocity;
 		float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	#endregion
@@ -56,10 +56,12 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		fallGravity = ((-2.0f*jumpheight)/(jumpTimeToDescent*jumpTimeToPeak))*-1.0f;
 		LeftWall = GetNode<RayCast2D>("Left");
 		RightWall = GetNode<RayCast2D>("Right");
-	   sprite = GetNode<Sprite2D>("Sprite2D"); 
-	   GetNode<TextureProgressBar>("TextureProgressBar").MaxValue = ShootCooldown;
-	   Bow = GetNode<Node2D>("Bow");
-	   bulletInstance = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
+	    sprite = GetNode<Sprite2D>("Sprite2D"); 
+	    RechargeCir=GetNode<TextureProgressBar>("TextureProgressBar");
+	    RechargeCir.MaxValue = ShootCooldown;
+	    Bow = GetNode<Node2D>("Bow");
+		ui=GetNode<UI>("/root/Test1/UI");
+	    bulletInstance = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
 	}
 	public override void _Process(double delta)
 	{
@@ -68,14 +70,14 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		wallJumpRightTime -=delta;
 		LastJump-=delta;
 		if (ShootCooldownV != 0){
-		   if(ShootCooldownV == ShootCooldown){
+		   if(ShootCooldownV == ShootCooldown*buff){
 				CircleVal = 0;
 				GetNode<TextureProgressBar>("TextureProgressBar").Visible = true;
 		   }
 		   GetNode<TextureProgressBar>("TextureProgressBar").Value = CircleVal;
 		   ShootCooldownV -=delta;
 		   CircleVal +=delta;
-		   if (CircleVal >= ShootCooldown){
+		   if (CircleVal >= ShootCooldown*buff){
 				GetNode<TextureProgressBar>("TextureProgressBar").Visible = false;
 		   }
 		}
@@ -156,6 +158,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		      if (bulletAmount>0){
                 bulletAmount--;
 			  }
+			  ui.RechargeView();
 		      shootBool=true;
 			  LastOnGroundTime=0;
 			  wallJumpLeftTime=0;

@@ -69,4 +69,9 @@ public partial class UI : CanvasLayer
         var heart = GetNode<TextureRect>("Control/Heart");
         heart.Size = new Vector2(GetNode<RomaGay>("/root/RomaGay").lives*27, heart.Size.Y);
     }
+    public void RechargeView(){
+        var GG = GetNode<CharacterBody2D>("/root/Test1/CharacterBody2D");
+        var arrow = GetNode<TextureRect>("Control/arrow");
+        arrow.Size = new Vector2(GG.bulletAmount*9,arrow.Size.Y);
+    }
 }
