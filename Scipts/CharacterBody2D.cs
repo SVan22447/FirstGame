@@ -78,6 +78,10 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		   ShootCooldownV -=delta;
 		   CircleVal +=delta;
 		   if (CircleVal >= ShootCooldown*buff){
+				if(bulletAmount==0){
+			    	bulletAmount=1;
+				}
+				ui.RechargeView();
 				GetNode<TextureProgressBar>("TextureProgressBar").Visible = false;
 		   }
 		}
@@ -122,11 +126,10 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		if (!IsOnFloor()){
 			if(velocity.Y<=450){
 				if(!IsJumping&&((LeftWall.IsColliding()&&Input.IsActionPressed("Left"))||(RightWall.IsColliding()&&Input.IsActionPressed("Right")))){
-				
 					velocity.Y= 50;
-				} else{
+				}else{
 					velocity.Y+= GetGravity()*(float)delta;
-					}
+				}
 			}
 		}else{
 			LastOnGroundTime=coyoteTime;

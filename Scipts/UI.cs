@@ -72,6 +72,11 @@ public partial class UI : CanvasLayer
     public void RechargeView(){
         var GG = GetNode<CharacterBody2D>("/root/Test1/CharacterBody2D");
         var arrow = GetNode<TextureRect>("Control/arrow");
-        arrow.Size = new Vector2(GG.bulletAmount*9,arrow.Size.Y);
+        if (GG.bulletAmount>0){
+            arrow.Visible=true;
+            arrow.Size = new Vector2(GG.bulletAmount*9,arrow.Size.Y);
+        }else{
+            arrow.Visible=false;
+        }
     }
 }
