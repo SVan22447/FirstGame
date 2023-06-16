@@ -577,7 +577,7 @@ shader_parameter/blend = 4.455
 script = ExtResource("1_1mupx")
 
 [node name="16426088841-abrakadabra-fun-p-bekgraund-dlya-igri-2" type="Sprite2D" parent="."]
-position = Vector2(669, 342)
+position = Vector2(642, 347)
 scale = Vector2(1.00079, 1)
 texture = ExtResource("28_bfkcv")
 
@@ -621,7 +621,7 @@ position_smoothing_speed = 15.0
 editor_draw_limits = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_yq3c4")]
-position = Vector2(20, 403)
+position = Vector2(-285, 346)
 collision_layer = 2818
 collision_mask = 770
 jumpheight = 26
@@ -693,7 +693,7 @@ position = Vector2(1, -78.5)
 shape = SubResource("RectangleShape2D_ue7ww")
 
 [node name="Zone2" type="Area2D" parent="Respawn"]
-position = Vector2(-479, 74)
+position = Vector2(-450, 86)
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("7_k0rtd")
