@@ -630,6 +630,7 @@ jumpheight = 26
 
 [node name="charge" type="Node2D" parent="Lumps"]
 script = ExtResource("8_gev4h")
+buffVal = 0.7
 metadata/_edit_group_ = true
 
 [node name="Lump" type="Node2D" parent="Lumps/charge"]
