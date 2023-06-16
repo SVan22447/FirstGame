@@ -13,6 +13,8 @@ public partial class charge : Node2D{
     }
     public void ChargeBullet(Node2D body){
         GG.bulletAmount=4;
+        GG.ShootCooldownV=0;
+        GG.GetNode<TextureProgressBar>("TextureProgressBar").Visible = false;
         ui.RechargeView();
 		GG.AddJumping= true;
 		Roma.Hilling(1);

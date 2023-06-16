@@ -69,12 +69,13 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	public override void _Process(double delta)
 	{
 		#region Таймеры
+		GD.Print(bulletAmount);
 	    LastOnGroundTime =LastOnGroundTime -=delta;
 		wallJumpLeftTime =wallJumpLeftTime-=delta;
 		wallJumpRightTime -=delta;
 		LastJump=LastJump-=delta;
 		BowCooldownV=BowCooldownV-=delta;
-		if (ShootCooldownV >= 0){  // Перезарядка стрел
+		if (ShootCooldownV >= 0&&bulletAmount<4){  // Перезарядка стрел
 		   if(ShootCooldownV == ShootCooldown*buff){
 				CircleVal = 0;
 				GetNode<TextureProgressBar>("TextureProgressBar").Visible = true;
@@ -84,10 +85,17 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		   ShootCooldownV -=delta;
 		   CircleVal +=delta;
 		   if (CircleVal >= ShootCooldown*buff && GetNode<TextureProgressBar>("TextureProgressBar").Visible){
-			    bulletAmount=4;
-				ui.RechargeView();
 				ShootCooldownS=false;
-				GetNode<TextureProgressBar>("TextureProgressBar").Visible = false;
+				
+				if(bulletAmount<=3){
+                    ShootCooldownV=ShootCooldown*buff;
+					bulletAmount+=1;
+					if (bulletAmount>3){
+					    GetNode<TextureProgressBar>("TextureProgressBar").Visible = false;
+					}
+				
+		        }
+				ui.RechargeView();
 		   }
 		}
 		#endregion

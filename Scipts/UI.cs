@@ -17,6 +17,7 @@ public partial class UI : CanvasLayer
         HpAndOther = GetNode<Control>("Control");
         GetNode<options_menu>("OptionsMenu").Center = Center;
         GetNode<RomaGay>("/root/RomaGay").Ui = this;
+        GetNode<TextureRect>("Control/arrow").Visible = false;
     }
     public override void _Input(InputEvent @event)
     {  
