@@ -35,6 +35,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		public bool ShootCooldownS = false;
 		public double BowCooldownV;
 		public double ShootCooldownV;
+		public double Bowbuff=1;
 		public double buff = 1;
 		Vector2 MouseDirection;
 		Vector2 direction;
@@ -69,35 +70,33 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	public override void _Process(double delta)
 	{
 		#region Таймеры
-		GD.Print(bulletAmount);
-	    LastOnGroundTime =LastOnGroundTime -=delta;
-		wallJumpLeftTime =wallJumpLeftTime-=delta;
-		wallJumpRightTime -=delta;
-		LastJump=LastJump-=delta;
-		BowCooldownV=BowCooldownV-=delta;
-		if (ShootCooldownV >= 0&&bulletAmount<4){  // Перезарядка стрел
-		   if(ShootCooldownV == ShootCooldown*buff){
-				CircleVal = 0;
-				GetNode<TextureProgressBar>("TextureProgressBar").Visible = true;
-		   }
-		   GetNode<TextureProgressBar>("TextureProgressBar").Value = CircleVal;
-		   ShootCooldownS=true;
-		   ShootCooldownV -=delta;
-		   CircleVal +=delta;
-		   if (CircleVal >= ShootCooldown*buff && GetNode<TextureProgressBar>("TextureProgressBar").Visible){
-				ShootCooldownS=false;
-				
-				if(bulletAmount<=3){
-                    ShootCooldownV=ShootCooldown*buff;
-					bulletAmount+=1;
-					if (bulletAmount>3){
-					    GetNode<TextureProgressBar>("TextureProgressBar").Visible = false;
+			LastOnGroundTime =LastOnGroundTime -=delta;
+			wallJumpLeftTime =wallJumpLeftTime-=delta;
+			wallJumpRightTime -=delta;
+			LastJump=LastJump-=delta;
+			BowCooldownV=BowCooldownV-=delta;
+			if (ShootCooldownV >= 0&&bulletAmount<4){  // Перезарядка стрел
+				if(ShootCooldownV == ShootCooldown){
+						CircleVal = 0;
+						ShootCooldownS=true;
+				        RechargeCir.MaxValue = ShootCooldown;
+						RechargeCir.Visible = true;
+				}
+				RechargeCir.Value = CircleVal;
+				ShootCooldownV -=delta*buff;
+				CircleVal +=delta*buff;
+				if (CircleVal >= RechargeCir.MaxValue && RechargeCir.Visible){
+		            ShootCooldownS=false;	
+					if(bulletAmount<=3){
+						ShootCooldownV=ShootCooldown;
+						bulletAmount+=1;
+						if (bulletAmount>3){
+							RechargeCir.Visible = false;
+						}						
 					}
-				
-		        }
-				ui.RechargeView();
-		   }
-		}
+					ui.RechargeView();
+				}
+			}
 		#endregion
 		if(IsJumping2){
 			TimeJump2--;
@@ -175,8 +174,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		      if (bulletAmount>0){
                 bulletAmount--;
 			  }
-			  BowCooldownV= BowCooldown*buff;
-			  ShootCooldownV = ShootCooldown*buff;
+			  BowCooldownV= BowCooldown*Bowbuff;
+			  ShootCooldownV = ShootCooldown;
 			  ui.RechargeView();
 		      shootBool=true;
 			  LastOnGroundTime=0;
