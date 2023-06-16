@@ -28,9 +28,12 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		[ExportSubgroup("Выстрел")]
 		[Export]double recoilX= 1700;
 		[Export]double recoilY=215;
-		[Export(PropertyHint.Range,"0.01,2")] public double ShootCooldown = 0.6;
+		[Export(PropertyHint.Range,"0.001,1")] public double BowCooldown = 0.3;
+		[Export(PropertyHint.Range,"0.01,3")] public double ShootCooldown = 1;
 		Resource DialogueResource;
 		string dialogue = "start";
+		public bool ShootCooldownS = false;
+		public double BowCooldownV;
 		public double ShootCooldownV;
 		public double buff = 1;
 		Vector2 MouseDirection;
@@ -65,26 +68,29 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	}
 	public override void _Process(double delta)
 	{
-		LastOnGroundTime -=delta;
-		wallJumpLeftTime -=delta;
+		#region Таймеры
+	    LastOnGroundTime =LastOnGroundTime -=delta;
+		wallJumpLeftTime =wallJumpLeftTime-=delta;
 		wallJumpRightTime -=delta;
-		LastJump-=delta;
-		if (ShootCooldownV != 0){
+		LastJump=LastJump-=delta;
+		BowCooldownV=BowCooldownV-=delta;
+		if (ShootCooldownV >= 0){  // Перезарядка стрел
 		   if(ShootCooldownV == ShootCooldown*buff){
 				CircleVal = 0;
 				GetNode<TextureProgressBar>("TextureProgressBar").Visible = true;
 		   }
 		   GetNode<TextureProgressBar>("TextureProgressBar").Value = CircleVal;
+		   ShootCooldownS=true;
 		   ShootCooldownV -=delta;
 		   CircleVal +=delta;
-		   if (CircleVal >= ShootCooldown*buff){
-				if(bulletAmount==0){
-			    	bulletAmount=1;
-				}
+		   if (CircleVal >= ShootCooldown*buff && GetNode<TextureProgressBar>("TextureProgressBar").Visible){
+			    bulletAmount=4;
 				ui.RechargeView();
+				ShootCooldownS=false;
 				GetNode<TextureProgressBar>("TextureProgressBar").Visible = false;
 		   }
 		}
+		#endregion
 		if(IsJumping2){
 			TimeJump2--;
 			if(TimeJump2<=0){
@@ -109,10 +115,10 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 			Bow.ShowBehindParent = false;
 			Bow.Scale = new Vector2(Bow.Scale.X, 1);
 		}
-		if (Input.IsActionJustPressed("Jump")){
+		if (Input.IsActionJustPressed("Jump")){ //Джамп баффер
 			LastJump=0.1005;
 		}
-		if(Input.IsActionJustPressed("ui_filedialog_show_hidden")){
+		if(Input.IsActionJustPressed("ui_filedialog_show_hidden")){ // тест диалога
 			GetTree().Paused = true;
 			Action();
 		}
@@ -154,21 +160,20 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		}
 		  if (direction.X != 0 && !shootBool)  {    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
 			velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
-		  }else if(!shootBool){
+		  }else if(!shootBool){ // если нет выстрела и движение кончилось ,то мы замедляемся
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
 		  }
-		 if (Input.IsActionJustPressed("Lbm")&&(ShootCooldownV<=0||bulletAmount>0)){   // выстрел персонажа
+		 if (Input.IsActionJustPressed("Lbm")&&(bulletAmount>0&&BowCooldownV<=0)){   // выстрел персонажа
 		      if (bulletAmount>0){
                 bulletAmount--;
 			  }
+			  BowCooldownV= BowCooldown*buff;
+			  ShootCooldownV = ShootCooldown*buff;
 			  ui.RechargeView();
 		      shootBool=true;
 			  LastOnGroundTime=0;
 			  wallJumpLeftTime=0;
 			  wallJumpRightTime=0;
-			  if (bulletAmount == 0){
-			     ShootCooldownV = ShootCooldown*buff;
-			  }
 			  var bullet =  (CharacterBody2D)bulletInstance.Instantiate();
 			  bullet.GlobalPosition = GetNode<Node2D>("Bow/Node2D").GlobalPosition;
 			  bullet.RotationDegrees= GetNode<Node2D>("Bow/Node2D").GlobalRotationDegrees;

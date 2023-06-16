@@ -18,13 +18,18 @@ public partial class charge : Node2D{
 		Roma.Hilling(1);
 	}
     public void BustCharge1(Node2D body){
-        GG.buff = buffVal;
-        GG.RechargeCir.MaxValue = buffVal;
-        GG.RechargeCir.Step = buffVal/55;
+        if(!GG.ShootCooldownS){
+            GG.buff = buffVal;
+            GG.RechargeCir.MaxValue = GG.ShootCooldown*buffVal;
+            GG.RechargeCir.Step = GG.RechargeCir.MaxValue/55;
+        }
+  
 	}
     public void DefCharge1(Node2D body){
-        GG.buff = 1;
-        GG.RechargeCir.MaxValue = GG.ShootCooldown;
-        GG.RechargeCir.Step = GG.ShootCooldown/55;
+        if(!GG.ShootCooldownS){
+            GG.buff = 1;
+            GG.RechargeCir.MaxValue = GG.ShootCooldown;
+            GG.RechargeCir.Step = GG.ShootCooldown/55;
+        }
     }
 }

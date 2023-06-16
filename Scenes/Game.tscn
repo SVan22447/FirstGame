@@ -625,6 +625,8 @@ position = Vector2(-285, 346)
 collision_layer = 2818
 collision_mask = 770
 jumpheight = 26
+BowCooldown = 0.633
+ShootCooldown = 1.308
 
 [node name="Lumps" type="Node2D" parent="."]
 
