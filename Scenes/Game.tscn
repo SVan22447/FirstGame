@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://udf3d5u4u8bl"]
+[gd_scene load_steps=53 format=3 uid="uid://udf3d5u4u8bl"]
 
 [ext_resource type="Script" path="res://Scipts/Test1.cs" id="1_1mupx"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://Scipts/Zone.cs" id="7_k0rtd"]
 [ext_resource type="Script" path="res://Scipts/charge.cs" id="8_gev4h"]
 [ext_resource type="PackedScene" uid="uid://c21ipsgx17ggo" path="res://Scenes/options_menu.tscn" id="10_5nqb6"]
-[ext_resource type="Texture2D" uid="uid://c7yh4hrs7gcs0" path="res://assets/Player/LIGHT.png" id="10_mprp8"]
 [ext_resource type="Texture2D" uid="uid://db1b13woi4xsm" path="res://Kit/Base/ппппфыа.png" id="10_y4wm1"]
 [ext_resource type="Texture2D" uid="uid://dp1lt8n77rs71" path="res://assets/Player/afsgddsg.png" id="11_lhw5f"]
 [ext_resource type="Shader" path="res://Shaders/Game.gdshader" id="11_n7uwg"]
@@ -34,6 +33,22 @@
 [ext_resource type="Texture2D" uid="uid://b07cgmsnwl0d4" path="res://assets/Player/push.png" id="27_hij76"]
 [ext_resource type="Texture2D" uid="uid://b6a807jjquena" path="res://assets/Other/1642608884_1-abrakadabra-fun-p-bekgraund-dlya-igri-2.jpg" id="28_bfkcv"]
 [ext_resource type="Texture2D" uid="uid://c6avotm0453g2" path="res://assets/Player/OMGH.png" id="32_iyhi4"]
+
+[sub_resource type="Sky" id="Sky_gqidt"]
+
+[sub_resource type="Environment" id="Environment_l1obc"]
+background_mode = 3
+sky = SubResource("Sky_gqidt")
+sky_custom_fov = 73.9
+sky_rotation = Vector3(3.88336, 0.605629, 6.28319)
+ambient_light_color = Color(0.192157, 0.0745098, 0.262745, 1)
+tonemap_exposure = 0.83
+glow_hdr_threshold = 1.5
+fog_enabled = true
+fog_light_color = Color(0.627451, 0.482353, 0.796078, 1)
+volumetric_fog_density = 0.3132
+volumetric_fog_emission_energy = 356.71
+volumetric_fog_ambient_inject = 3.83
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvuk7"]
 texture = ExtResource("3_4xvlk")
@@ -482,6 +497,17 @@ terrain_set_0/terrain_1/name = "Terrain 1"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_jhay7")
 
+[sub_resource type="Gradient" id="Gradient_fgrq4"]
+offsets = PackedFloat32Array(0.283871, 0.8)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fwwst"]
+gradient = SubResource("Gradient_fgrq4")
+width = 33
+height = 33
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8lh3n"]
 radius = 112.018
 
@@ -565,8 +591,8 @@ frame_11/duration = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ebj0i"]
 shader = ExtResource("11_n7uwg")
-shader_parameter/lod = 0.259
-shader_parameter/blend = 4.536
+shader_parameter/lod = 0.652
+shader_parameter/blend = 8.731
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fgd6a"]
 shader = ExtResource("15_i1sww")
@@ -575,6 +601,9 @@ shader_parameter/blend = 4.455
 
 [node name="Test1" type="Node2D"]
 script = ExtResource("1_1mupx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l1obc")
 
 [node name="16426088841-abrakadabra-fun-p-bekgraund-dlya-igri-2" type="Sprite2D" parent="."]
 position = Vector2(592, 351)
@@ -620,14 +649,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 editor_draw_limits = true
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("4_yq3c4")]
-position = Vector2(-285, 346)
-collision_layer = 2818
-collision_mask = 770
-jumpheight = 26
-BowCooldown = 0.5
-ShootCooldown = 1.308
-
 [node name="Lumps" type="Node2D" parent="."]
 
 [node name="charge" type="Node2D" parent="Lumps"]
@@ -642,13 +663,13 @@ collision_layer = 0
 collision_mask = 2048
 
 [node name="PointLight2D" type="PointLight2D" parent="Lumps/charge/Lump/Light"]
-color = Color(0.180392, 1, 1, 1)
+texture_filter = 3
+color = Color(0, 1, 1, 1)
 energy = 0.6
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.294118)
-shadow_filter = 1
 shadow_filter_smooth = 5.2
-texture = ExtResource("10_mprp8")
+texture = SubResource("GradientTexture2D_fwwst")
 texture_scale = 6.7
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Lumps/charge/Lump/Light"]
@@ -669,6 +690,15 @@ texture = ExtResource("32_iyhi4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lumps/charge/Lump/ChargeLump"]
 shape = SubResource("CircleShape2D_hxym3")
 debug_color = Color(0.905882, 0.239216, 0.478431, 0.419608)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_yq3c4")]
+light_mask = 2
+position = Vector2(-285, 346)
+collision_layer = 2818
+collision_mask = 770
+jumpheight = 26
+BowCooldown = 0.5
+ShootCooldown = 1.308
 
 [node name="Respawn" type="Node2D" parent="."]
 position = Vector2(440, 391)
