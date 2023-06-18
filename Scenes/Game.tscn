@@ -42,8 +42,9 @@ sky = SubResource("Sky_gqidt")
 sky_custom_fov = 73.9
 sky_rotation = Vector3(3.88336, 0.605629, 6.28319)
 ambient_light_color = Color(0.192157, 0.0745098, 0.262745, 1)
-tonemap_exposure = 0.95
-tonemap_white = 0.05
+tonemap_mode = 1
+tonemap_exposure = 1.5
+tonemap_white = 16.0
 glow_hdr_threshold = 1.5
 fog_enabled = true
 fog_light_color = Color(0.627451, 0.482353, 0.796078, 1)
@@ -698,8 +699,8 @@ position = Vector2(-288, 344)
 collision_layer = 2818
 collision_mask = 770
 jumpheight = 26
-BowCooldown = 1.0
-ShootCooldown = 1.821
+BowCooldown = 0.6
+ShootCooldown = 1.247
 
 [node name="Respawn" type="Node2D" parent="."]
 position = Vector2(440, 391)

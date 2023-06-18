@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cad5eiq78t04o"]
+[gd_scene load_steps=13 format=3 uid="uid://cad5eiq78t04o"]
 
 [ext_resource type="Script" path="res://Scipts/CharacterBody2D.cs" id="1_586ui"]
 [ext_resource type="PackedScene" uid="uid://davo83dd162k4" path="res://Scenes/ballon.tscn" id="2_bbmcw"]
@@ -6,6 +6,42 @@
 [ext_resource type="Texture2D" uid="uid://b5gy2iydqh403" path="res://assets/Player/bowf.png" id="3_xa33l"]
 [ext_resource type="Texture2D" uid="uid://bxf1qvhf83trj" path="res://assets/Player/c0.png" id="4_0t7mt"]
 [ext_resource type="Texture2D" uid="uid://55v3djlipigt" path="res://assets/Player/c1.png" id="5_xvoow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yama"]
+atlas = ExtResource("3_xa33l")
+region = Rect2(0, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fta6"]
+atlas = ExtResource("3_xa33l")
+region = Rect2(13, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dypax"]
+atlas = ExtResource("3_xa33l")
+region = Rect2(26, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0un3"]
+atlas = ExtResource("3_xa33l")
+region = Rect2(39, 0, 13, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_krql5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yama")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fta6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dypax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0un3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrub3"]
 radius = 7.0
@@ -60,14 +96,11 @@ texture_progress = ExtResource("5_xvoow")
 [node name="Bow" type="Node2D" parent="."]
 
 [node name="Node2D" type="Node2D" parent="Bow"]
-position = Vector2(-4, 0)
+position = Vector2(-6, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Bow/Node2D"]
-show_behind_parent = true
-clip_children = 2
-texture_filter = 3
-position = Vector2(-2.00001, 3.57628e-06)
-texture = ExtResource("3_xa33l")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bow/Node2D"]
+sprite_frames = SubResource("SpriteFrames_krql5")
+frame_progress = 0.253115
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

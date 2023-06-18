@@ -115,11 +115,11 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		Bow.Rotation = MouseDirection.Angle(); // направления лука и то как лук повернут
 		if (Bow.Scale.Y == 1 && MouseDirection.X<0){
 			sprite.FlipH = true;
-			Bow.ShowBehindParent = true;
+			// Bow.ShowBehindParent = true;
 			Bow.Scale = new Vector2(Bow.Scale.X, -1);
 		}else if(Bow.Scale.Y == -1 && MouseDirection.X>0){
 			sprite.FlipH = false;
-			Bow.ShowBehindParent = false;
+			// Bow.ShowBehindParent = false;
 			Bow.Scale = new Vector2(Bow.Scale.X, 1);
 		}
 		if (Input.IsActionJustPressed("Jump")){ //Джамп баффер
