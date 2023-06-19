@@ -74,25 +74,29 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 			wallJumpLeftTime =wallJumpLeftTime-=delta;
 			wallJumpRightTime -=delta;
 			LastJump=LastJump-=delta;
-			BowCooldownV=BowCooldownV-=delta;
+			if (BowCooldownV>=0){ // перезарядка выстрела
+                if (BowCooldownV==BowCooldown*Bowbuff){
+                    CircleVal = 0;
+					RechargeCir.MaxValue = BowCooldown*Bowbuff;
+					RechargeCir.Visible = true;
+				}
+				BowCooldownV-=delta;
+				CircleVal +=delta*buff;
+				RechargeCir.Value = CircleVal;
+				if(BowCooldownV<=0){
+					RechargeCir.Visible = false;
+				}
+			}
 			if (ShootCooldownV >= 0&&bulletAmount<4){  // Перезарядка стрел
 				if(ShootCooldownV == ShootCooldown){
-						CircleVal = 0;
 						ShootCooldownS=true;
-				        RechargeCir.MaxValue = ShootCooldown;
-						RechargeCir.Visible = true;
 				}
-				RechargeCir.Value = CircleVal;
 				ShootCooldownV -=delta*buff;
-				CircleVal +=delta*buff;
-				if (CircleVal >= RechargeCir.MaxValue && RechargeCir.Visible){
+				if (ShootCooldownV<=0){
 		            ShootCooldownS=false;	
 					if(bulletAmount<=3){
 						ShootCooldownV=ShootCooldown;
-						bulletAmount+=1;
-						if (bulletAmount>3){
-							RechargeCir.Visible = false;
-						}						
+						bulletAmount+=1;				
 					}
 					ui.RechargeView();
 				}
@@ -115,11 +119,11 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		Bow.Rotation = MouseDirection.Angle(); // направления лука и то как лук повернут
 		if (Bow.Scale.Y == 1 && MouseDirection.X<0){
 			sprite.FlipH = true;
-			// Bow.ShowBehindParent = true;
+			Bow.ShowBehindParent = true;
 			Bow.Scale = new Vector2(Bow.Scale.X, -1);
 		}else if(Bow.Scale.Y == -1 && MouseDirection.X>0){
 			sprite.FlipH = false;
-			// Bow.ShowBehindParent = false;
+			Bow.ShowBehindParent = false;
 			Bow.Scale = new Vector2(Bow.Scale.X, 1);
 		}
 		if (Input.IsActionJustPressed("Jump")){ //Джамп баффер

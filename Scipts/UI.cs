@@ -10,7 +10,6 @@ public partial class UI : CanvasLayer
     Button PauseButtons;
     public override void _Ready(){
         LoadHearts();
-        GetNode<Button>("Control/Button");
         Center = GetNode<CenterContainer>("CenterContainer");
         Background = GetNode<ColorRect>("Background");
         OptionsMenu = GetNode<Control>("OptionsMenu");
@@ -36,21 +35,7 @@ public partial class UI : CanvasLayer
             }
         }
     }
-    public void PauseButton(){
-            Background.Visible = !Background.Visible;
-            HpAndOther.Visible = !HpAndOther.Visible;
-            if(OptionsMenu.Visible == true){
-                  OptionsMenu.Visible = !OptionsMenu.Visible;
-            }else{
-                  Center.Visible = !Center.Visible;
-            }
-            GetTree().Paused= !GetTree().Paused;
-            if (GetTree().Paused){
-                Button Resume = GetNode<Button>("CenterContainer/VBoxContainer/Button");
-                Resume.GrabFocus();
-            }
-    }
-     public void Resume(){
+    public void Resume(){
         // Exit pause button
         GetTree().Paused = !GetTree().Paused;
         Background.Visible = !Background.Visible;
