@@ -44,12 +44,15 @@ offset_bottom = 656.0
 
 [node name="HSlider" parent="Control/OptionsMenu/CenterContainer/VBoxContainer/HBoxContainer/Control" index="1"]
 process_mode = 3
+mouse_default_cursor_shape = 2
 
 [node name="HSlider" parent="Control/OptionsMenu/CenterContainer/VBoxContainer/HBoxContainer2/Control" index="1"]
 process_mode = 3
+mouse_default_cursor_shape = 2
 
 [node name="Button" parent="Control/OptionsMenu/Control2" index="0"]
 process_mode = 3
+mouse_default_cursor_shape = 2
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 process_mode = 3
@@ -86,11 +89,13 @@ color_ramp = SubResource("Gradient_nf3is")
 
 [node name="Button" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 action_mode = 0
 text = "Play"
 
 [node name="Button3" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 action_mode = 0
 text = "Options"
 
@@ -101,8 +106,10 @@ action_mode = 0
 text = "Credits"
 
 [connection signal="focus_entered" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="PlayParticle"]
+[connection signal="mouse_entered" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="PlayParticle"]
 [connection signal="pressed" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="Play"]
 [connection signal="focus_entered" from="BoxContainer/VBoxContainer/Button3" to="BoxContainer" method="OptionsParticle"]
+[connection signal="mouse_entered" from="BoxContainer/VBoxContainer/Button3" to="BoxContainer" method="OptionsParticle"]
 [connection signal="pressed" from="BoxContainer/VBoxContainer/Button3" to="BoxContainer" method="Options"]
 
 [editable path="Control/OptionsMenu"]

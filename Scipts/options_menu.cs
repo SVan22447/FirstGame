@@ -8,8 +8,6 @@ public partial class options_menu : Control
 	public BoxContainer Menu;
 	public Button play;
 	public override void _Ready(){
-
-
 	}
 	public void Update(){
 		GetNode<HSlider>("CenterContainer/VBoxContainer/HBoxContainer/Control/HSlider").Value =AudioServer.GetBusVolumeDb(1);

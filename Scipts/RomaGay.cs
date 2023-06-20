@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-public partial class RomaGay : Node
-{
+public partial class RomaGay : Node{
 	public int MaxLives = 5;
 	public int lives;
 	public UI Ui;
@@ -14,16 +13,16 @@ public partial class RomaGay : Node
 		lives-=damage;
 		Ui.LoadHearts();
 		if (lives <=0){	
-			    GetTree().Paused = true;
-                GetNode<Control>("/root/Test1/UI/Control").Visible = false;
-			    GetNode<CharacterBody2D>("/root/Test1/CharacterBody2D").Visible = false;
-				GetNode<Control>("/root/Test1/UI/GameOverScreen").Visible = true;
+		    GetTree().Paused = true;
+            GetNode<Control>("/root/Test1/UI/Control").Visible = false;
+		    GetNode<CharacterBody2D>("/root/Test1/CharacterBody2D").Visible = false;
+			GetNode<Control>("/root/Test1/UI/GameOverScreen").Visible = true;
 		}
 		GetNode<SoundPlayer>("/root/SoundPlayer").HurtPlayedPlayer();
 	}
 	public void Hilling(int hill){
 		if (lives < MaxLives){
-				lives +=hill;
+			lives +=hill;
 	    }
 		Ui.LoadHearts();
 	}

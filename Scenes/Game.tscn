@@ -591,13 +591,13 @@ frame_11/duration = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ebj0i"]
 shader = ExtResource("11_n7uwg")
-shader_parameter/lod = 0.652
-shader_parameter/blend = 8.731
+shader_parameter/lod = 0.427
+shader_parameter/blend = 2.489
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fgd6a"]
 shader = ExtResource("15_i1sww")
-shader_parameter/lod = 0.227
-shader_parameter/blend = 4.455
+shader_parameter/lod = 0.15
+shader_parameter/blend = 1.5
 
 [node name="Test1" type="Node2D"]
 script = ExtResource("1_1mupx")
@@ -698,7 +698,7 @@ collision_layer = 2818
 collision_mask = 770
 jumpheight = 26
 BowCooldown = 0.5
-ShootCooldown = 1.2
+ShootCooldown = 1.05
 
 [node name="Respawn" type="Node2D" parent="."]
 position = Vector2(440, 391)
@@ -873,16 +873,19 @@ layout_mode = 2
 [node name="Button" type="Button" parent="UI/CenterContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Resume"
 
 [node name="Button3" type="Button" parent="UI/CenterContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Options"
 
 [node name="Button2" type="Button" parent="UI/CenterContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "quitM"
 
 [node name="GameOverScreen" type="Control" parent="UI"]
@@ -933,11 +936,13 @@ theme_override_font_sizes/font_size = 170
 
 [node name="Button" type="Button" parent="UI/GameOverScreen/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 22
 text = "Continue"
 
 [node name="Button2" type="Button" parent="UI/GameOverScreen/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 22
 text = "ExitM"
 

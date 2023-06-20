@@ -8,8 +8,7 @@ public partial class menu : BoxContainer
     Button play;
     CpuParticles2D Particle;
     Control OptionsV;
-    public override void _Ready()
-    {
+    public override void _Ready(){
         Particle =GetNode<CpuParticles2D>("VBoxContainer/CPUParticles2D");
         GetNode<options_menu>("/root/menu/Control/OptionsMenu").Menu = this;
         OptionsV = GetNode<Control>("/root/menu/Control");

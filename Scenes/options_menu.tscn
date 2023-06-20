@@ -70,6 +70,7 @@ offset_left = 16.0
 offset_top = -4.0
 offset_right = 237.0
 offset_bottom = 12.0
+mouse_default_cursor_shape = 2
 min_value = -45.0
 max_value = 15.0
 
@@ -96,6 +97,7 @@ offset_left = 16.0
 offset_top = -4.0
 offset_right = 239.0
 offset_bottom = 12.0
+mouse_default_cursor_shape = 2
 min_value = -45.0
 max_value = 15.0
 
@@ -129,6 +131,7 @@ offset_left = -326.0
 offset_top = -23.0
 offset_right = -245.0
 offset_bottom = 10.0
+mouse_default_cursor_shape = 2
 flat = true
 
 [node name="Label" type="Label" parent="Control2"]
@@ -144,8 +147,8 @@ position = Vector2(-314.125, -8.49999)
 scale = Vector2(0.14875, 0.275)
 texture = ExtResource("1_qfur5")
 
-[connection signal="visibility_changed" from="." to="." method="Update"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer/Control/HSlider" to="." method="MusicSlider"]
-[connection signal="drag_ended" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXend"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXSlider"]
-[connection signal="pressed" from="Control2/Button" to="." method="BackCenter"]
+[connection signal="visibility_changed" from="." to="." method="Update" flags=18]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer/Control/HSlider" to="." method="MusicSlider" flags=18]
+[connection signal="drag_ended" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXend" flags=18]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXSlider" flags=18]
+[connection signal="pressed" from="Control2/Button" to="." method="BackCenter" flags=18]

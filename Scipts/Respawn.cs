@@ -7,8 +7,7 @@ public partial class Respawn : Node2D
 	public override void _Ready(){
 		Roma = GetNode<RomaGay>("/root/RomaGay");
 	}
-	public void RespawnW(int damage){
-        
+	public void RespawnW(int damage){  
 	}
 	public void falled(Node2D body){
 		if (Roma.lives > 0 ){

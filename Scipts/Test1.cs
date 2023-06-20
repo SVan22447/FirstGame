@@ -13,7 +13,6 @@ public partial class Test1 : Node2D{
 		 	RespawnZone = CheckpointPos;
 	}
 	public override void _ExitTree(){
-
 		Roma.CollideCheckpoint -= (CheckpointPos) => OnCollideCheckpoint(CheckpointPos);
 	}
 }

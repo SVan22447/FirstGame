@@ -130,7 +130,6 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 			LastJump=0.1005;
 		}
 		if(Input.IsActionJustPressed("ui_filedialog_show_hidden")){ // тест диалога
-			GetTree().Paused = true;
 			Action();
 		}
 		direction.X = Input.GetAxis("Left", "Right");
@@ -206,6 +205,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		var ballon = (CanvasLayer)BallonX.Instantiate();
 		var balloon = (BalloonT)ballon;
 		GetTree().CurrentScene.AddChild(ballon);
+		GetTree().Paused = true;
+		BowCooldownV= BowCooldown*Bowbuff;
 		balloon.Start(DialogueResource,dialogue);
 	}
 }
