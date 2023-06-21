@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-RomaGay="*res://Scipts/RomaGay.cs"
-SoundPlayer="*res://Scenes/SoundPlayer.tscn"
+RomaGay="*res://autoloads/RomaGay.cs"
+SoundPlayer="*res://autoloads/SoundPlayer.tscn"
 
 [display]
 

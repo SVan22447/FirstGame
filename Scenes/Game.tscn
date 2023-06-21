@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://udf3d5u4u8bl"]
+[gd_scene load_steps=52 format=3 uid="uid://hwhfinro5id1"]
 
 [ext_resource type="Script" path="res://Scipts/Test1.cs" id="1_1mupx"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
@@ -13,24 +13,24 @@
 [ext_resource type="Script" path="res://Scipts/charge.cs" id="8_gev4h"]
 [ext_resource type="PackedScene" uid="uid://c21ipsgx17ggo" path="res://Scenes/options_menu.tscn" id="10_5nqb6"]
 [ext_resource type="Texture2D" uid="uid://db1b13woi4xsm" path="res://Kit/Base/ппппфыа.png" id="10_y4wm1"]
-[ext_resource type="Texture2D" uid="uid://dp1lt8n77rs71" path="res://assets/Player/afsgddsg.png" id="11_lhw5f"]
 [ext_resource type="Shader" path="res://Shaders/Game.gdshader" id="11_n7uwg"]
-[ext_resource type="Texture2D" uid="uid://bp8fnpwvptaby" path="res://assets/Other/AnimateHP/emter1.png" id="13_13gm2"]
-[ext_resource type="Texture2D" uid="uid://bhwtex55xdlxj" path="res://assets/Other/AnimateHP/emter2.png" id="14_ndclu"]
-[ext_resource type="Texture2D" uid="uid://cyj46upscfxid" path="res://assets/Other/AnimateHP/emter11.png" id="15_5vm5n"]
+[ext_resource type="Texture2D" uid="uid://dp1lt8n77rs71" path="res://assets/UI/afsgddsg.png" id="14_wy0f0"]
 [ext_resource type="Shader" path="res://Shaders/GameOver.gdshader" id="15_i1sww"]
 [ext_resource type="Script" path="res://Scipts/GameOverScreen.cs" id="15_jlha6"]
-[ext_resource type="Texture2D" uid="uid://c25cf1m5gf0gs" path="res://assets/Other/AnimateHP/emter12.png" id="16_7vpel"]
-[ext_resource type="Texture2D" uid="uid://ccy3vtv2651d1" path="res://assets/Other/AnimateHP/emter3.png" id="17_k5mnw"]
-[ext_resource type="Texture2D" uid="uid://djf2u7sp2sa0e" path="res://assets/Other/AnimateHP/emter4.png" id="18_th4pr"]
-[ext_resource type="Texture2D" uid="uid://cbpumyd2wd7x2" path="res://assets/Other/AnimateHP/emter5.png" id="19_sw2v2"]
-[ext_resource type="Texture2D" uid="uid://cfs82xovtyysn" path="res://assets/Other/AnimateHP/emter6.png" id="20_2vln1"]
-[ext_resource type="Texture2D" uid="uid://cksxupogtk68t" path="res://assets/Other/AnimateHP/emter7.png" id="21_2hspm"]
-[ext_resource type="Texture2D" uid="uid://b10oonlegtt3x" path="res://assets/Other/AnimateHP/emter8.png" id="22_sbih5"]
-[ext_resource type="Texture2D" uid="uid://sqs40bo0wlgi" path="res://assets/Other/AnimateHP/emter9.png" id="23_b5rbq"]
-[ext_resource type="Texture2D" uid="uid://b75qa04dytaqh" path="res://assets/Other/AnimateHP/emter10.png" id="24_o4eot"]
-[ext_resource type="Texture2D" uid="uid://b07cgmsnwl0d4" path="res://assets/Player/push.png" id="27_hij76"]
+[ext_resource type="Texture2D" uid="uid://bp8fnpwvptaby" path="res://assets/UI/AnimateHP/emter1.png" id="16_51l0w"]
+[ext_resource type="Texture2D" uid="uid://bhwtex55xdlxj" path="res://assets/UI/AnimateHP/emter2.png" id="17_wf236"]
+[ext_resource type="Texture2D" uid="uid://cyj46upscfxid" path="res://assets/UI/AnimateHP/emter11.png" id="18_u24wn"]
+[ext_resource type="Texture2D" uid="uid://c25cf1m5gf0gs" path="res://assets/UI/AnimateHP/emter12.png" id="19_g44m8"]
+[ext_resource type="Texture2D" uid="uid://ccy3vtv2651d1" path="res://assets/UI/AnimateHP/emter3.png" id="20_hbyca"]
+[ext_resource type="Texture2D" uid="uid://djf2u7sp2sa0e" path="res://assets/UI/AnimateHP/emter4.png" id="21_j1jb6"]
+[ext_resource type="Texture2D" uid="uid://cbpumyd2wd7x2" path="res://assets/UI/AnimateHP/emter5.png" id="22_j0np3"]
+[ext_resource type="Texture2D" uid="uid://cfs82xovtyysn" path="res://assets/UI/AnimateHP/emter6.png" id="23_8rg8q"]
+[ext_resource type="Texture2D" uid="uid://cksxupogtk68t" path="res://assets/UI/AnimateHP/emter7.png" id="24_48spk"]
+[ext_resource type="Texture2D" uid="uid://b10oonlegtt3x" path="res://assets/UI/AnimateHP/emter8.png" id="25_6qovp"]
+[ext_resource type="Texture2D" uid="uid://sqs40bo0wlgi" path="res://assets/UI/AnimateHP/emter9.png" id="26_hhre4"]
+[ext_resource type="Texture2D" uid="uid://b75qa04dytaqh" path="res://assets/UI/AnimateHP/emter10.png" id="27_f6ko8"]
 [ext_resource type="Texture2D" uid="uid://b6a807jjquena" path="res://assets/Other/1642608884_1-abrakadabra-fun-p-bekgraund-dlya-igri-2.jpg" id="28_bfkcv"]
+[ext_resource type="Texture2D" uid="uid://b07cgmsnwl0d4" path="res://assets/UI/push.png" id="28_qaqcr"]
 [ext_resource type="Texture2D" uid="uid://c6avotm0453g2" path="res://assets/Player/OMGH.png" id="32_iyhi4"]
 
 [sub_resource type="Sky" id="Sky_gqidt"]
@@ -564,29 +564,29 @@ _data = {
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_l20g3"]
 frames = 12
-frame_0/texture = ExtResource("13_13gm2")
+frame_0/texture = ExtResource("16_51l0w")
 frame_0/duration = 0.1
-frame_1/texture = ExtResource("14_ndclu")
+frame_1/texture = ExtResource("17_wf236")
 frame_1/duration = 0.1
-frame_2/texture = ExtResource("17_k5mnw")
+frame_2/texture = ExtResource("20_hbyca")
 frame_2/duration = 0.1
-frame_3/texture = ExtResource("18_th4pr")
+frame_3/texture = ExtResource("21_j1jb6")
 frame_3/duration = 0.1
-frame_4/texture = ExtResource("19_sw2v2")
+frame_4/texture = ExtResource("22_j0np3")
 frame_4/duration = 0.1
-frame_5/texture = ExtResource("20_2vln1")
+frame_5/texture = ExtResource("23_8rg8q")
 frame_5/duration = 0.1
-frame_6/texture = ExtResource("21_2hspm")
+frame_6/texture = ExtResource("24_48spk")
 frame_6/duration = 0.1
-frame_7/texture = ExtResource("22_sbih5")
+frame_7/texture = ExtResource("25_6qovp")
 frame_7/duration = 0.1
-frame_8/texture = ExtResource("23_b5rbq")
+frame_8/texture = ExtResource("26_hhre4")
 frame_8/duration = 0.1
-frame_9/texture = ExtResource("24_o4eot")
+frame_9/texture = ExtResource("27_f6ko8")
 frame_9/duration = 0.1
-frame_10/texture = ExtResource("15_5vm5n")
+frame_10/texture = ExtResource("18_u24wn")
 frame_10/duration = 0.1
-frame_11/texture = ExtResource("16_7vpel")
+frame_11/texture = ExtResource("19_g44m8")
 frame_11/duration = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ebj0i"]
@@ -802,7 +802,7 @@ offset_top = 32.0
 offset_right = 57.0
 offset_bottom = 56.0
 scale = Vector2(2.3, 2.3)
-texture = ExtResource("11_lhw5f")
+texture = ExtResource("14_wy0f0")
 
 [node name="HeartUp" type="TextureRect" parent="UI/Control"]
 layout_mode = 0
@@ -831,7 +831,7 @@ offset_top = 96.0
 offset_right = 49.0
 offset_bottom = 105.0
 scale = Vector2(2.3, 2.3)
-texture = ExtResource("27_hij76")
+texture = ExtResource("28_qaqcr")
 stretch_mode = 1
 
 [node name="Background" type="ColorRect" parent="UI"]

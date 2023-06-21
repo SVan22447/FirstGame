@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://hwyx74ys5wwj"]
+
+[ext_resource type="Script" path="res://Scipts/SoundPlayer.cs" id="1_mbats"]
+
+[node name="SoundPlayer" type="Node"]
+script = ExtResource("1_mbats")
+
+[node name="AudioPlayers" type="Node" parent="."]
+
+[node name="Bow" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"audio"
+
+[node name="Hurt" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"audio"
