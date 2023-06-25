@@ -99,6 +99,7 @@ texture_progress = ExtResource("5_xvoow")
 position = Vector2(-8, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bow/Node2D"]
+position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_krql5")
 frame_progress = 0.253115
 
