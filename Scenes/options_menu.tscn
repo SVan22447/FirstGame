@@ -72,7 +72,7 @@ offset_right = 237.0
 offset_bottom = 12.0
 mouse_default_cursor_shape = 2
 min_value = -45.0
-max_value = 15.0
+max_value = 5.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -99,7 +99,7 @@ offset_right = 239.0
 offset_bottom = 12.0
 mouse_default_cursor_shape = 2
 min_value = -45.0
-max_value = 15.0
+max_value = 5.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2

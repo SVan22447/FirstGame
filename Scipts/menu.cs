@@ -1,15 +1,14 @@
 using Godot;
 using System;
-
-public partial class menu : BoxContainer
-
-{
+public partial class menu : BoxContainer{
     PackedScene OptionsInstance;
     Button play;
     CpuParticles2D Particle;
+    PointLight2D Light;
     Control OptionsV;
     public override void _Ready(){
-        Particle =GetNode<CpuParticles2D>("VBoxContainer/CPUParticles2D");
+        Particle =GetNode<CpuParticles2D>("CPUParticles2D");
+        Light =GetNode<PointLight2D>("PointLight2D");
         GetNode<options_menu>("/root/menu/Control/OptionsMenu").Menu = this;
         OptionsV = GetNode<Control>("/root/menu/Control");
         play = GetNode<Button>("VBoxContainer/Button");
@@ -25,12 +24,18 @@ public partial class menu : BoxContainer
         OptionsV.Visible = !OptionsV.Visible;
     }
     public void PlayParticle(){
+        play.GrabFocus();
         Particle.Visible = true;
-        Particle.Position=new Vector2(-27.657f,19.66f);
+        Light.Visible = true;
+        Light.Position=new Vector2(136.847f,15.335f);
+        Particle.Position=new Vector2(-27.657f,15.335f);
     }
     public void OptionsParticle(){
+        GetNode<Button>("VBoxContainer/Button3").GrabFocus();
         Particle.Visible = true;
-        Particle.Position=new Vector2(-27.657f,51.116f);
+        Light.Visible = true;
+        Light.Position=new Vector2(136.847f,51.509f);
+        Particle.Position=new Vector2(-27.657f,51.509f);
     }
 }
 

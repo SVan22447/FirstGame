@@ -70,8 +70,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	public override void _Process(double delta)
 	{
 		#region Таймеры
-			LastOnGroundTime =LastOnGroundTime -=delta;
-			wallJumpLeftTime =wallJumpLeftTime-=delta;
+			LastOnGroundTime -=delta;
+			wallJumpLeftTime-=delta;
 			wallJumpRightTime -=delta;
 			LastJump=LastJump-=delta;
 			if (BowCooldownV>=0){ // перезарядка выстрела
@@ -132,7 +132,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		if(Input.IsActionJustPressed("ui_filedialog_show_hidden")){ // тест диалога
 			Action();
 		}
-		direction.X = Input.GetAxis("Left", "Right");
+        direction.X = Input.GetAxis("Left", "Right");
 		direction.Y = Input.GetAxis("Up", "Down");
 		if(LeftWall.IsColliding()){
 			wallJumpLeftTime = coyoteTime;
@@ -168,7 +168,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 				velocity.Y=jumpVelocity;	    
 			 }
 		}
-		  if (direction.X != 0 && !shootBool)  {    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
+		  if (direction.X != 0 && !shootBool){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
 			velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
 		  }else if(!shootBool){ // если нет выстрела и движение кончилось ,то мы замедляемся
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
@@ -184,7 +184,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 			  LastOnGroundTime=0;
 			  wallJumpLeftTime=0;
 			  wallJumpRightTime=0;
-			  var bullet =  (CharacterBody2D)bulletInstance.Instantiate();
+			  var bullet = (CharacterBody2D)bulletInstance.Instantiate();
 			  bullet.GlobalPosition = GetNode<Node2D>("Bow/Node2D").GlobalPosition;
 			  bullet.RotationDegrees= GetNode<Node2D>("Bow/Node2D").GlobalRotationDegrees;
 			  if(Bow.ShowBehindParent == true){

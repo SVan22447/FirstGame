@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmmbhhaa54fgf"
-path="res://.godot/imported/furnit_street.png-5d8e898c347481db05431e3cf9521ebd.ctex"
+uid="uid://dh8rj20cvicw0"
+path="res://.godot/imported/test_back.png-f6aeb260fcf71fad7772d06de6eb3206.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tileset/furnit_street.png"
-dest_files=["res://.godot/imported/furnit_street.png-5d8e898c347481db05431e3cf9521ebd.ctex"]
+source_file="res://assets/tileset/imba/test_back.png"
+dest_files=["res://.godot/imported/test_back.png-f6aeb260fcf71fad7772d06de6eb3206.ctex"]
 
 [params]
 
