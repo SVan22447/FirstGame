@@ -783,7 +783,7 @@ script = ExtResource("2_v71rc")
 target = NodePath("../CharacterBody2D")
 
 [node name="Camera2D" type="Camera2D" parent="CameraProxy"]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2.56, 2.56)
 limit_top = -500
 limit_right = 5000
 limit_bottom = 1000
@@ -1175,7 +1175,7 @@ offset_left = 32.0
 offset_top = 32.0
 offset_right = 57.0
 offset_bottom = 56.0
-scale = Vector2(2.2, 2.2)
+scale = Vector2(2.24, 2.24)
 texture = ExtResource("14_wy0f0")
 
 [node name="HeartUp" type="TextureRect" parent="UI/Control"]
@@ -1186,7 +1186,7 @@ offset_left = 96.0
 offset_top = 32.0
 offset_right = 231.0
 offset_bottom = 56.0
-scale = Vector2(2.2, 2.2)
+scale = Vector2(2.24, 2.24)
 texture = ExtResource("10_y4wm1")
 stretch_mode = 1
 
@@ -1198,7 +1198,7 @@ offset_left = 96.0
 offset_top = 32.0
 offset_right = 123.0
 offset_bottom = 56.0
-scale = Vector2(2.2, 2.2)
+scale = Vector2(2.24, 2.24)
 texture = SubResource("AnimatedTexture_l20g3")
 stretch_mode = 1
 
@@ -1212,7 +1212,7 @@ offset_left = 40.0
 offset_top = 89.0
 offset_right = 49.0
 offset_bottom = 98.0
-scale = Vector2(2.2, 2.2)
+scale = Vector2(2.24, 2.24)
 texture = ExtResource("28_qaqcr")
 stretch_mode = 1
 
