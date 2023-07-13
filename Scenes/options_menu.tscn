@@ -6,7 +6,7 @@
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
 visible = false
-texture_filter = 3
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,6 +46,32 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_direction = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer4/Control"]
+layout_mode = 0
+offset_left = -89.0
+offset_top = -9.0
+offset_right = -10.0
+offset_bottom = 17.0
+text = "Fullscreen
+"
+
+[node name="CheckButton" type="CheckButton" parent="CenterContainer/VBoxContainer/HBoxContainer4/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = -8.0
+offset_right = 53.0
+offset_bottom = 16.0
+flat = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -147,8 +173,10 @@ position = Vector2(-314.125, -8.49999)
 scale = Vector2(0.14875, 0.275)
 texture = ExtResource("1_qfur5")
 
-[connection signal="visibility_changed" from="." to="." method="Update" flags=18]
+[connection signal="UpdateV" from="." to="." method="Update"]
+[connection signal="visibility_changed" from="." to="." method="Update"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer4/Control/CheckButton" to="." method="FullscreenToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer/Control/HSlider" to="." method="MusicSlider" flags=18]
-[connection signal="drag_ended" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXend" flags=18]
+[connection signal="drag_ended" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXend"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXSlider" flags=18]
 [connection signal="pressed" from="Control2/Button" to="." method="BackCenter" flags=18]

@@ -27,14 +27,14 @@ public partial class menu : BoxContainer{
         play.GrabFocus();
         Particle.Visible = true;
         Light.Visible = true;
-        Light.Position=new Vector2(136.847f,15.335f);
+        Light.Position=new Vector2(130.023f,15.335f);
         Particle.Position=new Vector2(-27.657f,15.335f);
     }
     public void OptionsParticle(){
         GetNode<Button>("VBoxContainer/Button3").GrabFocus();
         Particle.Visible = true;
         Light.Visible = true;
-        Light.Position=new Vector2(136.847f,51.509f);
+        Light.Position=new Vector2(130.023f,51.509f);
         Particle.Position=new Vector2(-27.657f,51.509f);
     }
 }

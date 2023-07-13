@@ -1,8 +1,18 @@
 using Godot;
 using Godot.Collections;
 using DialogueManagerRuntime;
+public enum PlayerState{
+	Standing,
+	Walking,
+	Climping,
+	Hurting,
+	Shooting,
+	Peak,
+	descent
+}
 public partial class CharacterBody2D : Godot.CharacterBody2D{
 	#region переменные
+		PlayerState currentState = PlayerState.Standing;
 		[Export]public int Speed = 125;
 		[Export]PackedScene BallonX;
 		[ExportSubgroup("Прыжок")]
@@ -49,8 +59,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		Vector2 velocity;
 		float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	#endregion
-	private float GetGravity(){
-		 return velocity.Y < .0f ? jumpGravity : fallGravity;
+	float GetGravity(){
+		return velocity.Y < .0f ? jumpGravity : fallGravity;
 	}
 	public override void _Ready(){
 		DialogueResource = ResourceLoader.Load("res://dialogue/dia.dialogue");
@@ -67,8 +77,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		ui=GetNode<UI>("/root/Test1/UI");
 	    bulletInstance = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
 	}
-	public override void _Process(double delta)
-	{
+	public override void _Process(double delta){
 		#region Таймеры
 			LastOnGroundTime -=delta;
 			wallJumpLeftTime-=delta;
@@ -143,8 +152,14 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 			if(velocity.Y<=450){
 				if(!IsJumping&&((LeftWall.IsColliding()&&Input.IsActionPressed("Left"))||(RightWall.IsColliding()&&Input.IsActionPressed("Right")))){
 					velocity.Y= 50;
+					currentState = PlayerState.Climping;
 				}else{
 					velocity.Y+= GetGravity()*(float)delta;
+					// if (GetGravity()==jumpGravity){
+
+					// }else{
+
+					// }
 				}
 			}
 		}else{
@@ -158,7 +173,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 				TimeJump =40;
 				TimeJump2 =17;
 				velocity.Y = jumpVelocity;		
-			}
+		}
 		if(!IsJumping2&&LastJump>0){ // прыжок от стены
 			 if ( Input.IsActionPressed("Right") && wallJumpLeftTime>0){
 				velocity.X-=jumpVelocity/2f;
@@ -168,33 +183,41 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 				velocity.Y=jumpVelocity;	    
 			 }
 		}
-		  if (direction.X != 0 && !shootBool){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
+		if (direction.X != 0 && !shootBool){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
 			velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
-		  }else if(!shootBool){ // если нет выстрела и движение кончилось ,то мы замедляемся
+		}else if(!shootBool){ // если нет выстрела и движение кончилось ,то мы замедляемся
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
-		  }
-		 if (Input.IsActionJustPressed("Lbm")&&(bulletAmount>0&&BowCooldownV<=0)){   // выстрел персонажа
-		      if (bulletAmount>0){
-                bulletAmount--;
-			  }
-			  BowCooldownV= BowCooldown*Bowbuff;
-			  ShootCooldownV = ShootCooldown;
-			  ui.RechargeView();
-		      shootBool=true;
-			  LastOnGroundTime=0;
-			  wallJumpLeftTime=0;
-			  wallJumpRightTime=0;
-			  var bullet = (CharacterBody2D)bulletInstance.Instantiate();
-			  bullet.GlobalPosition = GetNode<Node2D>("Bow/Node2D").GlobalPosition;
-			  bullet.RotationDegrees= GetNode<Node2D>("Bow/Node2D").GlobalRotationDegrees;
-			  if(Bow.ShowBehindParent == true){
-					bullet.ShowBehindParent = true;
-			  }
-			  GetNode<SoundPlayer>("/root/SoundPlayer").PlaySound();
-			  GetTree().Root.GetNode<Node2D>("Test1/CameraProxy").AddSibling(bullet);
-			  var MouseDir = GlobalPosition.DirectionTo(GetGlobalMousePosition());
-			  velocity.X -= (MouseDir.X * (float)recoilX);
-			  velocity.Y -= (MouseDir.Y * (float)recoilY); 
+		}
+		if (Input.IsActionJustPressed("Lbm")&&(bulletAmount>0&&BowCooldownV<=0)){   // выстрел персонажа
+			if (bulletAmount>0){
+			bulletAmount--;
+			}
+			BowCooldownV= BowCooldown*Bowbuff;
+			ShootCooldownV = ShootCooldown;
+			ui.RechargeView();
+			shootBool=true;
+			LastOnGroundTime=0;
+			wallJumpLeftTime=0;
+			wallJumpRightTime=0;
+			var bullet = (CharacterBody2D)bulletInstance.Instantiate();
+			bullet.GlobalPosition = GetNode<Node2D>("Bow/Node2D").GlobalPosition;
+			bullet.RotationDegrees= GetNode<Node2D>("Bow/Node2D").GlobalRotationDegrees;
+			if(Bow.ShowBehindParent == true){
+				bullet.ShowBehindParent = true;
+			}
+			GetNode<SoundPlayer>("/root/SoundPlayer").PlaySound();
+			GetTree().Root.GetNode<Node2D>("Test1/CameraProxy").AddSibling(bullet);
+			var MouseDir = GlobalPosition.DirectionTo(GetGlobalMousePosition());
+			if(velocity.Y <=.0f){
+				velocity.X -= (MouseDir.X * (float)recoilX);
+				velocity.Y -= (MouseDir.Y * ((float)recoilY/1.25f)); 
+			}else if(velocity.Y>0f&&MouseDir.Y>.0f){
+				velocity.X = -(MouseDir.X * (float)recoilX);
+				velocity.Y = -(MouseDir.Y * (float)recoilY); 
+			}else if(velocity.Y>.0f&&MouseDir.Y<=.0f){
+				velocity.X = -(MouseDir.X * (float)recoilX);
+				velocity.Y -= (MouseDir.Y * (float)recoilY); 
+			}
 		}else{
 			shootBool = false;
 		}
