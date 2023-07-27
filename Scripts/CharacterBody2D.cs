@@ -1,0 +1,268 @@
+using Godot;
+using Godot.Collections;
+using DialogueManagerRuntime;
+public enum PlayerState{
+	Standing,
+	Walking,
+	Climping,
+	Hurting,
+	Shooting,
+	Peak,
+	descent
+}
+public partial class CharacterBody2D : Godot.CharacterBody2D{
+	#region переменные
+		PlayerState currentState = PlayerState.Standing;
+		[Export]public int Speed = 125;
+		[Export]PackedScene BallonX;
+		[ExportSubgroup("Прыжок")]
+		[Export(PropertyHint.Range,"0f,1f")]float jumpTimeToPeak = .2f;
+		[Export(PropertyHint.Range,"0f,1f")]float jumpTimeToDescent =.3f;
+		[Export(PropertyHint.Range,"0.001,1")]double coyoteTime = 0.106;
+		Timer LastOnGroundTime;
+		Timer FallingTimes;
+		Timer DamagesTimes;
+		Timer LastJump;
+		Timer wallJumpLeftTime;
+		Timer wallJumpRightTime;
+		double SlidingOffTheWall;
+		double CircleVal;
+		float jumpGravity;
+		float jumpVelocity;
+		float fallGravity;
+		bool IsJumping;
+		bool IsJumping2;
+		int TimeJump;
+		int TimeJump2;
+		RayCast2D LeftWall;
+		RayCast2D RightWall;
+		bool shootBool;
+		[Export]int jumpheight = 25;
+		[ExportSubgroup("Выстрел")]
+		[Export]double recoilX= 1700;
+		[Export]double recoilY=215;
+		[Export(PropertyHint.Range,"0.001,1")] public double BowCooldown = 0.3;
+		[Export(PropertyHint.Range,"0.01,3")] public double ShootCooldown = 1;
+		Resource DialogueResource;
+		string dialogue = "start";
+		public bool ShootCooldownS = false;
+		public double BowCooldownV;
+		public double ShootCooldownV;
+		public double Bowbuff=1;
+		public double buff = 1;
+		Vector2 MouseDirection;
+		Vector2 direction;
+		Node2D Bow;
+		public TextureProgressBar RechargeCir;
+		PackedScene bulletInstance;
+		public bool AddJumping;
+		public short bulletAmount;
+		public Sprite2D sprite;
+		UI ui;
+		Vector2 velocity;
+		Vector2 TestVelocity;
+		float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	#endregion
+	float GetGravity(){
+		return velocity.Y < .0f ? jumpGravity : fallGravity;
+	}
+	public override void _Ready(){
+		DialogueResource = ResourceLoader.Load("res://dialogue/dia.dialogue");
+		LastOnGroundTime = GetNode<Timer>("Timers/LastOnGroundTime");
+		LastOnGroundTime.WaitTime=coyoteTime;
+		FallingTimes = GetNode<Timer>("Timers/FallingTimes");
+		wallJumpLeftTime= GetNode<Timer>("Timers/wallJumpLeftTime");
+		wallJumpLeftTime.WaitTime=coyoteTime;
+		wallJumpRightTime= GetNode<Timer>("Timers/wallJumpRightTime");
+		wallJumpRightTime.WaitTime=coyoteTime;
+		LastJump = GetNode<Timer>("Timers/LastJump");
+		DamagesTimes = GetNode<Timer>("Timers/DamagesTimes");
+		ShootCooldownV =  ShootCooldown;
+		jumpVelocity = ((2.0f*jumpheight)/jumpTimeToPeak)*-1.0f;   // подстройка значений прыжка
+		jumpGravity = ((-2.0f*jumpheight)/(jumpTimeToPeak*jumpTimeToPeak))*-1.0f;
+		fallGravity = ((-2.0f*jumpheight)/(jumpTimeToDescent*jumpTimeToPeak))*-1.0f;
+		LeftWall = GetNode<RayCast2D>("Left");
+		RightWall = GetNode<RayCast2D>("Right");
+	    sprite = GetNode<Sprite2D>("Sprite2D"); 
+	    RechargeCir=GetNode<TextureProgressBar>("TextureProgressBar");
+	    RechargeCir.MaxValue = ShootCooldown;
+	    Bow = GetNode<Node2D>("Bow");
+		ui=GetNode<UI>("/root/Test1/UI");
+	    bulletInstance = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
+	}
+	public override void _Process(double delta){
+		velocity=Velocity;
+		#region Таймеры
+			if (BowCooldownV>=0){ // перезарядка выстрела
+                if (BowCooldownV==BowCooldown*Bowbuff){
+                    CircleVal = 0;
+					RechargeCir.MaxValue = BowCooldown*Bowbuff;
+					RechargeCir.Visible = true;
+				}
+				BowCooldownV-=delta;
+				CircleVal +=delta*buff;
+				RechargeCir.Value = CircleVal;
+				if(BowCooldownV<=0){
+					RechargeCir.Visible = false;
+				}
+			}
+			if (ShootCooldownV >= 0&&bulletAmount<4){  // Перезарядка стрел
+				if(ShootCooldownV == ShootCooldown){
+						ShootCooldownS=true;
+				}
+				ShootCooldownV -=delta*buff;
+				if (ShootCooldownV<=0){
+		            ShootCooldownS=false;	
+					if(bulletAmount<=3){
+						ShootCooldownV=ShootCooldown;
+						bulletAmount+=1;				
+					}
+					ui.RechargeView();
+				}
+			}
+			if(IsJumping2){
+				TimeJump2--;
+				if(TimeJump2<=0){
+					IsJumping2 = false;
+				}
+			}
+			if (IsJumping){
+				TimeJump--;
+				if(TimeJump<=0){
+					IsJumping = false;
+				}
+			}
+		#endregion		
+		var MouseDirection = -(GetGlobalMousePosition() - GlobalPosition).Normalized();
+		Bow.Rotation = MouseDirection.Angle(); // направления лука и то как лук повернут
+		if (Bow.Scale.Y == 1 && MouseDirection.X<0){
+			sprite.FlipH = true;
+			Bow.ShowBehindParent = true;
+			Bow.Scale = new Vector2(Bow.Scale.X, -1);
+		}else if(Bow.Scale.Y == -1 && MouseDirection.X>0){
+			sprite.FlipH = false;
+			Bow.ShowBehindParent = false;
+			Bow.Scale = new Vector2(Bow.Scale.X, 1);
+		}
+		#region Прыжки движения и диалоги
+			if (Input.IsActionJustPressed("Jump")){ //Джамп баффер
+				LastJump.Start();
+			}
+			if(Input.IsActionJustPressed("ui_filedialog_show_hidden")){ // тест диалога
+				Action();
+			}
+			direction.X = Input.GetAxis("Left", "Right");
+			direction.Y = Input.GetAxis("Up", "Down");
+			if(LeftWall.IsColliding()){
+				wallJumpLeftTime.Start();
+			}else if(RightWall.IsColliding()){
+				wallJumpRightTime.Start();
+			}
+			if (!IsOnFloor()){
+				if(velocity.Y<=450){
+					if(!IsJumping&&((LeftWall.IsColliding()&&Input.IsActionPressed("Left"))||(RightWall.IsColliding()&&Input.IsActionPressed("Right")))){
+						velocity.Y= 50;
+						SlidingOffTheWall -=delta;
+						currentState = PlayerState.Climping;
+					}
+					// else if(!Input.IsActionPressed("Down")){
+						if(FallingTimes.IsStopped()&&velocity.Y<=300){
+							velocity.Y+= GetGravity()*(float)delta;
+						}
+					// else if(FallingTimes.IsStopped()&&velocity.Y>400){
+					// 		velocity.Y-=10;
+					// 		Velocity=Vector2.Zero;
+					// 	}
+					// }else if(Input.IsActionPressed("Down")){
+					// 	if(!(shootBool)&&TimeJump2<=0){
+					// 		FallingTimes.Start();
+					// 		velocity.Y+= 2.2f*(GetGravity())*(float)delta;
+					//     }
+					// }
+				}
+			}else{
+				LastOnGroundTime.Start();
+			}
+			if(!LastJump.IsStopped()&&(!LastOnGroundTime.IsStopped()||AddJumping)){// прыжок
+					AddJumping = false;
+					LastOnGroundTime.Stop();
+					IsJumping = true;
+					SlidingOffTheWall =0.2;
+					IsJumping2 = true;
+					TimeJump =40;
+					TimeJump2 =17;
+					velocity.Y = jumpVelocity;		
+			}
+			if(!IsJumping2&&!LastJump.IsStopped()){ // прыжок от стены
+				if ( Input.IsActionPressed("Right") && !wallJumpLeftTime.IsStopped()){
+					velocity.X-=jumpVelocity/2f;
+					SlidingOffTheWall =0.22;
+					velocity.Y=jumpVelocity;
+				}else if (Input.IsActionPressed("Left") && !wallJumpRightTime.IsStopped()) {
+					velocity.X+=jumpVelocity/2f;
+					SlidingOffTheWall =0.22;
+					velocity.Y=jumpVelocity;	    
+				}
+			}
+			if (direction.X != 0 && !shootBool&& DamagesTimes.IsStopped()){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
+				velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
+			}else if(!shootBool&& DamagesTimes.IsStopped()){ // если нет выстрела и движение кончилось ,то мы замедляемся
+				velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
+			}
+		#endregion
+		if (Input.IsActionJustPressed("Shoot")&&(bulletAmount>0&&BowCooldownV<=0)){   // выстрел персонажа
+			shoot(delta);
+		}else{
+			shootBool = false;
+		}
+		Velocity=velocity;
+		MoveAndSlide();
+	}
+	private void shoot(double delta){
+		if (bulletAmount>0){
+			bulletAmount--;
+		}
+		BowCooldownV= BowCooldown*Bowbuff;
+		ShootCooldownV = ShootCooldown;
+		ui.RechargeView();
+		shootBool=true;
+		LastOnGroundTime.Stop();
+		wallJumpLeftTime.Stop();
+		wallJumpRightTime.Stop();
+		var bullet = (CharacterBody2D)bulletInstance.Instantiate();
+		bullet.GlobalPosition = GetNode<Node2D>("Bow/Node2D").GlobalPosition;
+		bullet.RotationDegrees= GetNode<Node2D>("Bow/Node2D").GlobalRotationDegrees;
+		if(Bow.ShowBehindParent == true){
+			bullet.ShowBehindParent = true;
+		}
+		GetNode<SoundPlayer>("/root/SoundPlayer").PlaySound();
+		GetTree().Root.GetNode<Node2D>("Test1/CameraProxy").AddSibling(bullet);
+		var MouseDir = GlobalPosition.DirectionTo(GetGlobalMousePosition());
+		if(velocity.Y <=.0f){
+			velocity.X -= (MouseDir.X * (float)recoilX);
+			velocity.Y -= (MouseDir.Y * ((float)recoilY/1.25f)); 
+		}else if(velocity.Y>0f&&MouseDir.Y>.0f){
+			velocity.X = -(MouseDir.X * (float)recoilX);
+			velocity.Y = -(MouseDir.Y * (float)recoilY); 
+		}else if(velocity.Y>.0f&&MouseDir.Y<=.0f){
+			velocity.X = -(MouseDir.X * (float)recoilX);
+			velocity.Y -= (MouseDir.Y * (float)recoilY); 
+		}
+	}
+	private void DamageTaken(Node2D body){
+		var SpikesPos = body.GlobalPosition.DirectionTo(GlobalPosition);
+		GD.Print(SpikesPos);
+		DamagesTimes.Start();
+		velocity= -(SpikesPos* 800);
+        GetNode<RomaGay>("/root/RomaGay").LoseHeart(1);
+		Velocity=velocity;
+	}
+	private void Action(){
+		var ballon = (CanvasLayer)BallonX.Instantiate();
+		var balloon = (BalloonT)ballon;
+		GetTree().CurrentScene.AddChild(ballon);
+		GetTree().Paused = true;
+		BowCooldownV= BowCooldown*Bowbuff;
+		balloon.Start(DialogueResource,dialogue);
+	}
+}

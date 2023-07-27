@@ -1,17 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bewhxvxg5a2pj"]
+[gd_scene load_steps=10 format=3 uid="uid://b7gtvebmchwvh"]
 
-[ext_resource type="Script" path="res://Scipts/menu.cs" id="1_43naw"]
-[ext_resource type="PackedScene" uid="uid://c21ipsgx17ggo" path="res://Scenes/options_menu.tscn" id="1_cphnr"]
+[ext_resource type="Script" path="res://Scripts/menu.cs" id="1_2ntdg"]
+[ext_resource type="PackedScene" uid="uid://6qiw6s0qpw22" path="res://Scenes/options_menu.tscn" id="1_cphnr"]
+[ext_resource type="Texture2D" uid="uid://bfkqcxtw25cvy" path="res://assets/Other/1507912-200.png" id="3_ohbfa"]
 
 [sub_resource type="Gradient" id="Gradient_fb0t4"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.709877)
-colors = PackedColorArray(0, 0.811765, 1, 1, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.529032, 1)
+colors = PackedColorArray(0, 0.811765, 1, 1, 0.60804, 0.736097, 0.996992, 0.0392157, 0, 0.0306959, 0.0378137, 0.0378137)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fm0gp"]
 gradient = SubResource("Gradient_fb0t4")
-width = 200
-height = 30
+width = 400
+height = 100
 use_hdr = true
 fill = 1
 fill_from = Vector2(0, 0.5)
@@ -40,7 +41,81 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.0431373, 0.0627451, 0.117647, 1)
 
+[node name="BoxContainer" type="BoxContainer" parent="."]
+process_mode = 3
+texture_filter = 3
+offset_left = 30.0
+offset_top = 335.0
+offset_right = 100.0
+offset_bottom = 471.0
+scale = Vector2(2.217, 1.9)
+size_flags_horizontal = 4
+size_flags_vertical = 3
+script = ExtResource("1_2ntdg")
+XButton = 144.531
+YPlayButton = 17.2
+YOptionsButton = 52.295
+YCreditsButton = 87.368
+YQuitButton = 121.579
+metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="BoxContainer"]
+light_mask = 7
+visibility_layer = 7
+texture_filter = 1
+position = Vector2(144.531, 17.2)
+scale = Vector2(0.790737, 0.365092)
+color = Color(0.423529, 0.741176, 0.980392, 1)
+energy = 4.66
+range_item_cull_mask = 7
+texture = SubResource("GradientTexture2D_fm0gp")
+height = 36.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="BoxContainer"]
+position = Vector2(-26.3393, 13.3333)
+scale = Vector2(0.359179, 0.393199)
+randomness = 0.59
+lifetime_randomness = 0.45
+fixed_fps = 13
+texture = SubResource("GradientTexture2D_e4kye")
+emission_shape = 2
+emission_sphere_radius = 36.86
+spread = 4.09
+gravity = Vector2(0, 0)
+initial_velocity_min = 98.49
+initial_velocity_max = 568.19
+color_ramp = SubResource("Gradient_nf3is")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "Play"
+
+[node name="Button3" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_vyyuh")
+action_mode = 0
+text = "Options"
+
+[node name="Button2" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+action_mode = 0
+text = "Credits"
+
+[node name="Button4" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
 [node name="Control" type="Control" parent="."]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchor_top = 0.5
@@ -63,6 +138,12 @@ offset_top = 8.0
 offset_right = 1152.0
 offset_bottom = 656.0
 
+[node name="CenterContainer" parent="Control/OptionsMenu" index="0"]
+offset_left = -3.0
+offset_top = -7.0
+offset_right = -3.0
+offset_bottom = -7.0
+
 [node name="HSlider" parent="Control/OptionsMenu/CenterContainer/VBoxContainer/HBoxContainer/Control" index="1"]
 process_mode = 3
 
@@ -72,68 +153,62 @@ process_mode = 3
 [node name="Button" parent="Control/OptionsMenu/Control2" index="0"]
 process_mode = 3
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
-process_mode = 3
+[node name="Control2" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+
+[node name="ColorRect2" type="ColorRect" parent="Control2"]
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.176471)
+
+[node name="Label" type="Label" parent="Control2"]
 texture_filter = 3
-offset_left = 77.0
-offset_top = 366.0
-offset_right = 163.0
-offset_bottom = 467.0
-grow_horizontal = 0
+layout_mode = 0
+offset_left = 491.0
+offset_top = 308.0
+offset_right = 734.0
+offset_bottom = 353.0
+theme_override_font_sizes/font_size = 30
+text = "Coming sooo......."
+
+[node name="Control" type="Control" parent="Control2"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_right = 20.0
+grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.78413, 2.54324)
-script = ExtResource("1_43naw")
-metadata/_edit_use_anchors_ = true
 
-[node name="PointLight2D" type="PointLight2D" parent="BoxContainer"]
-light_mask = 7
-visibility_layer = 7
-texture_filter = 1
-position = Vector2(130.023, 52.2955)
-scale = Vector2(1.57088, 1)
-color = Color(0.145098, 1, 1, 1)
-energy = 4.66
-range_item_cull_mask = 7
-texture = SubResource("GradientTexture2D_fm0gp")
-height = 36.0
+[node name="Button" type="Button" parent="Control2/Control"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 314.0
+offset_right = 313.0
+offset_bottom = 352.0
+flat = true
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="BoxContainer"]
-position = Vector2(-26.22, 53.0819)
-scale = Vector2(0.359179, 0.393199)
-randomness = 0.59
-lifetime_randomness = 0.45
-fixed_fps = 13
-texture = SubResource("GradientTexture2D_e4kye")
-emission_shape = 2
-emission_sphere_radius = 36.86
-spread = 4.09
-gravity = Vector2(0, 0)
-initial_velocity_min = 98.49
-initial_velocity_max = 568.19
-color_ramp = SubResource("Gradient_nf3is")
+[node name="Label" type="Label" parent="Control2/Control"]
+texture_filter = 3
+layout_mode = 0
+offset_left = 252.0
+offset_top = 322.0
+offset_right = 292.0
+offset_bottom = 348.0
+text = "Back"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer"]
-process_mode = 3
-layout_mode = 2
-
-[node name="Button" type="Button" parent="BoxContainer/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-action_mode = 0
-text = "Play"
-
-[node name="Button3" type="Button" parent="BoxContainer/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = SubResource("Theme_vyyuh")
-action_mode = 0
-text = "Options"
-
-[node name="Button2" type="Button" parent="BoxContainer/VBoxContainer"]
-layout_mode = 2
-disabled = true
-action_mode = 0
-text = "Credits"
+[node name="Sprite2D" type="Sprite2D" parent="Control2/Control"]
+position = Vector2(232, 333)
+scale = Vector2(0.15, 0.28)
+texture = ExtResource("3_ohbfa")
 
 [connection signal="focus_entered" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="PlayParticle"]
 [connection signal="mouse_entered" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="PlayParticle"]
@@ -141,5 +216,13 @@ text = "Credits"
 [connection signal="focus_entered" from="BoxContainer/VBoxContainer/Button3" to="BoxContainer" method="OptionsParticle"]
 [connection signal="mouse_entered" from="BoxContainer/VBoxContainer/Button3" to="BoxContainer" method="OptionsParticle"]
 [connection signal="pressed" from="BoxContainer/VBoxContainer/Button3" to="BoxContainer" method="Options"]
+[connection signal="focus_entered" from="BoxContainer/VBoxContainer/Button2" to="BoxContainer" method="CreditsParticle"]
+[connection signal="mouse_entered" from="BoxContainer/VBoxContainer/Button2" to="BoxContainer" method="CreditsParticle"]
+[connection signal="pressed" from="BoxContainer/VBoxContainer/Button2" to="BoxContainer" method="Credits"]
+[connection signal="focus_entered" from="BoxContainer/VBoxContainer/Button4" to="BoxContainer" method="QuitParticle"]
+[connection signal="mouse_entered" from="BoxContainer/VBoxContainer/Button4" to="BoxContainer" method="QuitParticle"]
+[connection signal="pressed" from="BoxContainer/VBoxContainer/Button4" to="BoxContainer" method="QuitEx"]
+[connection signal="visibility_changed" from="Control" to="Control/OptionsMenu" method="Update"]
+[connection signal="pressed" from="Control2/Control/Button" to="BoxContainer" method="Credits"]
 
 [editable path="Control/OptionsMenu"]

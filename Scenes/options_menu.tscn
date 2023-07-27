@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c21ipsgx17ggo"]
+[gd_scene load_steps=4 format=3 uid="uid://6qiw6s0qpw22"]
 
+[ext_resource type="Script" path="res://Scripts/options_menu.cs" id="1_2j3kr"]
 [ext_resource type="Texture2D" uid="uid://bfkqcxtw25cvy" path="res://assets/Other/1507912-200.png" id="1_qfur5"]
-[ext_resource type="Script" path="res://Scipts/options_menu.cs" id="1_subpj"]
+[ext_resource type="PackedScene" uid="uid://dkf635xod2qe3" path="res://Scenes/InputRemapScene.tscn" id="2_aab6i"]
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
@@ -20,7 +21,7 @@ offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
-script = ExtResource("1_subpj")
+script = ExtResource("1_2j3kr")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 process_mode = 2
@@ -34,12 +35,14 @@ layout_mode = 2
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Control"]
 layout_mode = 2
-offset_left = -64.0
+offset_left = -100.0
 offset_top = -159.0
-offset_right = 141.0
+offset_right = 105.0
 offset_bottom = -105.0
 theme_override_font_sizes/font_size = 25
 text = "Options"
@@ -138,9 +141,21 @@ layout_mode = 2
 offset_top = -8.0
 offset_right = 168.0
 offset_bottom = 23.0
-disabled = true
 text = "Controls"
 text_overrun_behavior = 2
+
+[node name="CenterContainer2" parent="." instance=ExtResource("2_aab6i")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 580.0
+offset_top = 323.0
+offset_right = 584.0
+offset_bottom = 323.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Control2" type="Control" parent="."]
 texture_filter = 3
@@ -173,10 +188,11 @@ position = Vector2(-314.125, -8.49999)
 scale = Vector2(0.14875, 0.275)
 texture = ExtResource("1_qfur5")
 
-[connection signal="UpdateV" from="." to="." method="Update"]
 [connection signal="visibility_changed" from="." to="." method="Update"]
+[connection signal="draw" from="CenterContainer" to="." method="Focus"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer4/Control/CheckButton" to="." method="FullscreenToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer/Control/HSlider" to="." method="MusicSlider" flags=18]
 [connection signal="drag_ended" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXend"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer2/Control/HSlider" to="." method="SFXSlider" flags=18]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/Control/Button" to="." method="InputRemapping"]
 [connection signal="pressed" from="Control2/Button" to="." method="BackCenter" flags=18]

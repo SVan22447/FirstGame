@@ -1,0 +1,201 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkf635xod2qe3"]
+
+[ext_resource type="Texture2D" uid="uid://qbxwqwvme7pt" path="res://addons/ActionIcon/Mouse/Left.png" id="1_ks1nj"]
+[ext_resource type="Texture2D" uid="uid://p5vsxexck4va" path="res://addons/ActionIcon/Keyboard/W.png" id="1_p1nv6"]
+[ext_resource type="Texture2D" uid="uid://c5ltjfspdjb84" path="res://addons/ActionIcon/Keyboard/S.png" id="2_0tmhe"]
+[ext_resource type="Texture2D" uid="uid://cbvxbd3unhcu4" path="res://addons/ActionIcon/Keyboard/E.png" id="2_7gjln"]
+[ext_resource type="Texture2D" uid="uid://cygfj8f13a3i4" path="res://addons/ActionIcon/Keyboard/A.png" id="3_ysp7l"]
+[ext_resource type="Script" path="res://Scripts/InputRemapping.cs" id="4_tyg4u"]
+[ext_resource type="Texture2D" uid="uid://bc8u6ohj3nkkq" path="res://addons/ActionIcon/Keyboard/D.png" id="4_ufi67"]
+[ext_resource type="Texture2D" uid="uid://3ned61e5du5m" path="res://addons/ActionIcon/Keyboard/Space.png" id="5_t5wc0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oi47v"]
+font_size = 25
+
+[node name="CenterContainer" type="CenterContainer"]
+anchors_preset = -1
+anchor_right = 3.701
+anchor_bottom = 9.354
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -3111.55
+offset_bottom = -5414.39
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_left = -50.0
+offset_top = -186.0
+offset_right = 52.0
+offset_bottom = -148.0
+text = "Controls"
+label_settings = SubResource("LabelSettings_oi47v")
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control2"]
+layout_mode = 0
+offset_left = -65.0
+offset_top = -72.0
+offset_right = 115.0
+offset_bottom = 134.0
+
+[node name="Label" type="Label" parent="HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Up
+"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Down"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Left"
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Right"
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Jump"
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Shoot"
+vertical_alignment = 1
+
+[node name="Label7" type="Label" parent="HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Interact"
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/Control2"]
+light_mask = 8
+visibility_layer = 8
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+offset_left = 29.0
+offset_top = -76.0
+offset_right = 74.0
+offset_bottom = 159.0
+
+[node name="Up" type="Button" parent="HBoxContainer/Control2/VBoxContainer2"]
+light_mask = 8
+visibility_layer = 8
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("1_p1nv6")
+expand_icon = true
+script = ExtResource("4_tyg4u")
+
+[node name="Down" type="Button" parent="HBoxContainer/Control2/VBoxContainer2"]
+light_mask = 8
+visibility_layer = 8
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("2_0tmhe")
+expand_icon = true
+script = ExtResource("4_tyg4u")
+
+[node name="Left" type="Button" parent="HBoxContainer/Control2/VBoxContainer2"]
+light_mask = 8
+visibility_layer = 8
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("3_ysp7l")
+expand_icon = true
+script = ExtResource("4_tyg4u")
+
+[node name="Right" type="Button" parent="HBoxContainer/Control2/VBoxContainer2"]
+light_mask = 8
+visibility_layer = 8
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("4_ufi67")
+expand_icon = true
+script = ExtResource("4_tyg4u")
+
+[node name="Jump" type="Button" parent="HBoxContainer/Control2/VBoxContainer2"]
+light_mask = 8
+visibility_layer = 8
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+toggle_mode = true
+text = " "
+icon = ExtResource("5_t5wc0")
+expand_icon = true
+script = ExtResource("4_tyg4u")
+
+[node name="Shoot" type="Button" parent="HBoxContainer/Control2/VBoxContainer2"]
+light_mask = 8
+visibility_layer = 8
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+icon = ExtResource("1_ks1nj")
+alignment = 0
+expand_icon = true
+
+[node name="Interact" type="Button" parent="HBoxContainer/Control2/VBoxContainer2"]
+light_mask = 8
+visibility_layer = 8
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("2_7gjln")
+expand_icon = true
+script = ExtResource("4_tyg4u")
+
+[node name="Control" type="Control" parent="HBoxContainer/Control2"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = -15.0
+offset_top = 142.0
+offset_right = 38.0
+offset_bottom = 142.0
+
+[node name="Button" type="Button" parent="HBoxContainer/Control2/Control"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 68.0
+offset_right = 66.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 15
+disabled = true
+text = "Reset
+"
+
+[connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Up" to="HBoxContainer/Control2/VBoxContainer2/Up" method="_OnActionButtonToggled"]
+[connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Down" to="HBoxContainer/Control2/VBoxContainer2/Down" method="_OnActionButtonToggled"]
+[connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Left" to="HBoxContainer/Control2/VBoxContainer2/Left" method="_OnActionButtonToggled"]
+[connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Right" to="HBoxContainer/Control2/VBoxContainer2/Right" method="_OnActionButtonToggled"]
+[connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Jump" to="HBoxContainer/Control2/VBoxContainer2/Jump" method="_OnActionButtonToggled"]
+[connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Interact" to="HBoxContainer/Control2/VBoxContainer2/Interact" method="_OnActionButtonToggled"]

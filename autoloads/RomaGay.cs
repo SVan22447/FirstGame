@@ -1,28 +1,29 @@
 using Godot;
 using System;
-
 public partial class RomaGay : Node{
 	public int MaxLives = 5;
 	public int lives;
-	public bool isFullscreen;
+	public bool isFullscreen=false;
+	public DisplayServer.WindowMode Lastscreen;
 	public UI Ui;
 	[Signal]public delegate void CollideCheckpointEventHandler(Vector2 CheckpointPos);
 	public override void _Ready(){
-	    lives=MaxLives;
 		ProcessMode = ProcessModeEnum.Always;
 		if(DisplayServer.WindowGetMode()==DisplayServer.WindowMode.Fullscreen){
             isFullscreen=true;
 		}else{
 			isFullscreen=false;
 		}
+	    lives=MaxLives;
 	}
-    public override void _UnhandledKeyInput(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("FullScreenButton")&&(isFullscreen==true)){
-			isFullscreen=false;
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-		}else if(Input.IsActionJustPressed("FullScreenButton")&&(isFullscreen==false)){
-			isFullscreen=true;
+        if (Input.IsActionJustPressed("FullScreenButton")&&isFullscreen){
+			isFullscreen=!isFullscreen;
+            DisplayServer.WindowSetMode(Lastscreen);
+		}else if(Input.IsActionJustPressed("FullScreenButton")&&!isFullscreen){
+			isFullscreen=!isFullscreen;
+			Lastscreen=DisplayServer.WindowGetMode(DisplayServer.WindowGetCurrentScreen());
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
 		}
     }

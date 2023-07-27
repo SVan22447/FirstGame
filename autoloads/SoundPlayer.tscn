@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://hwyx74ys5wwj"]
+[gd_scene load_steps=4 format=3 uid="uid://bimctqf8hq5bv"]
 
-[ext_resource type="Script" path="res://Scipts/SoundPlayer.cs" id="1_mbats"]
+[ext_resource type="Script" path="res://Scripts/SoundPlayer.cs" id="1_h6jed"]
 [ext_resource type="AudioStream" uid="uid://dv2ishr7vx50n" path="res://Audio/Sounds/sound (1).wav" id="2_xm3hh"]
 [ext_resource type="AudioStream" uid="uid://bexsu8kdsgum2" path="res://Audio/Sounds/kill.wav" id="3_vfkqh"]
 
 [node name="SoundPlayer" type="Node"]
-script = ExtResource("1_mbats")
+script = ExtResource("1_h6jed")
 
 [node name="AudioPlayers" type="Node" parent="."]
 

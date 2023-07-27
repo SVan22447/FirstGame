@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://davo83dd162k4"]
+[gd_scene load_steps=7 format=3 uid="uid://dp46vtpghtcjl"]
 
-[ext_resource type="Script" path="res://Scipts/BalloonT.cs" id="1_lffkd"]
+[ext_resource type="Script" path="res://Scripts/BalloonT.cs" id="1_4lu5q"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 
 [sub_resource type="SystemFont" id="SystemFont_2omqy"]
@@ -26,7 +26,7 @@ draw_center = false
 [node name="BalloonT" type="CanvasLayer"]
 process_mode = 3
 layer = 100
-script = ExtResource("1_lffkd")
+script = ExtResource("1_4lu5q")
 
 [node name="Balloon" type="ColorRect" parent="."]
 color = Color(0.054902, 0.054902, 0.054902, 1)
