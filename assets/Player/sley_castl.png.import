@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3lr2uas6ax8v"
-path="res://.godot/imported/icon.svg-17eb5d3e2a3cfbe59852220758c5b7bd.ctex"
+uid="uid://bspb40lpqu2dt"
+path="res://.godot/imported/sley_castl.png-45c11a101a4b8807feb3f8768af79486.ctex"
 metadata={
-"editor_dark_theme": true,
-"editor_scale": 0.95,
-"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/dialogue_manager/assets/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-17eb5d3e2a3cfbe59852220758c5b7bd.ctex"]
+source_file="res://assets/Player/sley_castl.png"
+dest_files=["res://.godot/imported/sley_castl.png-45c11a101a4b8807feb3f8768af79486.ctex"]
 
 [params]
 
@@ -35,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=true

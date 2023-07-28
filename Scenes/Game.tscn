@@ -1551,7 +1551,7 @@ text = "ExitM"
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button" to="UI" method="Resume"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button3" to="UI" method="Options"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button2" to="UI" method="exit_to"]
-[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="_on_button_4_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="Exit"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="_on_button_4_pressed"]
 [connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button" to="UI/GameOverScreen" method="Continue"]
 [connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button2" to="UI/GameOverScreen" method="ExitMenu"]
