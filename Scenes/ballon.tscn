@@ -59,7 +59,7 @@ scroll_active = false
 [node name="DialogueLabel" parent="Balloon/Margin/VBox" instance=ExtResource("2_a8ve6")]
 layout_mode = 2
 text = "Dialogue"
-skip_action = "Lbm"
+skip_action = "Shoot"
 
 [node name="Responses" type="VBoxContainer" parent="Balloon/Margin/VBox"]
 layout_mode = 2

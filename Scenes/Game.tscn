@@ -1,9 +1,9 @@
-[gd_scene load_steps=71 format=3 uid="uid://d0a4xvxj2i6r1"]
+[gd_scene load_steps=74 format=3 uid="uid://d0a4xvxj2i6r1"]
 
 [ext_resource type="Script" path="res://Scripts/Test1.cs" id="1_h3qsq"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
 [ext_resource type="Texture2D" uid="uid://chfs5av5fcot3" path="res://assets/Player/waterfall_tile_001.png" id="3_4xvlk"]
-[ext_resource type="PackedScene" uid="uid://f5u05i1drhx3" path="res://Scenes/character_body_2d.tscn" id="4_yq3c4"]
+[ext_resource type="PackedScene" uid="uid://d3jlidg6uy7kk" path="res://Scenes/character_body_2d.tscn" id="4_yq3c4"]
 [ext_resource type="Texture2D" uid="uid://dh8rj20cvicw0" path="res://assets/tileset/imba/test_back.png" id="5_0k7b6"]
 [ext_resource type="Texture2D" uid="uid://d30a5v61sxaqi" path="res://assets/Player/аыфe.png" id="5_06pq1"]
 [ext_resource type="Texture2D" uid="uid://c57ahek24ym8c" path="res://assets/tileset/imba/Tileset-new.png" id="5_u5rua"]
@@ -599,6 +599,12 @@ texture = ExtResource("5_u5rua")
 8:7/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 8:7/0/physics_layer_1/angular_velocity = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8hwf2"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v06su"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_lvb26"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0iqya"]
 texture = ExtResource("6_xlh1v")
 0:0/next_alternative_id = 4
@@ -609,6 +615,7 @@ texture = ExtResource("6_xlh1v")
 0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_1/angular_velocity = 0.0
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, 4, 7, 4, 7, 8, -8, 8)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8hwf2")
 0:0/1 = 1
 0:0/1/flip_h = true
 0:0/1/transpose = true
@@ -617,6 +624,7 @@ texture = ExtResource("6_xlh1v")
 0:0/1/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/1/physics_layer_1/angular_velocity = 0.0
 0:0/1/physics_layer_1/polygon_0/points = PackedVector2Array(-4, -8, -4, 7, -8, 7, -8, -8)
+0:0/1/navigation_layer_0/polygon = SubResource("NavigationPolygon_v06su")
 0:0/2 = 2
 0:0/2/transpose = true
 0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -624,6 +632,7 @@ texture = ExtResource("6_xlh1v")
 0:0/2/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/2/physics_layer_1/angular_velocity = 0.0
 0:0/2/physics_layer_1/polygon_0/points = PackedVector2Array(4, -8, 8, -8, 8, 7, 4, 7)
+0:0/2/navigation_layer_0/polygon = SubResource("NavigationPolygon_lvb26")
 0:0/3 = 3
 0:0/3/flip_v = true
 0:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -631,6 +640,7 @@ texture = ExtResource("6_xlh1v")
 0:0/3/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/3/physics_layer_1/angular_velocity = 0.0
 0:0/3/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 7, -8, 7, -4, -8, -4)
+0:0/3/navigation_layer_0/polygon = SubResource("NavigationPolygon_lvb26")
 0:1/0 = 0
 0:1/0/z_index = 1
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -670,6 +680,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.129412, 0.113725, 0.32549, 1)
 terrain_set_0/terrain_1/name = "Terrain 1"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_jhay7")
 sources/3 = SubResource("TileSetAtlasSource_0iqya")
 
@@ -800,21 +811,11 @@ tracks/0/keys = {
 "points": PackedFloat32Array(1353, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(408, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
 
 [sub_resource type="Animation" id="Animation_cr3yq"]
 resource_name = "new_animation"
-length = 2.0
+length = 2.4
+loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -822,20 +823,9 @@ tracks/0/path = NodePath(".:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1353, -0.25, 0, 0.25, 0, 789, -0.25, 0, 0.25, 0, 1353, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(405, -0.25, 0, 0.25, 0, 405, -0.25, 0, 0.25, 0, 405, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1353, -0.25, 0, 0.25, 0, 800, -0.25, 0, 0.25, 0, 1353, -0.25, 0, 0.25, 0, 1353, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 2.4)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6yiam"]
@@ -933,7 +923,6 @@ environment = SubResource("Environment_l1obc")
 
 [node name="16426088841-abrakadabra-fun-p-bekgraund-dlya-igri-2" type="Sprite2D" parent="."]
 position = Vector2(592, 351)
-scale = Vector2(1.00079, 1)
 texture = ExtResource("28_bfkcv")
 
 [node name="Tiles" type="Node2D" parent="."]
@@ -984,9 +973,17 @@ zoom = Vector2(2.56, 2.56)
 limit_top = -500
 limit_right = 5000
 limit_bottom = 1000
+limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 15.0
+position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 10.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="Lumps" type="Node2D" parent="."]
 
@@ -1287,6 +1284,7 @@ position = Vector2(471, 33)
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("13_8rlbv")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Respawn/Zone"]
 position = Vector2(1, -78.5)
@@ -1303,17 +1301,17 @@ metadata/_edit_group_ = true
 position = Vector2(0, -120)
 shape = SubResource("RectangleShape2D_ue7ww")
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
-position = Vector2(1353, 408)
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(1253, 364)
+rotation = 1.57079
+scale = Vector2(11.9065, 45.3768)
+enable_node_path = NodePath("../AnimatableBody2D")
+
+[node name="AnimatableBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(1353, 410)
 collision_layer = 3
 collision_mask = 3
 metadata/_edit_group_ = true
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="AnimatableBody2D"]
-position = Vector2(-154.958, -49.9019)
-rotation = 1.57079
-scale = Vector2(11.0656, 17.2648)
-enable_node_path = NodePath("../../Path2D")
 
 [node name="Asgfgcxe" type="Sprite2D" parent="AnimatableBody2D"]
 position = Vector2(3.10437, 0.37973)
@@ -1330,6 +1328,7 @@ polygon = PackedVector2Array(11.2769, -4.55309, -9.02151, -4.55309, -9.02155, 2.
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D"]
 autoplay = "new_animation"
+playback_process_mode = 0
 libraries = {
 "": SubResource("AnimationLibrary_6yiam")
 }

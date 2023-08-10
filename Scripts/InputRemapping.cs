@@ -1,10 +1,9 @@
 using Godot;
 using System;
-
-public partial class InputRemapping : Button
-{
+public partial class InputRemapping : Button{
 	// Called when the node enters the scene tree for the first time.
-	String action;
+	public String action;
+	string IconText;
 	public override void _Ready(){
 		action=Name;
 		SetProcessUnhandledKeyInput(false);
@@ -12,7 +11,7 @@ public partial class InputRemapping : Button
 
 	}
 	private void DisplayKey(){
-		string IconText = InputMap.ActionGetEvents(action)[0].AsText();
+	    IconText = InputMap.ActionGetEvents(action)[0].AsText();
 		Icon = GD.Load<CompressedTexture2D>($"res://addons/ActionIcon/Keyboard/{IconText}.png");
 	}
     private void _OnActionButtonToggled(bool ButtonPressed){
@@ -25,11 +24,14 @@ public partial class InputRemapping : Button
 	}
     public override void _UnhandledKeyInput(InputEvent @event){
         RemapKey(@event);
+
 		ButtonPressed=false;
     }
-	private void RemapKey(InputEvent @event){
+	public void RemapKey(InputEvent @event){
 		InputMap.ActionEraseEvents(action);
 		InputMap.ActionAddEvent(action, @event);
 		Text=null;
+	}
+	private void Reset(){
 	}
 }

@@ -30,6 +30,10 @@ window/vsync/vsync_mode=2
 
 project/assembly_name="gumus"
 
+[editor]
+
+movie_writer/movie_file="D:/GitHub/FirstGame/sex.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/jamcountdown/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/ActionIcon/plugin.cfg")
@@ -139,6 +143,7 @@ locale/translations_pot_files=PackedStringArray("res://dia.dialogue", "res://dia
 2d_physics/layer_9="Checkpoint"
 2d_physics/layer_10="SAVE"
 2d_physics/layer_12="Charge"
+2d_physics/layer_31="MovingPlatform"
 
 [rendering]
 

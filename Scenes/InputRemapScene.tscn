@@ -199,3 +199,4 @@ text = "Reset
 [connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Right" to="HBoxContainer/Control2/VBoxContainer2/Right" method="_OnActionButtonToggled"]
 [connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Jump" to="HBoxContainer/Control2/VBoxContainer2/Jump" method="_OnActionButtonToggled"]
 [connection signal="toggled" from="HBoxContainer/Control2/VBoxContainer2/Interact" to="HBoxContainer/Control2/VBoxContainer2/Interact" method="_OnActionButtonToggled"]
+[connection signal="pressed" from="HBoxContainer/Control2/Control/Button" to="HBoxContainer/Control2/VBoxContainer2/Up" method="Reset"]

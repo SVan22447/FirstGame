@@ -53,22 +53,22 @@ public partial class menu : BoxContainer{
         Particle.Visible = true;
         Light.Visible = true;
         Light.Position=new Vector2(XButton,YPlayButton);
-        Particle.Position=new Vector2(-26.22f,YPlayButton);
+        Particle.Position=new Vector2(-20.298f,YPlayButton);
     }
     private void OptionsParticle(){
         GetNode<Button>("VBoxContainer/Button3").GrabFocus();
         Light.Position=new Vector2(XButton,YOptionsButton);
-        Particle.Position=new Vector2(-26.22f,YOptionsButton);
+        Particle.Position=new Vector2(-20.298f,YOptionsButton);
     }
     private void CreditsParticle(){
         GetNode<Button>("VBoxContainer/Button2").GrabFocus();
         Light.Position=new Vector2(XButton,YCreditsButton);
-        Particle.Position=new Vector2(-26.22f,YCreditsButton);
+        Particle.Position=new Vector2(-20.298f,YCreditsButton);
     }
     private void QuitParticle(){
         GetNode<Button>("VBoxContainer/Button4").GrabFocus();
         Light.Position=new Vector2(XButton,YQuitButton);
-        Particle.Position=new Vector2(-26.22f,YQuitButton);
+        Particle.Position=new Vector2(-20.298f,YQuitButton);
     }
 }
 

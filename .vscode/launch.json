@@ -1,6 +1,25 @@
 {
   "version": "0.2.0",
   "configurations": [
+    {
+      "name": "Play in Editor",
+      "type": "godot-mono",
+      "mode": "playInEditor",
+      "request": "launch"
+    },
+    {
+      "name": "Launch (Select Scene)",
+      "type": "godot-mono",
+      "request": "launch",
+      "mode": "executable",
+      "preLaunchTask": "build",
+      "executable": "d:/Программы/Godot_v4.0.2-stable_mono_win64/Godot_v4.0.2-stable_mono_win64.exe",
+      "executableArguments": [
+        "--path",
+        "",
+        "SelectLaunchScene"
+      ]
+    },
   {
     "name": ".NET Core Attach",
     "type": "coreclr",

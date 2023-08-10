@@ -72,7 +72,7 @@ texture = SubResource("GradientTexture2D_fm0gp")
 height = 36.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="BoxContainer"]
-position = Vector2(-26.3393, 13.3333)
+position = Vector2(-20.298, 17.2)
 scale = Vector2(0.359179, 0.393199)
 randomness = 0.59
 lifetime_randomness = 0.45
@@ -139,15 +139,22 @@ offset_right = 1152.0
 offset_bottom = 656.0
 
 [node name="CenterContainer" parent="Control/OptionsMenu" index="0"]
+process_mode = 3
 offset_left = -3.0
 offset_top = -7.0
 offset_right = -3.0
 offset_bottom = -7.0
 
+[node name="VBoxContainer" parent="Control/OptionsMenu/CenterContainer" index="0"]
+process_mode = 3
+
 [node name="HSlider" parent="Control/OptionsMenu/CenterContainer/VBoxContainer/HBoxContainer/Control" index="1"]
 process_mode = 3
 
 [node name="HSlider" parent="Control/OptionsMenu/CenterContainer/VBoxContainer/HBoxContainer2/Control" index="1"]
+process_mode = 3
+
+[node name="CenterContainer2" parent="Control/OptionsMenu" index="1"]
 process_mode = 3
 
 [node name="Button" parent="Control/OptionsMenu/Control2" index="0"]

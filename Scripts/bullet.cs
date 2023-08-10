@@ -4,6 +4,7 @@ public partial class bullet : CharacterBody2D{
 	int speed = 45000;
 	int bulletLife = 60;
 	float gravity = -1000; 
+	Vector2 velocity;
 	Vector2 f;
 	public override void _Ready(){
 	    f = GetGlobalMousePosition()-this.Position;
@@ -14,7 +15,7 @@ public partial class bullet : CharacterBody2D{
 			QueueFree();
 		}
 		var deltaf = (float)delta;
-		Vector2 velocity = Velocity;
+		velocity = Velocity;
 		velocity=f.Normalized()*deltaf*speed;
 		velocity.Y +=  gravity * (float)delta;
 		for (int i = 0; i < GetSlideCollisionCount(); i++){
@@ -23,6 +24,6 @@ public partial class bullet : CharacterBody2D{
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-	public void boom(){
+	public void Boom(){
 	}
 }

@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 using DialogueManagerRuntime;
+using System;
+
 public enum PlayerState{
 	Standing,
 	Walking,
@@ -25,6 +27,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		Timer LastJump;
 		Timer wallJumpLeftTime;
 		Timer wallJumpRightTime;
+		Timer KnockBackEffectTime;
+		Timer KnockBackStop;
 		double SlidingOffTheWall;
 		double CircleVal;
 		float jumpGravity;
@@ -45,6 +49,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		[Export(PropertyHint.Range,"0.01,3")] public double ShootCooldown = 1;
 		Resource DialogueResource;
 		string dialogue = "start";
+		public bool MovingPlatformColl;
 		public bool ShootCooldownS = false;
 		public double BowCooldownV;
 		public double ShootCooldownV;
@@ -55,6 +60,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		Node2D Bow;
 		public TextureProgressBar RechargeCir;
 		PackedScene bulletInstance;
+		PackedScene KnockBackScene;
 		public bool AddJumping;
 		public short bulletAmount;
 		public Sprite2D sprite;
@@ -77,6 +83,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		wallJumpRightTime.WaitTime=coyoteTime;
 		LastJump = GetNode<Timer>("Timers/LastJump");
 		DamagesTimes = GetNode<Timer>("Timers/DamagesTimes");
+		KnockBackEffectTime=GetNode<Timer>("Timers/KnockbackEffectTime");
+		KnockBackStop=GetNode<Timer>("Timers/KnockbackStop");
 		ShootCooldownV =  ShootCooldown;
 		jumpVelocity = ((2.0f*jumpheight)/jumpTimeToPeak)*-1.0f;   // подстройка значений прыжка
 		jumpGravity = ((-2.0f*jumpheight)/(jumpTimeToPeak*jumpTimeToPeak))*-1.0f;
@@ -88,6 +96,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	    RechargeCir.MaxValue = ShootCooldown;
 	    Bow = GetNode<Node2D>("Bow");
 		ui=GetNode<UI>("/root/Test1/UI");
+		KnockBackScene =GD.Load<PackedScene>("res://Scenes/KnockBackEffect.tscn");
 	    bulletInstance = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
 	}
 	public override void _Process(double delta){
@@ -181,6 +190,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 					// }
 				}
 			}else{
+				KnockBackEffectTime.Stop();
+				KnockBackStop.Stop();
 				LastOnGroundTime.Start();
 			}
 			if(!LastJump.IsStopped()&&(!LastOnGroundTime.IsStopped()||AddJumping)){// прыжок
@@ -222,6 +233,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		if (bulletAmount>0){
 			bulletAmount--;
 		}
+		KnockBackEffectTime.Start();
+		KnockBackStop.Start();
 		BowCooldownV= BowCooldown*Bowbuff;
 		ShootCooldownV = ShootCooldown;
 		ui.RechargeView();
@@ -241,7 +254,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		if(velocity.Y <=.0f){
 			velocity.X -= (MouseDir.X * (float)recoilX);
 			velocity.Y -= (MouseDir.Y * ((float)recoilY/1.25f)); 
-		}else if(velocity.Y>0f&&MouseDir.Y>.0f){
+		}else if(velocity.Y>.0f&&MouseDir.Y>.0f){
 			velocity.X = -(MouseDir.X * (float)recoilX);
 			velocity.Y = -(MouseDir.Y * (float)recoilY); 
 		}else if(velocity.Y>.0f&&MouseDir.Y<=.0f){
@@ -249,13 +262,21 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 			velocity.Y -= (MouseDir.Y * (float)recoilY); 
 		}
 	}
+	private void recoilSpam(){
+		InstanceRecoil();
+	}
+	private void recoilStop(){
+		KnockBackEffectTime.Stop();
+	}
 	private void DamageTaken(Node2D body){
-		var SpikesPos = body.GlobalPosition.DirectionTo(GlobalPosition);
-		GD.Print(SpikesPos);
-		DamagesTimes.Start();
-		velocity= -(SpikesPos* 800);
-        GetNode<RomaGay>("/root/RomaGay").LoseHeart(1);
-		Velocity=velocity;
+		if(body is TileMap){
+			var SpikesPos=body.GlobalPosition.DirectionTo(GlobalPosition);
+			GD.Print(SpikesPos);
+			DamagesTimes.Start();
+			velocity= -(SpikesPos* 400);
+			GetNode<RomaGay>("/root/RomaGay").LoseHeart(1);
+			Velocity=velocity;
+		}
 	}
 	private void Action(){
 		var ballon = (CanvasLayer)BallonX.Instantiate();
@@ -264,5 +285,16 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		GetTree().Paused = true;
 		BowCooldownV= BowCooldown*Bowbuff;
 		balloon.Start(DialogueResource,dialogue);
+	}
+		private void InstanceRecoil(){
+    	var recoil =KnockBackScene.Instantiate() as Sprite2D;
+		var SpriteN= GetNode<Sprite2D>("Sprite2D");
+		GetTree().Root.GetNode<Node2D>("Test1/CameraProxy").AddSibling(recoil);
+		recoil.GlobalPosition=GlobalPosition;
+		recoil.Texture=SpriteN.Texture;
+		recoil.Vframes=SpriteN.Vframes;
+		recoil.Hframes=SpriteN.Hframes;
+		recoil.Frame=SpriteN.Frame;
+		recoil.FlipH=SpriteN.FlipH;
 	}
 }
