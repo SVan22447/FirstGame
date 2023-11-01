@@ -29,6 +29,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		Timer wallJumpRightTime;
 		Timer KnockBackEffectTime;
 		Timer KnockBackStop;
+		Timer TimeForEffect;
 		double SlidingOffTheWall;
 		double CircleVal;
 		float jumpGravity;
@@ -83,6 +84,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		wallJumpRightTime.WaitTime=coyoteTime;
 		LastJump = GetNode<Timer>("Timers/LastJump");
 		DamagesTimes = GetNode<Timer>("Timers/DamagesTimes");
+		TimeForEffect = GetNode<Timer>("Timers/TimeForEffect");
 		KnockBackEffectTime=GetNode<Timer>("Timers/KnockbackEffectTime");
 		KnockBackStop=GetNode<Timer>("Timers/KnockbackStop");
 		ShootCooldownV =  ShootCooldown;
@@ -174,52 +176,47 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 						SlidingOffTheWall -=delta;
 						currentState = PlayerState.Climping;
 					}
-					// else if(!Input.IsActionPressed("Down")){
-						if(FallingTimes.IsStopped()&&velocity.Y<=300){
-							velocity.Y+= GetGravity()*(float)delta;
-						}
-					// else if(FallingTimes.IsStopped()&&velocity.Y>400){
-					// 		velocity.Y-=10;
-					// 		Velocity=Vector2.Zero;
-					// 	}
-					// }else if(Input.IsActionPressed("Down")){
-					// 	if(!(shootBool)&&TimeJump2<=0){
-					// 		FallingTimes.Start();
-					// 		velocity.Y+= 2.2f*(GetGravity())*(float)delta;
-					//     }
-					// }
+					if(FallingTimes.IsStopped()&&velocity.Y<=300){
+						if(GetGravity()== fallGravity){
+							TimeForEffect.Stop();
+						}				
+						velocity.Y+= GetGravity()*(float)delta;	
+					}					
 				}
-			}else{
-				KnockBackEffectTime.Stop();
-				KnockBackStop.Stop();
-				LastOnGroundTime.Start();
+		}else{
+			KnockBackEffectTime.Stop();
+			KnockBackStop.Stop();
+			LastOnGroundTime.Start();
+		}
+		if(!LastJump.IsStopped()&&(!LastOnGroundTime.IsStopped()||AddJumping)){// прыжок
+				AddJumping = false;
+				TimeForEffect.Start();
+				LastOnGroundTime.Stop();
+				IsJumping = true;
+				SlidingOffTheWall =0.2;
+				IsJumping2 = true;
+				TimeJump =40;
+				TimeJump2 =17;
+				velocity.Y = jumpVelocity;		
+		}
+		if(!IsJumping2&&!LastJump.IsStopped()){ // прыжок от стены
+			if ( Input.IsActionPressed("Right") && !wallJumpLeftTime.IsStopped()){
+				TimeForEffect.Start();
+				velocity.X-=jumpVelocity/2f;
+				SlidingOffTheWall =0.22;
+				velocity.Y=jumpVelocity;
+			}else if (Input.IsActionPressed("Left") && !wallJumpRightTime.IsStopped()) {
+				TimeForEffect.Start();
+				velocity.X+=jumpVelocity/2f;
+				SlidingOffTheWall =0.22;
+				velocity.Y=jumpVelocity;	    
 			}
-			if(!LastJump.IsStopped()&&(!LastOnGroundTime.IsStopped()||AddJumping)){// прыжок
-					AddJumping = false;
-					LastOnGroundTime.Stop();
-					IsJumping = true;
-					SlidingOffTheWall =0.2;
-					IsJumping2 = true;
-					TimeJump =40;
-					TimeJump2 =17;
-					velocity.Y = jumpVelocity;		
-			}
-			if(!IsJumping2&&!LastJump.IsStopped()){ // прыжок от стены
-				if ( Input.IsActionPressed("Right") && !wallJumpLeftTime.IsStopped()){
-					velocity.X-=jumpVelocity/2f;
-					SlidingOffTheWall =0.22;
-					velocity.Y=jumpVelocity;
-				}else if (Input.IsActionPressed("Left") && !wallJumpRightTime.IsStopped()) {
-					velocity.X+=jumpVelocity/2f;
-					SlidingOffTheWall =0.22;
-					velocity.Y=jumpVelocity;	    
-				}
-			}
-			if (direction.X != 0 && !shootBool&& DamagesTimes.IsStopped()){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
-				velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
-			}else if(!shootBool&& DamagesTimes.IsStopped()){ // если нет выстрела и движение кончилось ,то мы замедляемся
-				velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
-			}
+		}
+		if (direction.X != 0 && !shootBool&& DamagesTimes.IsStopped()){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
+			velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
+		}else if(!shootBool&& DamagesTimes.IsStopped()){ // если нет выстрела и движение кончилось ,то мы замедляемся
+			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
+		}
 		#endregion
 		if (Input.IsActionJustPressed("Shoot")&&(bulletAmount>0&&BowCooldownV<=0)){   // выстрел персонажа
 			shoot(delta);
@@ -233,8 +230,11 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		if (bulletAmount>0){
 			bulletAmount--;
 		}
-		KnockBackEffectTime.Start();
-		KnockBackStop.Start();
+		var MouseDir = GlobalPosition.DirectionTo(GetGlobalMousePosition());
+		if(!TimeForEffect.IsStopped()&&((MouseDir.X>=-.7&&MouseDir.Y>=.7)||(MouseDir.X<=.7&&MouseDir.Y>=.7))){
+			KnockBackEffectTime.Start();
+			KnockBackStop.Start();
+		}
 		BowCooldownV= BowCooldown*Bowbuff;
 		ShootCooldownV = ShootCooldown;
 		ui.RechargeView();
@@ -250,7 +250,6 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		}
 		GetNode<SoundPlayer>("/root/SoundPlayer").PlaySound();
 		GetTree().Root.GetNode<Node2D>("Test1/CameraProxy").AddSibling(bullet);
-		var MouseDir = GlobalPosition.DirectionTo(GetGlobalMousePosition());
 		if(velocity.Y <=.0f){
 			velocity.X -= (MouseDir.X * (float)recoilX);
 			velocity.Y -= (MouseDir.Y * ((float)recoilY/1.25f)); 
@@ -268,15 +267,19 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	private void recoilStop(){
 		KnockBackEffectTime.Stop();
 	}
-	private void DamageTaken(Node2D body){
-		if(body is TileMap){
-			var SpikesPos=body.GlobalPosition.DirectionTo(GlobalPosition);
+	private void DamageTaken(Rid bodyRid, Node2D body,int bodyIndex,int localIndex){
+			var Body = (TileMap)body;
+			var _Collision= GetNode<Area2D>("Area2D");
+			var data = Body.GetCellTileData(0,Body.GetCoordsForBodyRid(bodyRid));
+			var coords = Body.GetCoordsForBodyRid(bodyRid);
+			GD.Print();
+			TimeForEffect.Start();
+			var SpikesPos= GlobalPosition.DirectionTo(Body.GetCoordsForBodyRid(bodyRid));
 			GD.Print(SpikesPos);
 			DamagesTimes.Start();
-			velocity= -(SpikesPos* 400);
+			velocity= (SpikesPos* 400);
 			GetNode<RomaGay>("/root/RomaGay").LoseHeart(1);
 			Velocity=velocity;
-		}
 	}
 	private void Action(){
 		var ballon = (CanvasLayer)BallonX.Instantiate();

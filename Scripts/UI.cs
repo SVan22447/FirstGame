@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-public partial class UI : CanvasLayer
-{
+public partial class UI : CanvasLayer{
     CenterContainer Center;
     ColorRect Background;
     Control OptionsMenu;

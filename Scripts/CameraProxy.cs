@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-public partial class CameraProxy : Node2D
-{
+public partial class CameraProxy : Node2D{
     [Export]public Node2D target;
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta){

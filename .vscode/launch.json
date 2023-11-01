@@ -1,48 +1,24 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Play in Editor",
-      "type": "godot-mono",
-      "mode": "playInEditor",
-      "request": "launch"
-    },
-    {
-      "name": "Launch (Select Scene)",
-      "type": "godot-mono",
-      "request": "launch",
-      "mode": "executable",
-      "preLaunchTask": "build",
-      "executable": "d:/Программы/Godot_v4.0.2-stable_mono_win64/Godot_v4.0.2-stable_mono_win64.exe",
-      "executableArguments": [
-        "--path",
-        "",
-        "SelectLaunchScene"
-      ]
-    },
-  {
-    "name": ".NET Core Attach",
-    "type": "coreclr",
-    "request": "attach"
-  },
-    {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
-      "request": "launch",
-      "args": [],
-      "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "d:/gumus/Scenes",
-      "program": "d:/gumus/Scenes/build/Debug/outDebug",
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
-      "setupCommands": [
+    "version": "0.2.0",
+    "configurations": [
         {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
+            "name": "Play",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            //
+            // Replace {EXECUTABLE PATH} with Godot executable path.
+            // 
+            // Example of possible paths:
+            // C:/Program Files/Godot/Godot.exe
+            // C:/Users/[user]/Downloads/Godot_v4.1-stable_mono_win64/Godot.exe
+            // /Applications/Godot_mono.app/Contents/MacOS/Godot
+            // /Users/[user]/Downloads/Godot_mono.app/Contents/MacOS/Godot
+            //
+            "program": "D:/Программы/Godot_v4.0.2-stable_mono_win64/Godot_v4.0.2-stable_mono_win64.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false
         }
-      ]
-    }
-  ]
+    ]
 }

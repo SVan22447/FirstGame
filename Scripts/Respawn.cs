@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-public partial class Respawn : Node2D
-{ 
+public partial class Respawn : Node2D{ 
     RomaGay Roma;
 	public override void _Ready(){
 		Roma = GetNode<RomaGay>("/root/RomaGay");

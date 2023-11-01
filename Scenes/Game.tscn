@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://d0a4xvxj2i6r1"]
+[gd_scene load_steps=75 format=3 uid="uid://d0a4xvxj2i6r1"]
 
 [ext_resource type="Script" path="res://Scripts/Test1.cs" id="1_h3qsq"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
@@ -605,6 +605,8 @@ texture = ExtResource("5_u5rua")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lvb26"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_a6ooe"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0iqya"]
 texture = ExtResource("6_xlh1v")
 0:0/next_alternative_id = 4
@@ -662,6 +664,7 @@ texture = ExtResource("6_xlh1v")
 0:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_1/angular_velocity = 0.0
 0:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-7, 3, 7, 3, 7, 6.5, 8, 8, -8, 8, -7, 6)
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_a6ooe")
 1:2/0 = 0
 1:2/0/z_index = 1
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -669,6 +672,7 @@ texture = ExtResource("6_xlh1v")
 1:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_1/angular_velocity = 0.0
 1:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-7, 3, 7, 3, 7, 6.5, 8, 8, -8, 8, -7, 6)
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_a6ooe")
 
 [sub_resource type="TileSet" id="TileSet_qv2kh"]
 physics_layer_0/collision_layer = 3
@@ -917,6 +921,7 @@ shader_parameter/blend = 1.5
 
 [node name="Test1" type="Node2D"]
 script = ExtResource("1_h3qsq")
+metadata/_edit_horizontal_guides_ = [81.0]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l1obc")
@@ -975,8 +980,7 @@ limit_right = 5000
 limit_bottom = 1000
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-rotation_smoothing_enabled = true
+position_smoothing_speed = 7.0
 rotation_smoothing_speed = 10.0
 drag_left_margin = 0.0
 drag_top_margin = 0.0

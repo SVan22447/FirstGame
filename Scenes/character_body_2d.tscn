@@ -158,6 +158,9 @@ wait_time = 0.07
 wait_time = 0.35
 one_shot = true
 
-[connection signal="body_entered" from="Area2D" to="." method="DamageTaken"]
+[node name="TimeForEffect" type="Timer" parent="Timers"]
+wait_time = 2.0
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="DamageTaken"]
 [connection signal="timeout" from="Timers/KnockbackEffectTime" to="." method="recoilSpam"]
 [connection signal="timeout" from="Timers/KnockbackStop" to="." method="recoilStop"]

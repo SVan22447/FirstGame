@@ -1,5 +1,6 @@
 using Godot;
 using System;
+
 public partial class bullet : CharacterBody2D{
 	int speed = 45000;
 	int bulletLife = 60;

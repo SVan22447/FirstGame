@@ -1,7 +1,7 @@
 using Godot;
 using System;
+
 public partial class InputRemapping : Button{
-	// Called when the node enters the scene tree for the first time.
 	public String action;
 	string IconText;
 	public override void _Ready(){
