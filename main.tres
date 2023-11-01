@@ -43,7 +43,7 @@ polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 
 [sub_resource type="VisualShader" id="VisualShader_olbjc"]
 code = "shader_type spatial;
-render_mode shadow_to_opacity, vertex_lighting;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, shadow_to_opacity, vertex_lighting;
 
 
 
