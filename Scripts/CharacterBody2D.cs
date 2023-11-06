@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
-using DialogueManagerRuntime;
 using System;
+using System.Reflection;
 
 public enum PlayerState{
 	Standing,
@@ -16,7 +16,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	#region переменные
 		PlayerState currentState = PlayerState.Standing;
 		[Export]public int Speed = 125;
-		[Export]PackedScene BallonX;
+		// [Export]PackedScene BallonX;
 		[ExportSubgroup("Прыжок")]
 		[Export(PropertyHint.Range,"0f,1f")]float jumpTimeToPeak = .2f;
 		[Export(PropertyHint.Range,"0f,1f")]float jumpTimeToDescent =.3f;
@@ -27,6 +27,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		Timer LastJump;
 		Timer wallJumpLeftTime;
 		Timer wallJumpRightTime;
+		Timer InvincibleTimer;
 		Timer KnockBackEffectTime;
 		Timer KnockBackStop;
 		Timer TimeForEffect;
@@ -37,6 +38,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		float fallGravity;
 		bool IsJumping;
 		bool IsJumping2;
+		bool DamageHasTaken;
 		int TimeJump;
 		int TimeJump2;
 		RayCast2D LeftWall;
@@ -74,7 +76,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		return velocity.Y < .0f ? jumpGravity : fallGravity;
 	}
 	public override void _Ready(){
-		DialogueResource = ResourceLoader.Load("res://dialogue/dia.dialogue");
+		// DialogueResource = ResourceLoader.Load("res://dialogue/dia.dialogue");
 		LastOnGroundTime = GetNode<Timer>("Timers/LastOnGroundTime");
 		LastOnGroundTime.WaitTime=coyoteTime;
 		FallingTimes = GetNode<Timer>("Timers/FallingTimes");
@@ -85,6 +87,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 		LastJump = GetNode<Timer>("Timers/LastJump");
 		DamagesTimes = GetNode<Timer>("Timers/DamagesTimes");
 		TimeForEffect = GetNode<Timer>("Timers/TimeForEffect");
+		InvincibleTimer=GetNode<Timer>("Timers/InvincibleTimer");
 		KnockBackEffectTime=GetNode<Timer>("Timers/KnockbackEffectTime");
 		KnockBackStop=GetNode<Timer>("Timers/KnockbackStop");
 		ShootCooldownV =  ShootCooldown;
@@ -159,9 +162,6 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 			if (Input.IsActionJustPressed("Jump")){ //Джамп баффер
 				LastJump.Start();
 			}
-			if(Input.IsActionJustPressed("ui_filedialog_show_hidden")){ // тест диалога
-				Action();
-			}
 			direction.X = Input.GetAxis("Left", "Right");
 			direction.Y = Input.GetAxis("Up", "Down");
 			if(LeftWall.IsColliding()){
@@ -171,7 +171,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 			}
 			if (!IsOnFloor()){
 				if(velocity.Y<=450){
-					if(!IsJumping&&((LeftWall.IsColliding()&&Input.IsActionPressed("Left"))||(RightWall.IsColliding()&&Input.IsActionPressed("Right")))){
+					if(!IsJumping&&DamagesTimes.IsStopped()&&((LeftWall.IsColliding()&&Input.IsActionPressed("Left"))||(RightWall.IsColliding()&&Input.IsActionPressed("Right")))){
 						velocity.Y= 50;
 						SlidingOffTheWall -=delta;
 						currentState = PlayerState.Climping;
@@ -267,27 +267,22 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	private void recoilStop(){
 		KnockBackEffectTime.Stop();
 	}
+	private void InvincibleTimesEnd(){
+		DamageHasTaken=false;
+	}
 	private void DamageTaken(Rid bodyRid, Node2D body,int bodyIndex,int localIndex){
+		if(!DamageHasTaken){
+			DamageHasTaken=true;
 			var Body = (TileMap)body;
-			var _Collision= GetNode<Area2D>("Area2D");
-			var data = Body.GetCellTileData(0,Body.GetCoordsForBodyRid(bodyRid));
 			var coords = Body.GetCoordsForBodyRid(bodyRid);
-			GD.Print();
 			TimeForEffect.Start();
-			var SpikesPos= GlobalPosition.DirectionTo(Body.GetCoordsForBodyRid(bodyRid));
-			GD.Print(SpikesPos);
+			var SpikesPos= -GlobalPosition.DirectionTo(Body.MapToLocal(coords));
 			DamagesTimes.Start();
-			velocity= (SpikesPos* 400);
+			InvincibleTimer.Start();
+			velocity= (SpikesPos * 400);
 			GetNode<RomaGay>("/root/RomaGay").LoseHeart(1);
 			Velocity=velocity;
-	}
-	private void Action(){
-		var ballon = (CanvasLayer)BallonX.Instantiate();
-		var balloon = (BalloonT)ballon;
-		GetTree().CurrentScene.AddChild(ballon);
-		GetTree().Paused = true;
-		BowCooldownV= BowCooldown*Bowbuff;
-		balloon.Start(DialogueResource,dialogue);
+		}
 	}
 		private void InstanceRecoil(){
     	var recoil =KnockBackScene.Instantiate() as Sprite2D;

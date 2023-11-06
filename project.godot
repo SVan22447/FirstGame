@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 RomaGay="*res://autoloads/RomaGay.cs"
 SoundPlayer="*res://autoloads/SoundPlayer.tscn"
 
@@ -36,7 +35,7 @@ movie_writer/movie_file="D:/GitHub/FirstGame/sex.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/jamcountdown/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/ActionIcon/plugin.cfg")
+enabled=PackedStringArray("res://addons/jamcountdown/plugin.cfg", "res://addons/ActionIcon/plugin.cfg")
 
 [input]
 
@@ -134,7 +133,7 @@ pen_tablet/driver.windows="winink"
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dia.dialogue", "res://dialogue/dia.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dia.dialogue")
 
 [layer_names]
 
