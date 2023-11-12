@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://d0a4xvxj2i6r1"]
+[gd_scene load_steps=73 format=3 uid="uid://d0a4xvxj2i6r1"]
 
 [ext_resource type="Script" path="res://Scripts/Test1.cs" id="1_h3qsq"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://rhxo0v8ipa2d" path="res://assets/tileset/imba/shipi.png" id="6_xlh1v"]
 [ext_resource type="Script" path="res://Scripts/CameraProxy.cs" id="8_p5ggu"]
 [ext_resource type="Script" path="res://Scripts/charge.cs" id="9_bee7l"]
+[ext_resource type="PackedScene" uid="uid://bjrrefp60772c" path="res://Scenes/Enemy.tscn" id="9_clijs"]
 [ext_resource type="PackedScene" uid="uid://6qiw6s0qpw22" path="res://Scenes/options_menu.tscn" id="10_5nqb6"]
 [ext_resource type="Texture2D" uid="uid://db1b13woi4xsm" path="res://Kit/Base/ппппфыа.png" id="10_y4wm1"]
 [ext_resource type="Shader" path="res://Shaders/Game.gdshader" id="11_n7uwg"]
@@ -1020,6 +1021,21 @@ drag_bottom_margin = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("9_clijs")]
+position = Vector2(1903, 469)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("9_clijs")]
+position = Vector2(771, 377)
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("9_clijs")]
+position = Vector2(-322, 217)
+
+[node name="AnimatedSprite2D" parent="Enemies/Enemy" index="0"]
+position = Vector2(2237, 264)
+frame_progress = 0.0
+
 [node name="Lumps" type="Node2D" parent="."]
 
 [node name="charge" type="Node2D" parent="Lumps"]
@@ -1589,7 +1605,9 @@ text = "ExitM"
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button" to="UI" method="Resume"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button3" to="UI" method="Options"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button2" to="UI" method="exit_to"]
-[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="_on_button_4_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="Exit"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="_on_button_4_pressed"]
 [connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button" to="UI/GameOverScreen" method="Continue"]
 [connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button2" to="UI/GameOverScreen" method="ExitMenu"]
+
+[editable path="Enemies/Enemy"]
