@@ -15,10 +15,10 @@
 [ext_resource type="Shader" path="res://Shaders/Game.gdshader" id="11_n7uwg"]
 [ext_resource type="Script" path="res://Scripts/Respawn.cs" id="12_sru5w"]
 [ext_resource type="Script" path="res://Scripts/Zone.cs" id="13_8rlbv"]
-[ext_resource type="Texture2D" uid="uid://dp1lt8n77rs71" path="res://assets/UI/afsgddsg.png" id="14_wy0f0"]
 [ext_resource type="Shader" path="res://Shaders/GameOver.gdshader" id="15_i1sww"]
 [ext_resource type="Script" path="res://Scripts/UI.cs" id="15_j1hyi"]
 [ext_resource type="Texture2D" uid="uid://bp8fnpwvptaby" path="res://assets/UI/AnimateHP/emter1.png" id="16_51l0w"]
+[ext_resource type="Texture2D" uid="uid://c8xydt44f273i" path="res://assets/UI/slay_ui.png" id="16_jr7qw"]
 [ext_resource type="Texture2D" uid="uid://bhwtex55xdlxj" path="res://assets/UI/AnimateHP/emter2.png" id="17_wf236"]
 [ext_resource type="Texture2D" uid="uid://cyj46upscfxid" path="res://assets/UI/AnimateHP/emter11.png" id="18_u24wn"]
 [ext_resource type="Texture2D" uid="uid://c25cf1m5gf0gs" path="res://assets/UI/AnimateHP/emter12.png" id="19_g44m8"]
@@ -1415,15 +1415,15 @@ offset_top = 32.0
 offset_right = 57.0
 offset_bottom = 56.0
 scale = Vector2(2.24, 2.24)
-texture = ExtResource("14_wy0f0")
+texture = ExtResource("16_jr7qw")
 
 [node name="HeartUp" type="TextureRect" parent="UI/Control"]
 light_mask = 8
 visibility_layer = 8
 layout_mode = 0
-offset_left = 96.0
+offset_left = 152.0
 offset_top = 32.0
-offset_right = 231.0
+offset_right = 287.0
 offset_bottom = 56.0
 scale = Vector2(2.24, 2.24)
 texture = ExtResource("10_y4wm1")
@@ -1433,9 +1433,9 @@ stretch_mode = 1
 light_mask = 8
 visibility_layer = 8
 layout_mode = 0
-offset_left = 96.0
+offset_left = 152.0
 offset_top = 32.0
-offset_right = 123.0
+offset_right = 179.0
 offset_bottom = 56.0
 scale = Vector2(2.24, 2.24)
 texture = SubResource("AnimatedTexture_l20g3")
@@ -1447,10 +1447,10 @@ light_mask = 8
 visibility_layer = 8
 use_parent_material = true
 layout_mode = 0
-offset_left = 40.0
-offset_top = 89.0
-offset_right = 49.0
-offset_bottom = 98.0
+offset_left = 152.0
+offset_top = 96.0
+offset_right = 161.0
+offset_bottom = 105.0
 scale = Vector2(2.24, 2.24)
 texture = ExtResource("28_qaqcr")
 stretch_mode = 1
