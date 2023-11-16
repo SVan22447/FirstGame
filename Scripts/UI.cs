@@ -54,7 +54,7 @@ public partial class UI : CanvasLayer{
     public void exit_to(){
         // Exit button in the menu
 		GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://Scenes/menu.tscn");
+        GetTree().ChangeSceneToFile("res://Scenes/Levels/menu.tscn");
     }
     public void Exit(){
         GetTree().Quit();
@@ -68,7 +68,7 @@ public partial class UI : CanvasLayer{
         heart.Size = new Vector2(GetNode<RomaGay>("/root/RomaGay").lives*27, heart.Size.Y);
     }
     public void RechargeView(){
-        var GG = GetNode<CharacterBody2D>("/root/Test1/CharacterBody2D");
+        var GG = GetNode<Player>("/root/Test1/Player");
         var arrow = GetNode<TextureRect>("Control/arrow");
         if (GG.bulletAmount>0){
             arrow.Visible=true;

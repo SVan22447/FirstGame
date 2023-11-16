@@ -11,6 +11,6 @@ public partial class GameOverScreen : Control{
 	public void ExitMenu(){
         this.Visible=!this.Visible;
 		GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://Scenes/menu.tscn");
+        GetTree().ChangeSceneToFile("res://Scenes/Levels/menu.tscn");
 	}
 }

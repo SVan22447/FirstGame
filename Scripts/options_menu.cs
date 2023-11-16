@@ -69,7 +69,7 @@ public partial class options_menu : Control{
 		   AudioServer.SetBusVolumeDb(BusIndex,value);
 	}
 	public void BackCenter(){
-		if(GetTree().CurrentScene.SceneFilePath != "res://Scenes/menu.tscn" ){
+		if(GetTree().CurrentScene.SceneFilePath != "res://Scenes/Levels/menu.tscn" ){
 			if(!GetNode<CenterContainer>("CenterContainer2").Visible){
 				Center.Visible = !Center.Visible;
 				this.Visible = !this.Visible;

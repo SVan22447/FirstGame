@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/options_menu.cs" id="1_2j3kr"]
 [ext_resource type="Texture2D" uid="uid://bfkqcxtw25cvy" path="res://assets/Other/1507912-200.png" id="1_qfur5"]
-[ext_resource type="PackedScene" uid="uid://dkf635xod2qe3" path="res://Scenes/InputRemapScene.tscn" id="2_aab6i"]
+[ext_resource type="PackedScene" uid="uid://dkf635xod2qe3" path="res://Scenes/Levels/InputRemapScene.tscn" id="2_aab6i"]
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3

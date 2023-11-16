@@ -12,7 +12,7 @@ public enum PlayerState{
 	Peak,
 	descent
 }
-public partial class CharacterBody2D : Godot.CharacterBody2D{
+public partial class Player : CharacterBody2D{
 	#region переменные
 		PlayerState currentState = PlayerState.Standing;
 		[Export]public int Speed = 125;
@@ -101,8 +101,8 @@ public partial class CharacterBody2D : Godot.CharacterBody2D{
 	    RechargeCir.MaxValue = ShootCooldown;
 	    Bow = GetNode<Node2D>("Bow");
 		ui=GetNode<UI>("/root/Test1/UI");
-		KnockBackScene =GD.Load<PackedScene>("res://Scenes/KnockBackEffect.tscn");
-	    bulletInstance = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
+		KnockBackScene =GD.Load<PackedScene>("res://Scenes/Effects/KnockBackEffect.tscn");
+	    bulletInstance = GD.Load<PackedScene>("res://Scenes/Objects/Bullet.tscn");
 	}
 	public override void _Process(double delta){
 		velocity=Velocity;

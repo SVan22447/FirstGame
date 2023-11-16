@@ -1,0 +1,115 @@
+[gd_scene load_steps=13 format=3 uid="uid://bjrrefp60772c"]
+
+[ext_resource type="Script" path="res://Scripts/bat.cs" id="1_kkkqa"]
+[ext_resource type="Texture2D" uid="uid://bd0x7r0pww5dx" path="res://assets/Other/gna.png" id="2_6dosb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rooym"]
+size = Vector2(616, 334.844)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv4c6"]
+atlas = ExtResource("2_6dosb")
+region = Rect2(0, 0, 26, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ma27"]
+atlas = ExtResource("2_6dosb")
+region = Rect2(26, 0, 26, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l388s"]
+atlas = ExtResource("2_6dosb")
+region = Rect2(52, 0, 26, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6ycb"]
+atlas = ExtResource("2_6dosb")
+region = Rect2(0, 18, 26, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofex7"]
+atlas = ExtResource("2_6dosb")
+region = Rect2(26, 18, 26, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gjme"]
+atlas = ExtResource("2_6dosb")
+region = Rect2(26, 36, 26, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1fw5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv4c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ma27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l388s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6ycb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofex7")
+}],
+"loop": true,
+"name": &"Chase",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gjme")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ov3si"]
+radius = 90.1998
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5ct"]
+size = Vector2(18, 15)
+
+[node name="Bat" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="Spawn" type="Marker2D" parent="."]
+
+[node name="ChasingArea" type="Area2D" parent="Spawn"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn/ChasingArea"]
+visible = false
+shape = SubResource("RectangleShape2D_rooym")
+debug_color = Color(0.411765, 0.498039, 0.898039, 0.419608)
+
+[node name="bat" type="CharacterBody2D" parent="."]
+collision_layer = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_kkkqa")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="bat"]
+navigation_layers = 4
+avoidance_mask = 3
+debug_enabled = true
+debug_path_custom_color = Color(1, 0.0117647, 0.266667, 1)
+debug_path_custom_point_size = 2.99
+debug_path_custom_line_width = 4.65
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bat"]
+sprite_frames = SubResource("SpriteFrames_f1fw5")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="AgroZone" type="Area2D" parent="bat"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bat/AgroZone"]
+shape = SubResource("CircleShape2D_ov3si")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bat"]
+visible = false
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_yf5ct")
+
+[node name="Timer" type="Timer" parent="bat"]

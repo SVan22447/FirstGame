@@ -28,7 +28,7 @@ public partial class menu : BoxContainer{
     }
     public void Play(){
         GetNode<RomaGay>("/root/RomaGay").lives=GetNode<RomaGay>("/root/RomaGay").MaxLives;
-        GetTree().ChangeSceneToFile("res://Scenes/Game.tscn");
+        GetTree().ChangeSceneToFile("res://Scenes/Levels/Game.tscn");
     }
     public void Options(){
         this.Visible = !this.Visible;

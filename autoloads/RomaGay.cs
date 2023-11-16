@@ -33,7 +33,7 @@ public partial class RomaGay : Node{
 		if (lives <=0){	
 		    GetTree().Paused = true;
             GetNode<Control>("/root/Test1/UI/Control").Visible = false;
-		    GetNode<CharacterBody2D>("/root/Test1/CharacterBody2D").Visible = false;
+		    GetNode<CharacterBody2D>("/root/Test1/Player").Visible = false;
 			GetNode<Control>("/root/Test1/UI/GameOverScreen").Visible = true;
 		}
 		GetNode<SoundPlayer>("/root/SoundPlayer").HurtPlayedPlayer();

@@ -2,13 +2,13 @@ using Godot;
 using System;
 
 public partial class charge : Node2D{
-    CharacterBody2D GG;
+    Player GG;
     UI ui;
     [Export(PropertyHint.Range,"0.01,3")]double buffVal = 1.5;
     [Export(PropertyHint.Range,"0.01,2")] double BowbuffVal =0.8;
     public override void _Ready(){
         ui=GetNode<UI>("/root/Test1/UI");
-        GG=GetNode<CharacterBody2D>("/root/Test1/CharacterBody2D");
+        GG=GetNode<Player>("/root/Test1/Player");
     }
     public void ChargeBullet(Node2D body){
         GG.bulletAmount=4;
