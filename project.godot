@@ -35,7 +35,7 @@ movie_writer/movie_file="D:/GitHub/FirstGame/sex.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/jamcountdown/plugin.cfg", "res://addons/ActionIcon/plugin.cfg")
+enabled=PackedStringArray("res://addons/ActionIcon/plugin.cfg", "res://addons/jamcountdown/plugin.cfg")
 
 [input]
 
