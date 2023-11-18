@@ -68,7 +68,7 @@ public partial class UI : CanvasLayer{
         heart.Size = new Vector2(GetNode<RomaGay>("/root/RomaGay").lives*27, heart.Size.Y);
     }
     public void RechargeView(){
-        var GG = GetNode<Player>("/root/Test1/Player");
+        var GG = GetNode<Player>($"/root/{GetTree().CurrentScene.Name}/Player");
         var arrow = GetNode<TextureRect>("Control/arrow");
         if (GG.bulletAmount>0){
             arrow.Visible=true;

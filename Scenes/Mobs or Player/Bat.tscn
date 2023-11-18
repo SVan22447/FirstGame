@@ -89,11 +89,10 @@ script = ExtResource("1_kkkqa")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="bat"]
 navigation_layers = 4
+path_postprocessing = 1
+avoidance_enabled = true
 avoidance_mask = 3
 debug_enabled = true
-debug_path_custom_color = Color(1, 0.0117647, 0.266667, 1)
-debug_path_custom_point_size = 2.99
-debug_path_custom_line_width = 4.65
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bat"]
 sprite_frames = SubResource("SpriteFrames_f1fw5")
@@ -113,3 +112,5 @@ position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_yf5ct")
 
 [node name="Timer" type="Timer" parent="bat"]
+
+[connection signal="body_entered" from="bat/AgroZone" to="bat" method="Agring"]

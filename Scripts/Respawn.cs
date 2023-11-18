@@ -11,7 +11,8 @@ public partial class Respawn : Node2D{
 	public void falled(Node2D body){
 		if (Roma.lives > 0 ){
             Roma.LoseHeart(1);
-		    GetNode<CharacterBody2D>("/root/Test1/Player").Position=GetNode<Test1>("/root/Test1").RespawnZone;
+			var SceneName =GetTree().CurrentScene.Name;
+		    GetNode<CharacterBody2D>($"/root/{SceneName}/Player").Position=GetNode<Test1>($"/root/{SceneName}").RespawnZone;
 		}
 	}
 

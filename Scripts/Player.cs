@@ -249,7 +249,7 @@ public partial class Player : CharacterBody2D{
 			bullet.ShowBehindParent = true;
 		}
 		GetNode<SoundPlayer>("/root/SoundPlayer").PlaySound();
-		GetTree().Root.GetNode<Node2D>("Test1/CameraProxy").AddSibling(bullet);
+		GetTree().Root.GetNode<Node2D>($"{GetTree().CurrentScene.Name}/CameraProxy").AddSibling(bullet);
 		if(velocity.Y <=.0f){
 			velocity.X -= (MouseDir.X * (float)recoilX);
 			velocity.Y -= (MouseDir.Y * ((float)recoilY/1.25f)); 
@@ -287,7 +287,7 @@ public partial class Player : CharacterBody2D{
 		private void InstanceRecoil(){
     	var recoil =KnockBackScene.Instantiate() as Sprite2D;
 		var SpriteN= GetNode<Sprite2D>("Sprite2D");
-		GetTree().Root.GetNode<Node2D>("Test1/CameraProxy").AddSibling(recoil);
+		GetTree().Root.GetNode<Node2D>($"{GetTree().CurrentScene.Name}/CameraProxy").AddSibling(recoil);
 		recoil.GlobalPosition=GlobalPosition;
 		recoil.Texture=SpriteN.Texture;
 		recoil.Vframes=SpriteN.Vframes;

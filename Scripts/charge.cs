@@ -7,8 +7,8 @@ public partial class charge : Node2D{
     [Export(PropertyHint.Range,"0.01,3")]double buffVal = 1.5;
     [Export(PropertyHint.Range,"0.01,2")] double BowbuffVal =0.8;
     public override void _Ready(){
-        ui=GetNode<UI>("/root/Test1/UI");
-        GG=GetNode<Player>("/root/Test1/Player");
+        ui=GetNode<UI>($"/root/{GetTree().CurrentScene.Name}/UI");
+        GG=GetNode<Player>($"/root/{GetTree().CurrentScene.Name}/Player");
     }
     public void ChargeBullet(Node2D body){
         GG.bulletAmount=4;
