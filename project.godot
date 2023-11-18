@@ -24,6 +24,7 @@ SoundPlayer="*res://autoloads/SoundPlayer.tscn"
 
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=2
+mouse_cursor/custom_image="res://assets/UI/cursor.png"
 
 [dotnet]
 
