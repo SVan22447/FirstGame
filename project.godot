@@ -13,7 +13,7 @@ config_version=5
 config/name="gumus"
 run/main_scene="res://Scenes/Levels/menu.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/Player/desp.png"
 
 [autoload]
 
@@ -22,7 +22,8 @@ SoundPlayer="*res://autoloads/SoundPlayer.tscn"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=2
 mouse_cursor/custom_image="res://assets/UI/cursor.png"
 

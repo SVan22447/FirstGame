@@ -42,6 +42,7 @@ public partial class bat : CharacterBody2D{
 			case BatState.attack:
 				break;
 			case BatState.Leave:
+				Leaving(delta);
 				break;
 		}
 
@@ -51,14 +52,24 @@ public partial class bat : CharacterBody2D{
 	private void WaitingPlayers(){
 		Animation.FlipH=RotateC;
 		Animation.FlipV=RotateV;
-		Animation.Play("new_animation");
+		Animation.Play("Wait");
 	}
 	private void Chasing(double delta){
-		if(NavAgent.IsNavigationFinished()){
+		fly(Player.GlobalPosition);
+	}
+	private void Leaving(double delta){
+		if(NavAgent.DistanceToTarget() <10f){
+			GlobalPosition=_spawn.GlobalPosition;
+			State=BatState.wait;
+		}
+		fly(_spawn.GlobalPosition);
+	}
+	private void fly(Vector2 _target){
+		if (NavAgent.IsNavigationFinished()){
 			return;
 		}
-		NavAgent.TargetPosition=Player.GlobalPosition;
-		var NewVelocity =(NavAgent.GetNextPathPosition()-Player.GlobalPosition).Normalized();
+		NavAgent.TargetPosition=_target;
+		var NewVelocity =(NavAgent.GetNextPathPosition()-_target).Normalized();
 		if(NewVelocity.X<0){
 			Animation.FlipH=true;
 		}else if(NewVelocity.X>0){
@@ -66,6 +77,11 @@ public partial class bat : CharacterBody2D{
 		}
 		NewVelocity*=100;
 		velocity=-NewVelocity;
+	}
+	private void exit(Node2D body){
+		if(GlobalPosition.Ceil()!=_spawn.GlobalPosition){
+			State =BatState.Leave;
+		}
 	}
 	private void Agring(Node2D body){
 		GD.Print("Свин идет");

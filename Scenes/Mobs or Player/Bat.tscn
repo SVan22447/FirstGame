@@ -64,7 +64,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4gjme")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"Wait",
 "speed": 5.0
 }]
 
@@ -78,6 +78,7 @@ size = Vector2(18, 15)
 metadata/_edit_group_ = true
 
 [node name="Spawn" type="Marker2D" parent="."]
+gizmo_extents = 0.0
 
 [node name="ChasingArea" type="Area2D" parent="Spawn"]
 collision_layer = 0
@@ -94,17 +95,29 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_kkkqa")
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="bat"]
+position = Vector2(0.500008, 5.99999)
+scale = Vector2(37.55, 19.8)
+enable_node_path = NodePath("../..")
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="bat"]
 navigation_layers = 4
-path_postprocessing = 1
 avoidance_enabled = true
+radius = 81.9
+time_horizon_obstacles = 0.75
+max_speed = 140.0
 avoidance_mask = 3
 debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.368627, 1, 1)
+debug_path_custom_point_size = 34.95
+debug_path_custom_line_width = 31.05
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bat"]
 sprite_frames = SubResource("SpriteFrames_f1fw5")
-animation = &"Chase"
-autoplay = "new_animation"
+animation = &"Wait"
+autoplay = "Wait"
+frame_progress = 0.804072
 
 [node name="AgroZone" type="Area2D" parent="bat"]
 collision_layer = 0
@@ -120,4 +133,5 @@ shape = SubResource("RectangleShape2D_yf5ct")
 
 [node name="Timer" type="Timer" parent="bat"]
 
+[connection signal="body_exited" from="Spawn/ChasingArea" to="bat" method="exit"]
 [connection signal="body_entered" from="bat/AgroZone" to="bat" method="Agring"]
