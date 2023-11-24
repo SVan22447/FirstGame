@@ -1,0 +1,250 @@
+[gd_scene load_steps=25 format=3 uid="uid://cd52pi460x3kf"]
+
+[ext_resource type="Script" path="res://Scripts/UI.cs" id="1_tch5h"]
+[ext_resource type="Texture2D" uid="uid://c8xydt44f273i" path="res://assets/UI/slay_ui.png" id="2_rt68l"]
+[ext_resource type="Texture2D" uid="uid://db1b13woi4xsm" path="res://Kit/Base/ппппфыа.png" id="3_q3bru"]
+[ext_resource type="Texture2D" uid="uid://bp8fnpwvptaby" path="res://assets/UI/AnimateHP/emter1.png" id="4_xtnpi"]
+[ext_resource type="Texture2D" uid="uid://bhwtex55xdlxj" path="res://assets/UI/AnimateHP/emter2.png" id="5_taqhd"]
+[ext_resource type="Texture2D" uid="uid://cyj46upscfxid" path="res://assets/UI/AnimateHP/emter11.png" id="6_ngpyv"]
+[ext_resource type="Texture2D" uid="uid://c25cf1m5gf0gs" path="res://assets/UI/AnimateHP/emter12.png" id="7_wp826"]
+[ext_resource type="Texture2D" uid="uid://ccy3vtv2651d1" path="res://assets/UI/AnimateHP/emter3.png" id="8_660d5"]
+[ext_resource type="Texture2D" uid="uid://djf2u7sp2sa0e" path="res://assets/UI/AnimateHP/emter4.png" id="9_e1w7x"]
+[ext_resource type="Texture2D" uid="uid://cbpumyd2wd7x2" path="res://assets/UI/AnimateHP/emter5.png" id="10_qq8b4"]
+[ext_resource type="Texture2D" uid="uid://cfs82xovtyysn" path="res://assets/UI/AnimateHP/emter6.png" id="11_dybhb"]
+[ext_resource type="Texture2D" uid="uid://cksxupogtk68t" path="res://assets/UI/AnimateHP/emter7.png" id="12_1r00h"]
+[ext_resource type="Texture2D" uid="uid://b10oonlegtt3x" path="res://assets/UI/AnimateHP/emter8.png" id="13_upnmr"]
+[ext_resource type="Texture2D" uid="uid://sqs40bo0wlgi" path="res://assets/UI/AnimateHP/emter9.png" id="14_ntavc"]
+[ext_resource type="Texture2D" uid="uid://b75qa04dytaqh" path="res://assets/UI/AnimateHP/emter10.png" id="15_3nk7k"]
+[ext_resource type="Texture2D" uid="uid://b07cgmsnwl0d4" path="res://assets/UI/push.png" id="16_o5dve"]
+[ext_resource type="Shader" path="res://Shaders/Game.gdshader" id="17_ktgb5"]
+[ext_resource type="PackedScene" uid="uid://6qiw6s0qpw22" path="res://Scenes/Levels/options_menu.tscn" id="18_gbaas"]
+[ext_resource type="Script" path="res://Scripts/GameOverScreen.cs" id="19_wwhi1"]
+[ext_resource type="Shader" path="res://Shaders/GameOver.gdshader" id="20_04rhd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kosnk"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_l20g3"]
+frames = 12
+frame_0/texture = ExtResource("4_xtnpi")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("5_taqhd")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("8_660d5")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("9_e1w7x")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("10_qq8b4")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("11_dybhb")
+frame_5/duration = 0.1
+frame_6/texture = ExtResource("12_1r00h")
+frame_6/duration = 0.1
+frame_7/texture = ExtResource("13_upnmr")
+frame_7/duration = 0.1
+frame_8/texture = ExtResource("14_ntavc")
+frame_8/duration = 0.1
+frame_9/texture = ExtResource("15_3nk7k")
+frame_9/duration = 0.1
+frame_10/texture = ExtResource("6_ngpyv")
+frame_10/duration = 0.1
+frame_11/texture = ExtResource("7_wp826")
+frame_11/duration = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebj0i"]
+shader = ExtResource("17_ktgb5")
+shader_parameter/lod = 0.427
+shader_parameter/blend = 2.489
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgd6a"]
+shader = ExtResource("20_04rhd")
+shader_parameter/lod = 0.15
+shader_parameter/blend = 1.5
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_tch5h")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 3
+material = SubResource("CanvasItemMaterial_kosnk")
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+light_mask = 8
+visibility_layer = 8
+texture_filter = 3
+layout_direction = 1
+layout_mode = 0
+offset_left = 23.0
+offset_top = 26.0
+offset_right = 74.0
+offset_bottom = 74.0
+scale = Vector2(2.24, 2.24)
+texture = ExtResource("2_rt68l")
+
+[node name="HeartUp" type="TextureRect" parent="Control"]
+light_mask = 8
+visibility_layer = 8
+layout_mode = 0
+offset_left = 143.0
+offset_top = 26.0
+offset_right = 278.0
+offset_bottom = 50.0
+scale = Vector2(2.24, 2.24)
+texture = ExtResource("3_q3bru")
+stretch_mode = 1
+
+[node name="Heart" type="TextureRect" parent="Control"]
+light_mask = 8
+visibility_layer = 8
+layout_mode = 0
+offset_left = 143.0
+offset_top = 26.0
+offset_right = 170.0
+offset_bottom = 50.0
+scale = Vector2(2.24, 2.24)
+texture = SubResource("AnimatedTexture_l20g3")
+stretch_mode = 1
+
+[node name="arrow" type="TextureRect" parent="Control"]
+top_level = true
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
+layout_mode = 0
+offset_left = 143.0
+offset_top = 90.0
+offset_right = 152.0
+offset_bottom = 99.0
+scale = Vector2(2.24, 2.24)
+texture = ExtResource("16_o5dve")
+stretch_mode = 1
+
+[node name="Background" type="ColorRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 0.337255)
+material = SubResource("ShaderMaterial_ebj0i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsMenu" parent="." instance=ExtResource("18_gbaas")]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+texture_filter = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
+clip_contents = true
+layout_mode = 2
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Resume"
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Options"
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "quitM"
+
+[node name="Button4" type="Button" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
+layout_mode = 2
+text = "quitS"
+
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -243.0
+offset_right = 20.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_wwhi1")
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+material = SubResource("ShaderMaterial_fgd6a")
+layout_mode = 0
+offset_left = -557.0
+offset_top = -83.0
+offset_right = 597.0
+offset_bottom = 568.0
+color = Color(0.713726, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -12.383
+anchor_right = 12.564
+anchor_bottom = 1.908
+offset_left = 343.32
+offset_right = -309.56
+offset_bottom = -69.46
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 66
+text = "Game over"
+
+[node name="Label2" type="Label" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 170
+
+[node name="Button" type="Button" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 22
+text = "Continue"
+
+[node name="Button2" type="Button" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 22
+text = "ExitM"
+
+[connection signal="draw" from="CenterContainer" to="." method="Focus"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="Resume"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button3" to="." method="Options"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="exit_to"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="Exit"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/Button" to="GameOverScreen" method="Continue"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/Button2" to="GameOverScreen" method="ExitMenu"]

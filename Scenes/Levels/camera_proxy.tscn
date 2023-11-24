@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3u3nhlsacmxw"]
+
+[ext_resource type="Script" path="res://Scripts/CameraProxy.cs" id="1_7dq7p"]
+
+[node name="CameraProxy" type="Node2D" node_paths=PackedStringArray("target")]
+visible = false
+position = Vector2(606, 233)
+script = ExtResource("1_7dq7p")
+target = NodePath("")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.56, 2.56)
+limit_top = -500
+limit_right = 5000
+limit_bottom = 1000
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+rotation_smoothing_speed = 10.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true

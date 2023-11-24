@@ -100,7 +100,7 @@ public partial class Player : CharacterBody2D{
 	    RechargeCir=GetNode<TextureProgressBar>("TextureProgressBar");
 	    RechargeCir.MaxValue = ShootCooldown;
 	    Bow = GetNode<Node2D>("Bow");
-		ui=GetNode<UI>("/root/Test1/UI");
+		ui=GetNode<UI>($"/root/{GetTree().CurrentScene.Name}/UI");
 		KnockBackScene =GD.Load<PackedScene>("res://Scenes/Effects/KnockBackEffect.tscn");
 	    bulletInstance = GD.Load<PackedScene>("res://Scenes/Objects/Bullet.tscn");
 	}

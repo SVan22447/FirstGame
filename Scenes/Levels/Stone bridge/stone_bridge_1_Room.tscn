@@ -1,5 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://ceid826dj1yoh"]
+[gd_scene load_steps=38 format=3 uid="uid://ceid826dj1yoh"]
 
+[ext_resource type="PackedScene" uid="uid://d3u3nhlsacmxw" path="res://Scenes/Levels/camera_proxy.tscn" id="1_kfne0"]
 [ext_resource type="PackedScene" uid="uid://d3jlidg6uy7kk" path="res://Scenes/Mobs or Player/Player.tscn" id="1_y2siy"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="2_oetjg"]
 [ext_resource type="Texture2D" uid="uid://chfs5av5fcot3" path="res://assets/Player/waterfall_tile_001.png" id="3_ie83f"]
@@ -7,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ds3vmoy1nmx3h" path="res://assets/tileset/imba/waterfall_tile_002.png" id="5_mxd5b"]
 [ext_resource type="Texture2D" uid="uid://c57ahek24ym8c" path="res://assets/tileset/imba/Tileset-new.png" id="6_etdo2"]
 [ext_resource type="Texture2D" uid="uid://dh8rj20cvicw0" path="res://assets/tileset/imba/test_back.png" id="7_012uk"]
+[ext_resource type="PackedScene" uid="uid://cd52pi460x3kf" path="res://Scenes/Levels/ui.tscn" id="8_4eat3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dsr73"]
 
@@ -808,6 +810,9 @@ sources/0 = SubResource("TileSetAtlasSource_jdquh")
 
 [node name="stone_bridge_1_Room" type="Node2D"]
 
+[node name="CameraProxy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_kfne0")]
+target = NodePath("../Player")
+
 [node name="Player" parent="." instance=ExtResource("1_y2siy")]
 light_mask = 4
 visibility_layer = 4
@@ -850,3 +855,7 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(2162675, 262145, 6, 2162676, 327681, 6, 2162677, 393217, 6, 2162679, 262145, 6, 2162680, 327681, 6, 2162681, 393217, 6, 2162683, 262145, 6, 2162684, 327681, 6, 2162685, 393217, 6, 2162687, 262145, 6, 2097152, 327681, 6, 2097153, 393217, 6, 2162673, 393217, 6, 2162672, 327681, 6, 2162671, 262145, 6, 2162669, 393217, 6, 2162667, 262145, 6, 2162668, 327681, 6, 2162665, 393217, 6, 2162664, 327681, 6, 2162663, 262145, 6, 2228200, 327681, 7, 2293736, 327681, 7)
+
+[node name="UI" parent="." instance=ExtResource("8_4eat3")]
+
+[editable path="UI"]

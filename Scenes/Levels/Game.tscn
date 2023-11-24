@@ -1,36 +1,17 @@
-[gd_scene load_steps=65 format=3 uid="uid://d0a4xvxj2i6r1"]
+[gd_scene load_steps=42 format=3 uid="uid://d0a4xvxj2i6r1"]
 
 [ext_resource type="Script" path="res://Scripts/Test1.cs" id="1_h3qsq"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
+[ext_resource type="PackedScene" uid="uid://d3u3nhlsacmxw" path="res://Scenes/Levels/camera_proxy.tscn" id="4_k4rvx"]
 [ext_resource type="PackedScene" uid="uid://d3jlidg6uy7kk" path="res://Scenes/Mobs or Player/Player.tscn" id="4_yq3c4"]
 [ext_resource type="Texture2D" uid="uid://d30a5v61sxaqi" path="res://assets/Player/аыфe.png" id="5_06pq1"]
-[ext_resource type="Script" path="res://Scripts/CameraProxy.cs" id="8_p5ggu"]
 [ext_resource type="Script" path="res://Scripts/charge.cs" id="9_bee7l"]
 [ext_resource type="PackedScene" uid="uid://bjrrefp60772c" path="res://Scenes/Mobs or Player/Bat.tscn" id="9_clijs"]
-[ext_resource type="PackedScene" uid="uid://6qiw6s0qpw22" path="res://Scenes/Levels/options_menu.tscn" id="10_5nqb6"]
-[ext_resource type="Texture2D" uid="uid://db1b13woi4xsm" path="res://Kit/Base/ппппфыа.png" id="10_y4wm1"]
-[ext_resource type="Shader" path="res://Shaders/Game.gdshader" id="11_n7uwg"]
+[ext_resource type="PackedScene" uid="uid://cd52pi460x3kf" path="res://Scenes/Levels/ui.tscn" id="12_k0uoe"]
 [ext_resource type="Script" path="res://Scripts/Respawn.cs" id="12_sru5w"]
 [ext_resource type="Script" path="res://Scripts/Zone.cs" id="13_8rlbv"]
-[ext_resource type="Shader" path="res://Shaders/GameOver.gdshader" id="15_i1sww"]
-[ext_resource type="Script" path="res://Scripts/UI.cs" id="15_j1hyi"]
-[ext_resource type="Texture2D" uid="uid://bp8fnpwvptaby" path="res://assets/UI/AnimateHP/emter1.png" id="16_51l0w"]
-[ext_resource type="Texture2D" uid="uid://c8xydt44f273i" path="res://assets/UI/slay_ui.png" id="16_jr7qw"]
-[ext_resource type="Texture2D" uid="uid://bhwtex55xdlxj" path="res://assets/UI/AnimateHP/emter2.png" id="17_wf236"]
-[ext_resource type="Texture2D" uid="uid://cyj46upscfxid" path="res://assets/UI/AnimateHP/emter11.png" id="18_u24wn"]
-[ext_resource type="Texture2D" uid="uid://c25cf1m5gf0gs" path="res://assets/UI/AnimateHP/emter12.png" id="19_g44m8"]
-[ext_resource type="Texture2D" uid="uid://ccy3vtv2651d1" path="res://assets/UI/AnimateHP/emter3.png" id="20_hbyca"]
-[ext_resource type="Texture2D" uid="uid://djf2u7sp2sa0e" path="res://assets/UI/AnimateHP/emter4.png" id="21_j1jb6"]
-[ext_resource type="Texture2D" uid="uid://cbpumyd2wd7x2" path="res://assets/UI/AnimateHP/emter5.png" id="22_j0np3"]
-[ext_resource type="Texture2D" uid="uid://cfs82xovtyysn" path="res://assets/UI/AnimateHP/emter6.png" id="23_8rg8q"]
-[ext_resource type="Texture2D" uid="uid://cksxupogtk68t" path="res://assets/UI/AnimateHP/emter7.png" id="24_48spk"]
-[ext_resource type="Texture2D" uid="uid://b10oonlegtt3x" path="res://assets/UI/AnimateHP/emter8.png" id="25_6qovp"]
-[ext_resource type="Texture2D" uid="uid://sqs40bo0wlgi" path="res://assets/UI/AnimateHP/emter9.png" id="26_hhre4"]
-[ext_resource type="Texture2D" uid="uid://b75qa04dytaqh" path="res://assets/UI/AnimateHP/emter10.png" id="27_f6ko8"]
 [ext_resource type="Texture2D" uid="uid://b6a807jjquena" path="res://assets/Other/1642608884_1-abrakadabra-fun-p-bekgraund-dlya-igri-2.jpg" id="28_bfkcv"]
-[ext_resource type="Texture2D" uid="uid://b07cgmsnwl0d4" path="res://assets/UI/push.png" id="28_qaqcr"]
 [ext_resource type="Texture2D" uid="uid://c6avotm0453g2" path="res://assets/Player/OMGH.png" id="32_iyhi4"]
-[ext_resource type="Script" path="res://Scripts/GameOverScreen.cs" id="33_7e8ej"]
 
 [sub_resource type="Sky" id="Sky_gqidt"]
 
@@ -253,45 +234,6 @@ _data = {
 "new_animation": SubResource("Animation_0h365")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kosnk"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_l20g3"]
-frames = 12
-frame_0/texture = ExtResource("16_51l0w")
-frame_0/duration = 0.1
-frame_1/texture = ExtResource("17_wf236")
-frame_1/duration = 0.1
-frame_2/texture = ExtResource("20_hbyca")
-frame_2/duration = 0.1
-frame_3/texture = ExtResource("21_j1jb6")
-frame_3/duration = 0.1
-frame_4/texture = ExtResource("22_j0np3")
-frame_4/duration = 0.1
-frame_5/texture = ExtResource("23_8rg8q")
-frame_5/duration = 0.1
-frame_6/texture = ExtResource("24_48spk")
-frame_6/duration = 0.1
-frame_7/texture = ExtResource("25_6qovp")
-frame_7/duration = 0.1
-frame_8/texture = ExtResource("26_hhre4")
-frame_8/duration = 0.1
-frame_9/texture = ExtResource("27_f6ko8")
-frame_9/duration = 0.1
-frame_10/texture = ExtResource("18_u24wn")
-frame_10/duration = 0.1
-frame_11/texture = ExtResource("19_g44m8")
-frame_11/duration = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebj0i"]
-shader = ExtResource("11_n7uwg")
-shader_parameter/lod = 0.427
-shader_parameter/blend = 2.489
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgd6a"]
-shader = ExtResource("15_i1sww")
-shader_parameter/lod = 0.15
-shader_parameter/blend = 1.5
-
 [node name="Test1" type="Node2D"]
 script = ExtResource("1_h3qsq")
 metadata/_edit_horizontal_guides_ = [81.0]
@@ -354,27 +296,8 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(2162675, 262145, 6, 2162676, 327681, 6, 2162677, 393217, 6, 2162679, 262145, 6, 2162680, 327681, 6, 2162681, 393217, 6, 2162683, 262145, 6, 2162684, 327681, 6, 2162685, 393217, 6, 2162687, 262145, 6, 2097152, 327681, 6, 2097153, 393217, 6, 2162673, 393217, 6, 2162672, 327681, 6, 2162671, 262145, 6, 2162669, 393217, 6, 2162667, 262145, 6, 2162668, 327681, 6, 2162665, 393217, 6, 2162664, 327681, 6, 2162663, 262145, 6, 2228200, 327681, 7, 2293736, 327681, 7)
 
-[node name="CameraProxy" type="Node2D" parent="." node_paths=PackedStringArray("target")]
-visible = false
-position = Vector2(606, 233)
-script = ExtResource("8_p5ggu")
+[node name="CameraProxy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_k4rvx")]
 target = NodePath("../Player")
-
-[node name="Camera2D" type="Camera2D" parent="CameraProxy"]
-zoom = Vector2(2.56, 2.56)
-limit_top = -500
-limit_right = 5000
-limit_bottom = 1000
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-rotation_smoothing_speed = 10.0
-drag_left_margin = 0.0
-drag_top_margin = 0.0
-drag_right_margin = 0.0
-drag_bottom_margin = 0.0
-editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -781,185 +704,7 @@ libraries = {
 "": SubResource("AnimationLibrary_oo0v0")
 }
 
-[node name="UI" type="CanvasLayer" parent="."]
-process_mode = 3
-script = ExtResource("15_j1hyi")
-
-[node name="Control" type="Control" parent="UI"]
-texture_filter = 3
-material = SubResource("CanvasItemMaterial_kosnk")
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="UI/Control"]
-light_mask = 8
-visibility_layer = 8
-texture_filter = 3
-layout_direction = 1
-layout_mode = 0
-offset_left = 23.0
-offset_top = 26.0
-offset_right = 74.0
-offset_bottom = 74.0
-scale = Vector2(2.24, 2.24)
-texture = ExtResource("16_jr7qw")
-
-[node name="HeartUp" type="TextureRect" parent="UI/Control"]
-light_mask = 8
-visibility_layer = 8
-layout_mode = 0
-offset_left = 143.0
-offset_top = 26.0
-offset_right = 278.0
-offset_bottom = 50.0
-scale = Vector2(2.24, 2.24)
-texture = ExtResource("10_y4wm1")
-stretch_mode = 1
-
-[node name="Heart" type="TextureRect" parent="UI/Control"]
-light_mask = 8
-visibility_layer = 8
-layout_mode = 0
-offset_left = 143.0
-offset_top = 26.0
-offset_right = 170.0
-offset_bottom = 50.0
-scale = Vector2(2.24, 2.24)
-texture = SubResource("AnimatedTexture_l20g3")
-stretch_mode = 1
-
-[node name="arrow" type="TextureRect" parent="UI/Control"]
-top_level = true
-light_mask = 8
-visibility_layer = 8
-use_parent_material = true
-layout_mode = 0
-offset_left = 143.0
-offset_top = 90.0
-offset_right = 152.0
-offset_bottom = 99.0
-scale = Vector2(2.24, 2.24)
-texture = ExtResource("28_qaqcr")
-stretch_mode = 1
-
-[node name="Background" type="ColorRect" parent="UI"]
-visible = false
-modulate = Color(0, 0, 0, 0.337255)
-material = SubResource("ShaderMaterial_ebj0i")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="OptionsMenu" parent="UI" instance=ExtResource("10_5nqb6")]
-
-[node name="CenterContainer" type="CenterContainer" parent="UI"]
-visible = false
-texture_filter = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/CenterContainer/VBoxContainer"]
-texture_filter = 3
-clip_contents = true
-layout_mode = 2
-text = "Pause"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control" type="Control" parent="UI/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Button" type="Button" parent="UI/CenterContainer/VBoxContainer"]
-texture_filter = 3
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Resume"
-
-[node name="Button3" type="Button" parent="UI/CenterContainer/VBoxContainer"]
-texture_filter = 3
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Options"
-
-[node name="Button2" type="Button" parent="UI/CenterContainer/VBoxContainer"]
-texture_filter = 3
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "quitM"
-
-[node name="Button4" type="Button" parent="UI/CenterContainer/VBoxContainer"]
-texture_filter = 3
-layout_mode = 2
-text = "quitS"
-
-[node name="GameOverScreen" type="Control" parent="UI"]
-visible = false
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -243.0
-offset_right = 20.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("33_7e8ej")
-
-[node name="ColorRect" type="ColorRect" parent="UI/GameOverScreen"]
-material = SubResource("ShaderMaterial_fgd6a")
-layout_mode = 0
-offset_left = -557.0
-offset_top = -83.0
-offset_right = 597.0
-offset_bottom = 568.0
-color = Color(0.713726, 0, 0, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverScreen"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -12.383
-anchor_right = 12.564
-anchor_bottom = 1.908
-offset_left = 343.32
-offset_right = -309.56
-offset_bottom = -69.46
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="UI/GameOverScreen/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 66
-text = "Game over"
-
-[node name="Label2" type="Label" parent="UI/GameOverScreen/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 170
-
-[node name="Button" type="Button" parent="UI/GameOverScreen/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 22
-text = "Continue"
-
-[node name="Button2" type="Button" parent="UI/GameOverScreen/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 22
-text = "ExitM"
+[node name="UI" parent="." instance=ExtResource("12_k0uoe")]
 
 [connection signal="body_entered" from="Lumps/charge/Lump/ChargeLump" to="Lumps/charge" method="ChargeBullet"]
 [connection signal="body_entered" from="Lumps/charge/Lump/Light" to="Lumps/charge" method="BustCharge1"]
@@ -974,16 +719,10 @@ text = "ExitM"
 [connection signal="body_entered" from="Respawn/Clif2" to="Respawn" method="falled"]
 [connection signal="body_entered" from="Respawn/Zone" to="Respawn/Zone" method="CheckPoint"]
 [connection signal="body_entered" from="Respawn/Zone2" to="Respawn/Zone2" method="CheckPoint"]
-[connection signal="draw" from="UI/CenterContainer" to="UI" method="Focus"]
-[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button" to="UI" method="Resume"]
-[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button3" to="UI" method="Options"]
-[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button2" to="UI" method="exit_to"]
-[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="Exit"]
-[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="_on_button_4_pressed"]
-[connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button" to="UI/GameOverScreen" method="Continue"]
-[connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button2" to="UI/GameOverScreen" method="ExitMenu"]
 
+[editable path="CameraProxy"]
 [editable path="Enemies/Bat4"]
 [editable path="Enemies/Bat3"]
 [editable path="Enemies/Bat2"]
 [editable path="Enemies/Bat"]
+[editable path="UI"]
