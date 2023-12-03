@@ -8,6 +8,8 @@ enum BatState{
 	Leave
 }
 public partial class bat : CharacterBody2D{
+	[Export] int Speed=100;
+	[Export] int Dash=300;
 	PackedScene DashScene;
 	AnimatedSprite2D Animation;
 	Area2D ChasingZone;
@@ -105,7 +107,7 @@ public partial class bat : CharacterBody2D{
 		NavAgent.TargetPosition=_target;
 		var NewVelocity =(NavAgent.GetNextPathPosition()-_target).Normalized();
 		DirectionCheck();
-		NewVelocity*=100;
+		NewVelocity*=Speed;
 		velocity=-NewVelocity;
 	}
 	private void AttackStart(double delta){
@@ -113,7 +115,7 @@ public partial class bat : CharacterBody2D{
 		SetCollisionLayerValue(6,true);
 		SetCollisionLayerValue(2,false);
 		DirectionCheck();
-		velocity= DirToTarget*300;
+		velocity= DirToTarget*Dash;
 	}
 	private void AttackEnd(){
 		DashStop.Stop();
@@ -148,5 +150,9 @@ public partial class bat : CharacterBody2D{
 		recoil.GlobalPosition=GlobalPosition;
 		recoil.Texture=FrameN;
 		recoil.FlipH=SpriteN.FlipH;
+	}
+	private void PositionReset(){
+		GlobalPosition=_spawn.GlobalPosition;
+		State=BatState.wait;
 	}
 }

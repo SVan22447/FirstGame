@@ -75,7 +75,7 @@ radius = 56.0089
 radius = 110.041
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5ct"]
-size = Vector2(16, 14)
+size = Vector2(18, 14)
 
 [node name="Bat" type="Node2D"]
 metadata/_edit_group_ = true
@@ -121,7 +121,7 @@ debug_path_custom_line_width = 31.05
 sprite_frames = SubResource("SpriteFrames_f1fw5")
 animation = &"Wait"
 autoplay = "Wait"
-frame_progress = 0.198858
+frame_progress = 0.3435
 
 [node name="Area2D" type="Area2D" parent="bat"]
 collision_layer = 0

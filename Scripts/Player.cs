@@ -282,8 +282,11 @@ public partial class Player : CharacterBody2D{
 				var SpikesPos= -GlobalPosition.DirectionTo(Body.MapToLocal(coords));
 				velocity= (SpikesPos * 400);
 			}else{
-				var EnemyDir=-GlobalPosition.DirectionTo(body.GlobalPosition);
-				velocity= (EnemyDir * 400);
+				var EnemyDir=GlobalPosition.DirectionTo(body.GlobalPosition);
+				if(body is CharacterBody2D){
+					var Body = (CharacterBody2D)body;
+					velocity= (EnemyDir*Body.Velocity*2.4f);
+				}
 			}
 			Velocity=velocity;		
 			GetNode<RomaGay>("/root/RomaGay").LoseHeart(1);
