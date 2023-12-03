@@ -272,19 +272,24 @@ public partial class Player : CharacterBody2D{
 	}
 	private void DamageTaken(Rid bodyRid, Node2D body,int bodyIndex,int localIndex){
 		if(!DamageHasTaken){
-			DamageHasTaken=true;
-			var Body = (TileMap)body;
-			var coords = Body.GetCoordsForBodyRid(bodyRid);
-			TimeForEffect.Start();
-			var SpikesPos= -GlobalPosition.DirectionTo(Body.MapToLocal(coords));
+			DamageHasTaken=true;			
 			DamagesTimes.Start();
 			InvincibleTimer.Start();
-			velocity= (SpikesPos * 400);
+			TimeForEffect.Start();
+			if(body is TileMap){
+				var Body = (TileMap)body;
+				var coords = Body.GetCoordsForBodyRid(bodyRid);
+				var SpikesPos= -GlobalPosition.DirectionTo(Body.MapToLocal(coords));
+				velocity= (SpikesPos * 400);
+			}else{
+				var EnemyDir=-GlobalPosition.DirectionTo(body.GlobalPosition);
+				velocity= (EnemyDir * 400);
+			}
+			Velocity=velocity;		
 			GetNode<RomaGay>("/root/RomaGay").LoseHeart(1);
-			Velocity=velocity;
 		}
 	}
-		private void InstanceRecoil(){
+	private void InstanceRecoil(){
     	var recoil =KnockBackScene.Instantiate() as Sprite2D;
 		var SpriteN= GetNode<Sprite2D>("Sprite2D");
 		GetTree().Root.GetNode<Node2D>($"{GetTree().CurrentScene.Name}/CameraProxy").AddSibling(recoil);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjrrefp60772c"]
+[gd_scene load_steps=15 format=3 uid="uid://bjrrefp60772c"]
 
 [ext_resource type="Script" path="res://Scripts/bat.cs" id="1_kkkqa"]
 [ext_resource type="Texture2D" uid="uid://bd0x7r0pww5dx" path="res://assets/Other/gna.png" id="2_6dosb"]
@@ -68,11 +68,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2buel"]
+radius = 56.0089
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ov3si"]
-radius = 90.1998
+radius = 110.041
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5ct"]
-size = Vector2(18, 15)
+size = Vector2(16, 14)
 
 [node name="Bat" type="Node2D"]
 metadata/_edit_group_ = true
@@ -90,7 +93,8 @@ shape = SubResource("RectangleShape2D_rooym")
 debug_color = Color(0.411765, 0.498039, 0.898039, 0.419608)
 
 [node name="bat" type="CharacterBody2D" parent="."]
-collision_layer = 3
+collision_layer = 66
+collision_mask = 65
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_kkkqa")
@@ -117,7 +121,15 @@ debug_path_custom_line_width = 31.05
 sprite_frames = SubResource("SpriteFrames_f1fw5")
 animation = &"Wait"
 autoplay = "Wait"
-frame_progress = 0.804072
+frame_progress = 0.198858
+
+[node name="Area2D" type="Area2D" parent="bat"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bat/Area2D"]
+shape = SubResource("CircleShape2D_2buel")
+debug_color = Color(0.976471, 0, 0.0235294, 0.419608)
 
 [node name="AgroZone" type="Area2D" parent="bat"]
 collision_layer = 0
@@ -127,11 +139,28 @@ collision_mask = 128
 shape = SubResource("CircleShape2D_ov3si")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bat"]
-visible = false
-position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_yf5ct")
 
-[node name="Timer" type="Timer" parent="bat"]
+[node name="Timers" type="Node2D" parent="bat"]
+
+[node name="PreperationTime" type="Timer" parent="bat/Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="AttackTime" type="Timer" parent="bat/Timers"]
+wait_time = 0.4
+one_shot = true
+
+[node name="DashEffectTime" type="Timer" parent="bat/Timers"]
+wait_time = 0.06
+
+[node name="DashStop" type="Timer" parent="bat/Timers"]
+one_shot = true
 
 [connection signal="body_exited" from="Spawn/ChasingArea" to="bat" method="exit"]
+[connection signal="body_entered" from="bat/Area2D" to="bat" method="preperationToAttack"]
 [connection signal="body_entered" from="bat/AgroZone" to="bat" method="Agring"]
+[connection signal="timeout" from="bat/Timers/PreperationTime" to="bat" method="preperationEnd"]
+[connection signal="timeout" from="bat/Timers/AttackTime" to="bat" method="AttackEnd"]
+[connection signal="timeout" from="bat/Timers/DashEffectTime" to="bat" method="DashEffectSpam"]
+[connection signal="timeout" from="bat/Timers/DashStop" to="bat" method="DashEffectStop"]

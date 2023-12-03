@@ -1,10 +1,5 @@
+using System.Runtime.CompilerServices;
 using Godot;
-using System;
-using System.ComponentModel;
-using System.Data;
-using System.Runtime;
-using System.Runtime.InteropServices;
-using System.Threading;
 enum BatState{
 	wait,
 	chase,
@@ -13,16 +8,29 @@ enum BatState{
 	Leave
 }
 public partial class bat : CharacterBody2D{
+	PackedScene DashScene;
 	AnimatedSprite2D Animation;
+	Area2D ChasingZone;
 	Marker2D _spawn;
 	Vector2 velocity;
+	Vector2 DirToTarget;
+	Timer PreperationTime;
+	Timer AttackTime;
+	Timer DashEffectTime;
+	Timer DashStop;
 	BatState State = BatState.wait;
 	NavigationAgent2D NavAgent;
 	[Export]Node2D Player;
 	bool RotateC;
 	bool RotateV;
     public override void _Ready(){
+		DashScene =GD.Load<PackedScene>("res://Scenes/Effects/KnockBackEffect.tscn");
 		_spawn =GetParent().GetNode<Marker2D>("Spawn");
+		PreperationTime=GetNode<Timer>("Timers/PreperationTime");
+		ChasingZone=GetParent().GetNode<Area2D>("Spawn/ChasingArea");
+		AttackTime=GetNode<Timer>("Timers/AttackTime");
+		DashEffectTime=GetNode<Timer>("Timers/DashEffectTime");
+		DashStop=GetNode<Timer>("Timers/DashStop");
 		Animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		NavAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 		RotateC=Animation.FlipH;
@@ -38,8 +46,10 @@ public partial class bat : CharacterBody2D{
 				Chasing(delta);
 				break;
 			case BatState.preperation:
+				velocity=Vector2.Zero;
 				break;
 			case BatState.attack:
+				AttackStart(delta);
 				break;
 			case BatState.Leave:
 				Leaving(delta);
@@ -49,13 +59,23 @@ public partial class bat : CharacterBody2D{
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+	private void DirectionCheck(){
+		if(velocity.X>0){
+			Animation.FlipH=true;
+		}else if(velocity.X<0){
+			Animation.FlipH=false;
+		}
+	}
 	private void WaitingPlayers(){
 		Animation.FlipH=RotateC;
 		Animation.FlipV=RotateV;
 		Animation.Play("Wait");
 	}
 	private void Chasing(double delta){
-		fly(Player.GlobalPosition);
+		fly(Player.GlobalPosition);	
+		if(!ChasingZone.HasOverlappingBodies()){
+			State=BatState.Leave;
+		}
 	}
 	private void Leaving(double delta){
 		if(NavAgent.DistanceToTarget() <10f){
@@ -64,19 +84,45 @@ public partial class bat : CharacterBody2D{
 		}
 		fly(_spawn.GlobalPosition);
 	}
+	private void preperationToAttack(Node2D body){
+		if(State!=BatState.attack&&	ChasingZone.HasOverlappingBodies()){
+			State=BatState.preperation;
+			velocity=Vector2.Zero;
+			PreperationTime.Start();
+			DashEffectTime.Start();
+			DashStop.Start();
+			DirToTarget= GlobalPosition.DirectionTo(Player.GlobalPosition);
+		}
+	}
+	private void preperationEnd(){
+		State=BatState.attack;
+		AttackTime.Start();
+	}
 	private void fly(Vector2 _target){
 		if (NavAgent.IsNavigationFinished()){
 			return;
 		}
 		NavAgent.TargetPosition=_target;
 		var NewVelocity =(NavAgent.GetNextPathPosition()-_target).Normalized();
-		if(NewVelocity.X<0){
-			Animation.FlipH=true;
-		}else if(NewVelocity.X>0){
-			Animation.FlipH=false;
-		}
+		DirectionCheck();
 		NewVelocity*=100;
 		velocity=-NewVelocity;
+	}
+	private void AttackStart(double delta){
+		GetNode<Area2D>("Area2D").Monitoring=false;
+		SetCollisionLayerValue(6,true);
+		SetCollisionLayerValue(2,false);
+		DirectionCheck();
+		velocity= DirToTarget*300;
+	}
+	private void AttackEnd(){
+		DashStop.Stop();
+		DashEffectTime.Stop();
+		GetNode<Area2D>("Area2D").Monitoring=true;
+		SetCollisionLayerValue(6,false);
+		SetCollisionLayerValue(2,true);
+		velocity=Vector2.Zero;
+		State= BatState.chase;
 	}
 	private void exit(Node2D body){
 		if(GlobalPosition.Ceil()!=_spawn.GlobalPosition){
@@ -84,10 +130,23 @@ public partial class bat : CharacterBody2D{
 		}
 	}
 	private void Agring(Node2D body){
-		GD.Print("Свин идет");
-		GD.Print(Player.GlobalPosition);
 		Animation.Play("Chase");
 		State = BatState.chase;
-
+	}
+	private void DashEffectSpam(){
+		InstanceDash();
+	}
+	private void DashEffectStop(){
+		DashEffectTime.Stop();
+	}
+	private void InstanceDash(){
+    	var recoil =DashScene.Instantiate() as Sprite2D;
+		var SpriteN= GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		GetTree().Root.GetNode<Node2D>($"{GetTree().CurrentScene.Name}/CameraProxy").AddSibling(recoil);
+		var CurrentFrame = SpriteN.Frame;
+		var FrameN = SpriteN.SpriteFrames.GetFrameTexture("Chase",CurrentFrame);
+		recoil.GlobalPosition=GlobalPosition;
+		recoil.Texture=FrameN;
+		recoil.FlipH=SpriteN.FlipH;
 	}
 }
