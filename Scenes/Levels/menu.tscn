@@ -103,11 +103,13 @@ text = "Options"
 
 [node name="Button2" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 action_mode = 0
 text = "Credits"
 
 [node name="Button4" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Quit
 "
 

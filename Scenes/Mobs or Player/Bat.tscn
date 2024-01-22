@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjrrefp60772c"]
+[gd_scene load_steps=16 format=3 uid="uid://bjrrefp60772c"]
 
 [ext_resource type="Script" path="res://Scripts/bat.cs" id="1_kkkqa"]
 [ext_resource type="Texture2D" uid="uid://bd0x7r0pww5dx" path="res://assets/Other/gna.png" id="2_6dosb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rooym"]
-size = Vector2(616, 334.844)
+size = Vector2(729.5, 408.125)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnxfk"]
 atlas = ExtResource("2_6dosb")
@@ -29,6 +29,10 @@ region = Rect2(26, 18, 26, 18)
 [sub_resource type="AtlasTexture" id="AtlasTexture_na7je"]
 atlas = ExtResource("2_6dosb")
 region = Rect2(52, 18, 26, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlok4"]
+atlas = ExtResource("2_6dosb")
+region = Rect2(52, 36, 26, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gjme"]
 atlas = ExtResource("2_6dosb")
@@ -58,6 +62,14 @@ animations = [{
 "loop": true,
 "name": &"Chase",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlok4")
+}],
+"loop": true,
+"name": &"Dash",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -119,9 +131,8 @@ debug_path_custom_line_width = 31.05
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bat"]
 sprite_frames = SubResource("SpriteFrames_f1fw5")
-animation = &"Wait"
+animation = &"Dash"
 autoplay = "Wait"
-frame_progress = 0.3435
 
 [node name="Area2D" type="Area2D" parent="bat"]
 collision_layer = 0

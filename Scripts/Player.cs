@@ -66,7 +66,7 @@ public partial class Player : CharacterBody2D{
 		PackedScene KnockBackScene;
 		public bool AddJumping;
 		public short bulletAmount;
-		public Sprite2D sprite;
+		public AnimatedSprite2D sprite;
 		UI ui;
 		Vector2 velocity;
 		Vector2 TestVelocity;
@@ -96,7 +96,7 @@ public partial class Player : CharacterBody2D{
 		fallGravity = ((-2.0f*jumpheight)/(jumpTimeToDescent*jumpTimeToPeak))*-1.0f;
 		LeftWall = GetNode<RayCast2D>("Left");
 		RightWall = GetNode<RayCast2D>("Right");
-	    sprite = GetNode<Sprite2D>("Sprite2D"); 
+	    sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D"); 
 	    RechargeCir=GetNode<TextureProgressBar>("TextureProgressBar");
 	    RechargeCir.MaxValue = ShootCooldown;
 	    Bow = GetNode<Node2D>("Bow");
@@ -157,7 +157,7 @@ public partial class Player : CharacterBody2D{
 			sprite.FlipH = false;
 			Bow.ShowBehindParent = false;
 			Bow.Scale = new Vector2(Bow.Scale.X, 1);
-		}
+		}	
 		#region Прыжки движения и диалоги
 			if (Input.IsActionJustPressed("Jump")){ //Джамп баффер
 				LastJump.Start();
@@ -178,6 +178,7 @@ public partial class Player : CharacterBody2D{
 					}
 					if(FallingTimes.IsStopped()&&velocity.Y<=300){
 						if(GetGravity()== fallGravity){
+							// sprite.Play("Falling");
 							TimeForEffect.Stop();
 						}				
 						velocity.Y+= GetGravity()*(float)delta;	
@@ -213,8 +214,14 @@ public partial class Player : CharacterBody2D{
 			}
 		}
 		if (direction.X != 0 && !shootBool&& DamagesTimes.IsStopped()){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
+			// if(IsOnFloor()){
+			// 	sprite.Play("Walking");
+			// }
 			velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
 		}else if(!shootBool&& DamagesTimes.IsStopped()){ // если нет выстрела и движение кончилось ,то мы замедляемся
+			// if(IsOnFloor()){
+			// 	sprite.Play("Stay");
+			// }
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
 		}
 		#endregion
@@ -293,14 +300,13 @@ public partial class Player : CharacterBody2D{
 		}
 	}
 	private void InstanceRecoil(){
-    	var recoil =KnockBackScene.Instantiate() as Sprite2D;
-		var SpriteN= GetNode<Sprite2D>("Sprite2D");
+		var recoil = KnockBackScene.Instantiate() as Sprite2D;
+		var SpriteN= GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		GetTree().Root.GetNode<Node2D>($"{GetTree().CurrentScene.Name}/CameraProxy").AddSibling(recoil);
+		var CurrentFrame = SpriteN.Frame;
+		var FrameN = SpriteN.SpriteFrames.GetFrameTexture("Stay",CurrentFrame);
 		recoil.GlobalPosition=GlobalPosition;
-		recoil.Texture=SpriteN.Texture;
-		recoil.Vframes=SpriteN.Vframes;
-		recoil.Hframes=SpriteN.Hframes;
-		recoil.Frame=SpriteN.Frame;
+		recoil.Texture=FrameN;
 		recoil.FlipH=SpriteN.FlipH;
 	}
 }

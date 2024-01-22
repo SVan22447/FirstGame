@@ -1,16 +1,84 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3jlidg6uy7kk"]
+[gd_scene load_steps=22 format=3 uid="uid://d3jlidg6uy7kk"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ufbqk"]
-[ext_resource type="Shader" path="res://Shaders/KnockBackEffect.gdshader" id="2_kimg2"]
-[ext_resource type="Texture2D" uid="uid://b0ugkw3ol13yj" path="res://assets/Player/sleyl.png" id="3_urloj"]
+[ext_resource type="Texture2D" uid="uid://bewkwfo3mdix5" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
 [ext_resource type="Texture2D" uid="uid://bxf1qvhf83trj" path="res://assets/Player/c0.png" id="4_52wtu"]
 [ext_resource type="Texture2D" uid="uid://55v3djlipigt" path="res://assets/Player/c1.png" id="5_4xd00"]
 [ext_resource type="Texture2D" uid="uid://b5gy2iydqh403" path="res://assets/Player/bowf.png" id="6_h2jtp"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_djlnk"]
-shader = ExtResource("2_kimg2")
-shader_parameter/whiten = false
-shader_parameter/MixWeight = 1.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp5gs"]
+atlas = ExtResource("2_7gdu7")
+region = Rect2(0, 96, 52, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kffo"]
+atlas = ExtResource("2_7gdu7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rved"]
+atlas = ExtResource("2_7gdu7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqiem"]
+atlas = ExtResource("2_7gdu7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlx43"]
+atlas = ExtResource("2_7gdu7")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq4ul"]
+atlas = ExtResource("2_7gdu7")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r06hh"]
+atlas = ExtResource("2_7gdu7")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvcp7"]
+atlas = ExtResource("2_7gdu7")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2suqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp5gs")
+}],
+"loop": true,
+"name": &"Falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kffo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rved")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqiem")
+}],
+"loop": true,
+"name": &"Stay",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlx43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq4ul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r06hh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvcp7")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 8.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yama"]
 atlas = ExtResource("6_h2jtp")
@@ -73,9 +141,10 @@ recoilY = 305.0
 BowCooldown = 0.5
 ShootCooldown = 1.05
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_djlnk")
-texture = ExtResource("3_urloj")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2suqb")
+animation = &"Stay"
+autoplay = "Stay"
 
 [node name="Right" type="RayCast2D" parent="."]
 visible = false

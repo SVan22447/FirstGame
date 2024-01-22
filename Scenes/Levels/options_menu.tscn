@@ -74,6 +74,7 @@ offset_left = 9.0
 offset_top = -8.0
 offset_right = 53.0
 offset_bottom = 16.0
+mouse_default_cursor_shape = 2
 flat = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
@@ -141,6 +142,7 @@ layout_mode = 2
 offset_top = -8.0
 offset_right = 168.0
 offset_bottom = 23.0
+mouse_default_cursor_shape = 2
 text = "Controls"
 text_overrun_behavior = 2
 
@@ -188,7 +190,7 @@ position = Vector2(-314.125, -8.49999)
 scale = Vector2(0.14875, 0.275)
 texture = ExtResource("1_qfur5")
 
-[connection signal="visibility_changed" from="." to="." method="Update"]
+[connection signal="draw" from="." to="." method="Update"]
 [connection signal="draw" from="CenterContainer" to="." method="Focus"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer4/Control/CheckButton" to="." method="FullscreenToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/HBoxContainer/Control/HSlider" to="." method="MusicSlider" flags=18]

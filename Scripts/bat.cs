@@ -75,6 +75,9 @@ public partial class bat : CharacterBody2D{
 	}
 	private void Chasing(double delta){
 		fly(Player.GlobalPosition);	
+		if(Animation.FlipV){
+			Animation.FlipV=false;
+		}
 		if(!ChasingZone.HasOverlappingBodies()){
 			State=BatState.Leave;
 		}
@@ -115,11 +118,13 @@ public partial class bat : CharacterBody2D{
 		SetCollisionLayerValue(6,true);
 		SetCollisionLayerValue(2,false);
 		DirectionCheck();
+		Animation.Play("Dash");
 		velocity= DirToTarget*Dash;
 	}
 	private void AttackEnd(){
 		DashStop.Stop();
 		DashEffectTime.Stop();
+		Animation.Play("Chase");
 		GetNode<Area2D>("Area2D").Monitoring=true;
 		SetCollisionLayerValue(6,false);
 		SetCollisionLayerValue(2,true);

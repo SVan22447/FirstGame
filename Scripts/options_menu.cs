@@ -18,13 +18,11 @@ public partial class options_menu : Control{
 		FullScreenButton =GetNode<CheckButton>("CenterContainer/VBoxContainer/HBoxContainer4/Control/CheckButton");
 	}
 	public void Update(){
-		// if(){
 		if(RomaH.isFullscreen){
 			FullScreenButton.ButtonPressed=true;
 		}else{
 			FullScreenButton.ButtonPressed=false;
 		}
-		// }
 		MusicSliderVar.Value =AudioServer.GetBusVolumeDb(1);
 		SFXSliderVar.Value =  AudioServer.GetBusVolumeDb(2);
 	}
