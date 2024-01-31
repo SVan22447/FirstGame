@@ -23,7 +23,7 @@ public partial class UI : CanvasLayer{
     }
     public override void _Input(InputEvent @event)
     {  
-        if (@event.IsActionPressed("_pause_menu")){
+        if (@event.IsActionPressed("_pause_menu")&& GetNode<CharacterBody2D>($"/root/{GetTree().CurrentScene.Name}/Player").Visible){
             Background.Visible = !Background.Visible;
             HpAndOther.Visible = !HpAndOther.Visible;
             if(OptionsMenu.Visible == true){
