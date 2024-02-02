@@ -19,13 +19,13 @@ config/icon="res://assets/Player/OMGH.png"
 
 RomaGay="*res://autoloads/RomaGay.cs"
 SoundPlayer="*res://autoloads/SoundPlayer.tscn"
+Cursor="*res://autoloads/cursor.tscn"
 
 [display]
 
 window/stretch/mode="viewport"
 window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=2
-mouse_cursor/custom_image="res://assets/UI/cursor.png"
 
 [dotnet]
 

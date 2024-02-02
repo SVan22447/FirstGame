@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0axqq1o3ur2c"]
+
+[ext_resource type="Script" path="res://Scripts/_cursor.cs" id="1_3digi"]
+[ext_resource type="Texture2D" uid="uid://bpsqi6o5p4alk" path="res://assets/UI/cursor.png" id="2_dti3b"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uft03"]
+light_mode = 1
+
+[node name="cursor" type="CanvasLayer"]
+process_mode = 3
+layer = 128
+
+[node name="_cursor" type="Node2D" parent="."]
+script = ExtResource("1_3digi")
+
+[node name="Sprite2D" type="Sprite2D" parent="_cursor"]
+process_mode = 3
+z_index = 1000
+material = SubResource("CanvasItemMaterial_uft03")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_dti3b")

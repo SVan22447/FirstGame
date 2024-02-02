@@ -1228,7 +1228,6 @@ position = Vector2(20.5, 26)
 scale = Vector2(43.75, 21.8)
 
 [node name="AnimatedSprite2D" parent="Enemies/Bat5/bat" index="2"]
-animation = &"Wait"
 flip_v = true
 
 [node name="Bat4" parent="Enemies" instance=ExtResource("9_clijs")]

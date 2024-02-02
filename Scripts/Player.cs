@@ -31,6 +31,7 @@ public partial class Player : CharacterBody2D{
 		Timer KnockBackEffectTime;
 		Timer KnockBackStop;
 		Timer TimeForEffect;
+		Timer StickingTimer;
 		double SlidingOffTheWall;
 		double CircleVal;
 		float jumpGravity;
@@ -90,6 +91,7 @@ public partial class Player : CharacterBody2D{
 		InvincibleTimer=GetNode<Timer>("Timers/InvincibleTimer");
 		KnockBackEffectTime=GetNode<Timer>("Timers/KnockbackEffectTime");
 		KnockBackStop=GetNode<Timer>("Timers/KnockbackStop");
+		StickingTimer =GetNode<Timer>("Timers/StickingTimer");
 		ShootCooldownV =  ShootCooldown;
 		jumpVelocity = ((2.0f*jumpheight)/jumpTimeToPeak)*-1.0f;   // подстройка значений прыжка
 		jumpGravity = ((-2.0f*jumpheight)/(jumpTimeToPeak*jumpTimeToPeak))*-1.0f;
