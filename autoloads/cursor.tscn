@@ -17,5 +17,5 @@ script = ExtResource("1_3digi")
 process_mode = 3
 z_index = 1000
 material = SubResource("CanvasItemMaterial_uft03")
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.65, 1.65)
 texture = ExtResource("2_dti3b")
