@@ -237,6 +237,8 @@ wait_time = 0.5
 one_shot = true
 
 [node name="StickingTimer" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
 
 [connection signal="body_shape_entered" from="Area2D" to="." method="DamageTaken"]
 [connection signal="timeout" from="Timers/KnockbackEffectTime" to="." method="recoilSpam"]

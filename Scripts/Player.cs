@@ -174,8 +174,12 @@ public partial class Player : CharacterBody2D{
 			if (!IsOnFloor()){
 				if(velocity.Y<=450){
 					if(!IsJumping&&DamagesTimes.IsStopped()&&((LeftWall.IsColliding()&&Input.IsActionPressed("Left"))||(RightWall.IsColliding()&&Input.IsActionPressed("Right")))){
-						velocity.Y= 50;
-						SlidingOffTheWall -=delta;
+						if(!StickingTimer.IsStopped()){
+							velocity.Y=5;
+						}else{
+							velocity.Y= 50;
+						}
+						// SlidingOffTheWall -=delta;
 						currentState = PlayerState.Climping;
 					}
 					if(FallingTimes.IsStopped()&&velocity.Y<=300){
@@ -196,7 +200,8 @@ public partial class Player : CharacterBody2D{
 				TimeForEffect.Start();
 				LastOnGroundTime.Stop();
 				IsJumping = true;
-				SlidingOffTheWall =0.2;
+				StickingTimer.Start();
+				// SlidingOffTheWall =0.2;
 				IsJumping2 = true;
 				TimeJump =40;
 				TimeJump2 =17;
@@ -206,12 +211,14 @@ public partial class Player : CharacterBody2D{
 			if ( Input.IsActionPressed("Right") && !wallJumpLeftTime.IsStopped()){
 				TimeForEffect.Start();
 				velocity.X-=jumpVelocity/2f;
-				SlidingOffTheWall =0.22;
+				StickingTimer.Start();
+				// SlidingOffTheWall =0.22;
 				velocity.Y=jumpVelocity;
 			}else if (Input.IsActionPressed("Left") && !wallJumpRightTime.IsStopped()) {
 				TimeForEffect.Start();
 				velocity.X+=jumpVelocity/2f;
-				SlidingOffTheWall =0.22;
+				StickingTimer.Start();
+				// SlidingOffTheWall =0.22;
 				velocity.Y=jumpVelocity;	    
 			}
 		}
