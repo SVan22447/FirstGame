@@ -162,24 +162,32 @@ layout_mode = 2
 [node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Button4")
+focus_neighbor_bottom = NodePath("../Button3")
 mouse_default_cursor_shape = 2
 text = "Resume"
 
 [node name="Button3" type="Button" parent="CenterContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Button")
+focus_neighbor_bottom = NodePath("../Button2")
 mouse_default_cursor_shape = 2
 text = "Options"
 
 [node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Button3")
+focus_neighbor_bottom = NodePath("../Button4")
 mouse_default_cursor_shape = 2
 text = "quitM"
 
 [node name="Button4" type="Button" parent="CenterContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Button2")
+focus_neighbor_bottom = NodePath("../Button")
 text = "quitS"
 
 [node name="GameOverScreen" type="Control" parent="."]
@@ -245,6 +253,5 @@ text = "ExitM"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button3" to="." method="Options"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="exit_to"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="Exit"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/Button" to="GameOverScreen" method="Continue"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/Button2" to="GameOverScreen" method="ExitMenu"]
