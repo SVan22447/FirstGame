@@ -32,7 +32,6 @@ public partial class Player : CharacterBody2D{
 		Timer KnockBackStop;
 		Timer TimeForEffect;
 		Timer StickingTimer;
-		double SlidingOffTheWall;
 		double CircleVal;
 		float jumpGravity;
 		float jumpVelocity;
@@ -201,7 +200,6 @@ public partial class Player : CharacterBody2D{
 				LastOnGroundTime.Stop();
 				IsJumping = true;
 				StickingTimer.Start();
-				// SlidingOffTheWall =0.2;
 				IsJumping2 = true;
 				TimeJump =40;
 				TimeJump2 =17;
@@ -212,13 +210,11 @@ public partial class Player : CharacterBody2D{
 				TimeForEffect.Start();
 				velocity.X-=jumpVelocity/2f;
 				StickingTimer.Start();
-				// SlidingOffTheWall =0.22;
 				velocity.Y=jumpVelocity;
 			}else if (Input.IsActionPressed("Left") && !wallJumpRightTime.IsStopped()) {
 				TimeForEffect.Start();
 				velocity.X+=jumpVelocity/2f;
 				StickingTimer.Start();
-				// SlidingOffTheWall =0.22;
 				velocity.Y=jumpVelocity;	    
 			}
 		}

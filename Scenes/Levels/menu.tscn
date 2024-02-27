@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7gtvebmchwvh"]
+[gd_scene load_steps=9 format=3 uid="uid://b7gtvebmchwvh"]
 
 [ext_resource type="Script" path="res://Scripts/menu.cs" id="1_2ntdg"]
 [ext_resource type="PackedScene" uid="uid://6qiw6s0qpw22" path="res://Scenes/Levels/options_menu.tscn" id="1_cphnr"]
@@ -32,8 +32,6 @@ height = 5
 offsets = PackedFloat32Array(0, 0.986239)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="Theme" id="Theme_3qber"]
-
 [node name="menu" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -45,25 +43,25 @@ color = Color(0.0431373, 0.0627451, 0.117647, 1)
 process_mode = 3
 texture_filter = 3
 offset_left = 30.0
-offset_top = 335.0
-offset_right = 100.0
-offset_bottom = 471.0
+offset_top = 250.0
+offset_right = 123.0
+offset_bottom = 421.0
 scale = Vector2(2.217, 1.9)
 size_flags_horizontal = 4
 size_flags_vertical = 3
 script = ExtResource("1_2ntdg")
 XButton = 144.531
-YPlayButton = 17.2
-YOptionsButton = 52.295
-YCreditsButton = 87.368
-YQuitButton = 121.579
+YPlayButton = 15.789
+YOptionsButton = 87.368
+YCreditsButton = 120.526
+YQuitButton = 155.79
 metadata/_edit_use_anchors_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="BoxContainer"]
 light_mask = 7
 visibility_layer = 7
 texture_filter = 1
-position = Vector2(144.531, 17.2)
+position = Vector2(142.535, 155.79)
 scale = Vector2(0.790737, 0.365092)
 color = Color(0.423529, 0.741176, 0.980392, 1)
 energy = 4.66
@@ -94,9 +92,12 @@ size_flags_horizontal = 4
 [node name="Button" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = SubResource("Theme_3qber")
 action_mode = 0
-text = "Play"
+text = "Continue"
+
+[node name="Button5" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
 
 [node name="Button3" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2

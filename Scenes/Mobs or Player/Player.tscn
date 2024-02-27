@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3jlidg6uy7kk"]
+[gd_scene load_steps=22 format=3 uid="uid://d3jlidg6uy7kk"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ufbqk"]
-[ext_resource type="Texture2D" uid="uid://baeu0lhuoki4c" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
+[ext_resource type="Texture2D" uid="uid://bewkwfo3mdix5" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
 [ext_resource type="Texture2D" uid="uid://h4to1grlt0i6" path="res://assets/Player/St_animation_1.png" id="3_h2qb5"]
 [ext_resource type="Texture2D" uid="uid://bxf1qvhf83trj" path="res://assets/Player/c0.png" id="4_52wtu"]
 [ext_resource type="Texture2D" uid="uid://55v3djlipigt" path="res://assets/Player/c1.png" id="5_4xd00"]
@@ -11,17 +11,9 @@
 atlas = ExtResource("2_7gdu7")
 region = Rect2(0, 96, 52, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0kffo"]
-atlas = ExtResource("2_7gdu7")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1rved"]
-atlas = ExtResource("2_7gdu7")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fqiem"]
-atlas = ExtResource("2_7gdu7")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_psinu"]
+atlas = ExtResource("3_h2qb5")
+region = Rect2(0, 0, 28, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qvu7f"]
 atlas = ExtResource("3_h2qb5")
@@ -55,13 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0kffo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1rved")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fqiem")
+"texture": SubResource("AtlasTexture_psinu")
 }],
 "loop": true,
 "name": &"Stay",
@@ -150,9 +136,8 @@ ShootCooldown = 1.05
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2suqb")
-animation = &"Walking"
+animation = &"Stay"
 autoplay = "Stay"
-frame_progress = 0.709774
 
 [node name="Right" type="RayCast2D" parent="."]
 visible = false
@@ -203,7 +188,7 @@ position = Vector2(-1, 2.5)
 shape = SubResource("RectangleShape2D_ua0wo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3)
+position = Vector2(-1, 2.5)
 shape = SubResource("CapsuleShape2D_xrub3")
 
 [node name="Timers" type="Node2D" parent="."]
