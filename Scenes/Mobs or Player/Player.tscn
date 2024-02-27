@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://d3jlidg6uy7kk"]
+[gd_scene load_steps=24 format=3 uid="uid://d3jlidg6uy7kk"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ufbqk"]
 [ext_resource type="Texture2D" uid="uid://baeu0lhuoki4c" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
+[ext_resource type="Texture2D" uid="uid://h4to1grlt0i6" path="res://assets/Player/St_animation_1.png" id="3_h2qb5"]
 [ext_resource type="Texture2D" uid="uid://bxf1qvhf83trj" path="res://assets/Player/c0.png" id="4_52wtu"]
 [ext_resource type="Texture2D" uid="uid://55v3djlipigt" path="res://assets/Player/c1.png" id="5_4xd00"]
 [ext_resource type="Texture2D" uid="uid://b5gy2iydqh403" path="res://assets/Player/bowf.png" id="6_h2jtp"]
@@ -22,21 +23,25 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("2_7gdu7")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vlx43"]
-atlas = ExtResource("2_7gdu7")
-region = Rect2(0, 128, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvu7f"]
+atlas = ExtResource("3_h2qb5")
+region = Rect2(0, 0, 28, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jq4ul"]
-atlas = ExtResource("2_7gdu7")
-region = Rect2(64, 128, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xijst"]
+atlas = ExtResource("3_h2qb5")
+region = Rect2(28, 0, 28, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r06hh"]
-atlas = ExtResource("2_7gdu7")
-region = Rect2(96, 128, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8jt8"]
+atlas = ExtResource("3_h2qb5")
+region = Rect2(56, 0, 28, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wvcp7"]
-atlas = ExtResource("2_7gdu7")
-region = Rect2(32, 128, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2uir"]
+atlas = ExtResource("3_h2qb5")
+region = Rect2(84, 0, 28, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wban1"]
+atlas = ExtResource("3_h2qb5")
+region = Rect2(112, 0, 28, 35)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2suqb"]
 animations = [{
@@ -64,16 +69,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vlx43")
+"texture": SubResource("AtlasTexture_qvu7f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jq4ul")
+"texture": SubResource("AtlasTexture_xijst")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r06hh")
+"texture": SubResource("AtlasTexture_t8jt8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wvcp7")
+"texture": SubResource("AtlasTexture_c2uir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wban1")
 }],
 "loop": true,
 "name": &"Walking",
@@ -117,11 +125,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua0wo"]
-size = Vector2(12, 25)
+size = Vector2(12, 27)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrub3"]
 radius = 7.0
-height = 28.0
 
 [node name="Player" type="CharacterBody2D"]
 disable_mode = 1
@@ -143,8 +150,9 @@ ShootCooldown = 1.05
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2suqb")
-animation = &"Stay"
+animation = &"Walking"
 autoplay = "Stay"
+frame_progress = 0.709774
 
 [node name="Right" type="RayCast2D" parent="."]
 visible = false
@@ -172,6 +180,7 @@ fill_mode = 4
 nine_patch_stretch = true
 texture_under = ExtResource("4_52wtu")
 texture_progress = ExtResource("5_4xd00")
+metadata/_edit_use_anchors_ = true
 
 [node name="Bow" type="Node2D" parent="."]
 
@@ -190,13 +199,11 @@ input_pickable = false
 audio_bus_name = &"audio"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(-1, 1.5)
+position = Vector2(-1, 2.5)
 shape = SubResource("RectangleShape2D_ua0wo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-1, 2)
+position = Vector2(-1, 3)
 shape = SubResource("CapsuleShape2D_xrub3")
 
 [node name="Timers" type="Node2D" parent="."]
@@ -237,7 +244,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="StickingTimer" type="Timer" parent="Timers"]
-wait_time = 0.6
+wait_time = 0.8
 one_shot = true
 
 [connection signal="body_shape_entered" from="Area2D" to="." method="DamageTaken"]

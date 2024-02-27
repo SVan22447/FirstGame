@@ -13,6 +13,7 @@ config_version=5
 config/name="gumus"
 run/main_scene="res://Scenes/Levels/menu.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
+run/max_fps=60
 config/icon="res://assets/Player/OMGH.png"
 
 [autoload]
@@ -25,7 +26,6 @@ Cursor="*res://autoloads/cursor.tscn"
 
 window/stretch/mode="viewport"
 window/per_pixel_transparency/allowed=true
-window/vsync/vsync_mode=2
 
 [dotnet]
 

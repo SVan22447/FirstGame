@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" path="res://Scripts/CameraProxy.cs" id="1_7dq7p"]
 
-[node name="CameraProxy" type="Node2D" node_paths=PackedStringArray("target")]
+[node name="CameraProxy" type="Node2D"]
 visible = false
 position = Vector2(606, 233)
 script = ExtResource("1_7dq7p")
-target = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.56, 2.56)

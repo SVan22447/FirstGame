@@ -184,7 +184,7 @@ public partial class Player : CharacterBody2D{
 					}
 					if(FallingTimes.IsStopped()&&velocity.Y<=300){
 						if(GetGravity()== fallGravity){
-							// sprite.Play("Falling");
+							 sprite.Play("Falling");
 							TimeForEffect.Stop();
 						}				
 						velocity.Y+= GetGravity()*(float)delta;	
@@ -223,14 +223,14 @@ public partial class Player : CharacterBody2D{
 			}
 		}
 		if (direction.X != 0 && !shootBool&& DamagesTimes.IsStopped()){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
-			// if(IsOnFloor()){
-			// 	sprite.Play("Walking");
-			// }
+			 if(IsOnFloor()){
+			 	sprite.Play("Walking");
+			 }
 			velocity.X = Mathf.Lerp(velocity.X,direction.X*Speed,0.5f);
 		}else if(!shootBool&& DamagesTimes.IsStopped()){ // если нет выстрела и движение кончилось ,то мы замедляемся
-			// if(IsOnFloor()){
-			// 	sprite.Play("Stay");
-			// }
+			 if(IsOnFloor()){
+			 	sprite.Play("Stay");
+			 }
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
 		}
 		#endregion

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Scripts/Test1.cs" id="1_h3qsq"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
-[ext_resource type="Texture2D" uid="uid://csfihdvth652x" path="res://assets/tileset/imba/part.png" id="2_ti1tj"]
 [ext_resource type="Texture2D" uid="uid://chfs5av5fcot3" path="res://assets/Player/waterfall_tile_001.png" id="3_4xvlk"]
 [ext_resource type="Texture2D" uid="uid://bspb40lpqu2dt" path="res://assets/Player/sley_castl.png" id="3_p6nvq"]
 [ext_resource type="Texture2D" uid="uid://da6isjyahqtf1" path="res://assets/Player/sleyl2.png" id="4_m00ld"]
@@ -43,6 +42,21 @@
 [ext_resource type="Texture2D" uid="uid://c6avotm0453g2" path="res://assets/Player/OMGH.png" id="32_iyhi4"]
 [ext_resource type="Script" path="res://Scripts/GameOverScreen.cs" id="33_7e8ej"]
 [ext_resource type="Texture2D" uid="uid://cacggsvfw1lvs" path="res://assets/UI/slay_ui1.png" id="41_mutqx"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fari3"]
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 2)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+flatness = 0.2
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 53.33
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 20.0
+damping_max = 20.0
 
 [sub_resource type="Sky" id="Sky_gqidt"]
 
@@ -1133,8 +1147,10 @@ script = ExtResource("1_h3qsq")
 metadata/_edit_horizontal_guides_ = [81.0]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(1014, -300)
-texture = ExtResource("2_ti1tj")
+position = Vector2(811, 397)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_fari3")
+visibility_rect = Rect2(-100, -100, 150, 40)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l1obc")
@@ -1176,7 +1192,7 @@ position = Vector2(1031, -298)
 texture = ExtResource("5_06pq1")
 
 [node name="Asdggggggge" type="Sprite2D" parent="SECRET!"]
-position = Vector2(1014, -300)
+position = Vector2(1015, -300)
 texture = ExtResource("4_weo3m")
 
 [node name="Tiles" type="Node2D" parent="."]
