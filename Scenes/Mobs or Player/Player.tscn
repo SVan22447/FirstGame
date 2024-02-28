@@ -71,7 +71,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walking",
-"speed": 8.0
+"speed": 14.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yama"]
@@ -136,7 +136,7 @@ ShootCooldown = 1.05
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2suqb")
-animation = &"Stay"
+animation = &"Walking"
 autoplay = "Stay"
 
 [node name="Right" type="RayCast2D" parent="."]
@@ -184,10 +184,12 @@ input_pickable = false
 audio_bus_name = &"audio"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(-1, 2.5)
 shape = SubResource("RectangleShape2D_ua0wo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 2.5)
 shape = SubResource("CapsuleShape2D_xrub3")
 
