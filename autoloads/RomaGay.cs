@@ -10,7 +10,7 @@ public partial class RomaGay : Node{
 
 	public override void _Ready(){
 		ProcessMode = ProcessModeEnum.Always;
-		if(DisplayServer.WindowGetMode()==DisplayServer.WindowMode.Fullscreen){
+		if(DisplayServer.WindowGetMode(DisplayServer.WindowGetCurrentScreen())==DisplayServer.WindowMode.Fullscreen){
             isFullscreen=true;
 		}else{
 			isFullscreen=false;
@@ -18,13 +18,15 @@ public partial class RomaGay : Node{
 	    lives=MaxLives;
 	}
     public override void _Input(InputEvent @event) {
-        if (Input.IsActionJustPressed("FullScreenButton")&&isFullscreen){
+        if (Input.IsActionJustPressed("FullScreenButton")&&DisplayServer.WindowGetMode(DisplayServer.WindowGetCurrentScreen())==DisplayServer.WindowMode.Fullscreen){
 			isFullscreen=false;
-            DisplayServer.WindowSetMode(Lastscreen);
-		}else if(Input.IsActionJustPressed("FullScreenButton")&&!isFullscreen){
-			isFullscreen=true;
+			GD.Print(Lastscreen);
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+		}else if(Input.IsActionJustPressed("FullScreenButton")&&DisplayServer.WindowGetMode(DisplayServer.WindowGetCurrentScreen())!=DisplayServer.WindowMode.Fullscreen){
 			Lastscreen=DisplayServer.WindowGetMode(DisplayServer.WindowGetCurrentScreen());
+			isFullscreen=true;
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+			GD.Print(Lastscreen);
 		}
     }
 	public void LoseHeart(int damage){
