@@ -183,7 +183,7 @@ public partial class Player : CharacterBody2D{
 					}
 					if(FallingTimes.IsStopped()&&velocity.Y<=300){
 						if(GetGravity()== fallGravity){
-							 sprite.Play("Falling");
+							//  sprite.Play("Falling");
 							TimeForEffect.Stop();
 						}				
 						velocity.Y+= GetGravity()*(float)delta;	
