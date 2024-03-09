@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8boqjxeq3s23"]
+[gd_scene load_steps=5 format=3 uid="uid://b8boqjxeq3s23"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.cs" id="1_x2mjm"]
 [ext_resource type="Texture2D" uid="uid://cd8nyierk708s" path="res://assets/Player/bullet.png" id="2_xto7k"]
+
+[sub_resource type="Gradient" id="Gradient_le6ww"]
+offsets = PackedFloat32Array(0, 0.0733333, 0.293333, 0.646667)
+colors = PackedColorArray(0.153517, 0.000103529, 0.488606, 1, 0.450142, 0.53843, 0.937573, 1, 0.603267, 0.666969, 0.954958, 1, 1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1nb5"]
 size = Vector2(8, 6)
@@ -22,7 +26,36 @@ position = Vector2(2.08616e-07, -2.98023e-08)
 rotation = -1.5708
 texture = ExtResource("2_xto7k")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-8, 0)
+amount = 20
+preprocess = 0.3
+speed_scale = 1.2
+explosiveness = 0.03
+randomness = 0.8
+lifetime_randomness = 0.06
+spread = 19.54
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.4
+initial_velocity_max = 40.4
+damping_min = 5.995
+damping_max = 55.556
+scale_amount_min = 0.8
+scale_amount_max = 1.2
+color_ramp = SubResource("Gradient_le6ww")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_d1nb5")
+
+[node name="BulletLife" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="ParticleLife" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+
+[connection signal="timeout" from="BulletLife" to="." method="BulletStop"]
+[connection signal="timeout" from="ParticleLife" to="." method="ParticleStop"]

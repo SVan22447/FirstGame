@@ -1259,7 +1259,6 @@ visible = false
 position = Vector2(606, 233)
 script = ExtResource("8_p5ggu")
 target = NodePath("../Player")
-CameraSpeed = 0.108
 
 [node name="Camera2D" type="Camera2D" parent="CameraProxy"]
 zoom = Vector2(2.4, 2.4)
