@@ -54,7 +54,7 @@ one_shot = true
 autostart = true
 
 [node name="ParticleLife" type="Timer" parent="."]
-wait_time = 1.8
+wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="BulletLife" to="." method="BulletStop"]
