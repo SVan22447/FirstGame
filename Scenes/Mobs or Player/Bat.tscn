@@ -117,17 +117,20 @@ scale = Vector2(37.55, 19.8)
 enable_node_path = NodePath("../..")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="bat"]
-navigation_layers = 4
+path_desired_distance = 1000.0
+target_desired_distance = 1000.0
+path_max_distance = 1000.0
+navigation_layers = 6
 avoidance_enabled = true
-radius = 81.9
-time_horizon_obstacles = 0.75
-max_speed = 140.0
+radius = 55.45
+neighbor_distance = 200.0
+max_speed = 42624.2
+avoidance_layers = 3
 avoidance_mask = 3
 debug_enabled = true
-debug_use_custom = true
 debug_path_custom_color = Color(1, 0.368627, 1, 1)
-debug_path_custom_point_size = 34.95
-debug_path_custom_line_width = 31.05
+debug_path_custom_point_size = 2.85
+debug_path_custom_line_width = 1.42
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bat"]
 sprite_frames = SubResource("SpriteFrames_f1fw5")

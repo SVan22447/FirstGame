@@ -51,7 +51,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 script = ExtResource("1_2ntdg")
 XButton = 144.531
-YPlayButton = 15.789
+YPlayButton = 51.579
 YOptionsButton = 87.368
 YCreditsButton = 120.526
 YQuitButton = 155.79
@@ -70,7 +70,7 @@ texture = SubResource("GradientTexture2D_fm0gp")
 height = 36.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="BoxContainer"]
-position = Vector2(-20.298, 17.2)
+position = Vector2(-18.0424, 51.579)
 scale = Vector2(0.359179, 0.393199)
 randomness = 0.59
 lifetime_randomness = 0.45
@@ -89,15 +89,15 @@ process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="Button5" type="Button" parent="BoxContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Continue"
+
 [node name="Button" type="Button" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 action_mode = 0
-text = "Continue"
-
-[node name="Button5" type="Button" parent="BoxContainer/VBoxContainer"]
-layout_mode = 2
-disabled = true
 text = "New Game"
 
 [node name="Button3" type="Button" parent="BoxContainer/VBoxContainer"]

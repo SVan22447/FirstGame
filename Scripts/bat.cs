@@ -104,14 +104,11 @@ public partial class bat : CharacterBody2D{
 		AttackTime.Start();
 	}
 	private void fly(Vector2 _target){
-		if (NavAgent.IsNavigationFinished()){
-			return;
-		}
 		NavAgent.TargetPosition=_target;
-		var NewVelocity =(NavAgent.GetNextPathPosition()-_target).Normalized();
+		var NewVelocity =(GlobalPosition-NavAgent.GetNextPathPosition()).Normalized();
 		DirectionCheck();
-		NewVelocity*=Speed;
-		velocity=-NewVelocity;
+		velocity=-NewVelocity*Speed;
+		NavAgent.SetVelocityForced(velocity);
 	}
 	private void AttackStart(double delta){
 		GetNode<Area2D>("Area2D").Monitoring=false;
