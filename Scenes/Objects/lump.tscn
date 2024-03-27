@@ -167,10 +167,10 @@ shape = SubResource("CircleShape2D_8lh3n")
 debug_color = Color(0, 0.6, 0.701961, 0.243137)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Light"]
-autoplay = "new_animation"
 libraries = {
 "": SubResource("AnimationLibrary_avgts")
 }
+autoplay = "new_animation"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(-6, -13)

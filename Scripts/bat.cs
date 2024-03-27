@@ -72,6 +72,7 @@ public partial class bat : CharacterBody2D{
 		Animation.FlipH=RotateC;
 		Animation.FlipV=RotateV;
 		Animation.Play("Wait");
+		velocity=Vector2.Zero;
 	}
 	private void Chasing(double delta){
 		fly(Player.GlobalPosition);	
@@ -104,11 +105,8 @@ public partial class bat : CharacterBody2D{
 		AttackTime.Start();
 	}
 	private void fly(Vector2 _target){
-		if (NavAgent.IsNavigationFinished()){
-			return;
-		}
 		NavAgent.TargetPosition=_target;
-		var NewVelocity =(NavAgent.GetNextPathPosition()-_target).Normalized();
+		var NewVelocity =-GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition());
 		DirectionCheck();
 		NewVelocity*=Speed;
 		velocity=-NewVelocity;
