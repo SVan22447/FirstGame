@@ -6,6 +6,7 @@ public partial class RomaGay : Node{
 	public bool isFullscreen;
 	public DisplayServer.WindowMode Lastscreen;
 	public UI Ui;
+	public Vector2 SaveCheckpoint;
 	[Signal]public delegate void CollideCheckpointEventHandler(Vector2 CheckpointPos);
 
 	public override void _Ready(){

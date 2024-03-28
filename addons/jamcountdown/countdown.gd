@@ -15,8 +15,7 @@ extends PanelContainer
 
 var jam_end_date: Dictionary
 var jam_date_unix
-var time_left_unix: int
-var timer: Timer
+var time_left_unix: intvar timer: Timer
 
 func _ready() -> void:
 	jam_end_date = {

@@ -12,5 +12,6 @@ public partial class GameOverScreen : Control{
         this.Visible=!this.Visible;
 		GetTree().Paused = false;
         GetTree().ChangeSceneToFile("res://Scenes/Levels/menu.tscn");
+		GetNode<CharacterBody2D>($"/root/{GetTree().CurrentScene.Name}/Player").GlobalPosition=GetNode<RomaGay>("/root/RomaGay").SaveCheckpoint;
 	}
 }
