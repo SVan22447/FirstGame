@@ -22,9 +22,10 @@ boot_splash/minimum_display_time=2
 
 [autoload]
 
-RomaGay="*res://autoloads/RomaGay.cs"
+RomaGay="*res://autoloads/RomaGay.tscn"
 SoundPlayer="*res://autoloads/SoundPlayer.tscn"
 Cursor="*res://autoloads/cursor.tscn"
+Save="*res://autoloads/Save.tscn"
 
 [display]
 
@@ -41,7 +42,7 @@ movie_writer/movie_file="D:/GitHub/FirstGame/sex.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ActionIcon/plugin.cfg", "res://addons/jamcountdown/plugin.cfg")
+enabled=PackedStringArray("res://addons/ActionIcon/plugin.cfg")
 
 [input]
 

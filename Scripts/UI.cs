@@ -53,6 +53,7 @@ public partial class UI : CanvasLayer{
     }
     public void exit_to(){
         // Exit button in the menu
+        GetNode<Save>("/root/Save").Saving();
 		GetTree().Paused = false;
         GetTree().ChangeSceneToFile("res://Scenes/Levels/menu.tscn");
     }

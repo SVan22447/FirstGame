@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class menu : BoxContainer{
     [Export] float XButton;
@@ -20,6 +21,8 @@ public partial class menu : BoxContainer{
         play = GetNode<Button>("VBoxContainer/Button");
         GetNode<options_menu>("/root/menu/Control/OptionsMenu").play = play;
         play.GrabFocus();
+        GetNode<Save>("/root/Save").Load();
+        
     }
     public override void _Input(InputEvent @event){
         if(@event.IsActionPressed("_pause_menu")&&!GetNode<Button>("VBoxContainer/Button3").Visible){

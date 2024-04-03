@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://sw2gw3vtor1f"]
+
+[ext_resource type="Script" path="res://autoloads/RomaGay.cs" id="1_nyawk"]
+
+[node name="RomaGay" type="Node"]
+script = ExtResource("1_nyawk")

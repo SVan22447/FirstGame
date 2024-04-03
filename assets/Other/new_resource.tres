@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://be44t0fapsvcg"]
+
+[ext_resource type="Script" path="res://autoloads/Save.cs" id="1_ohhs1"]
+
+[resource]
+script = ExtResource("1_ohhs1")
