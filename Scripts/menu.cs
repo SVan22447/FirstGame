@@ -8,12 +8,15 @@ public partial class menu : BoxContainer{
     [Export] float YOptionsButton;
     [Export] float YCreditsButton;
     [Export] float YQuitButton;
+    [Export] float YContinueButton;
     PackedScene OptionsInstance;
     Button play;
+    RomaGay Roma;
     CpuParticles2D Particle;
     PointLight2D Light;
     Control OptionsV;
     public override void _Ready(){
+        Roma =GetNode<RomaGay>("/root/RomaGay");
         Particle =GetNode<CpuParticles2D>("CPUParticles2D");
         Light =GetNode<PointLight2D>("PointLight2D");
         GetNode<options_menu>("/root/menu/Control/OptionsMenu").Menu = this;
@@ -22,15 +25,24 @@ public partial class menu : BoxContainer{
         GetNode<options_menu>("/root/menu/Control/OptionsMenu").play = play;
         play.GrabFocus();
         GetNode<Save>("/root/Save").Load();
-        
+        if(Roma.statsG.Played){
+            GetNode<Button>("VBoxContainer/Button5").Disabled=false;
+        } 
     }
     public override void _Input(InputEvent @event){
         if(@event.IsActionPressed("_pause_menu")&&!GetNode<Button>("VBoxContainer/Button3").Visible){
             GetNode<Button>("VBoxContainer/Button3").EmitSignal(Button.SignalName.Pressed);
         }
     }
+    public void Сontinue(){
+        Roma.lives=Roma.MaxLives;
+         GetTree().ChangeSceneToFile(Roma.statsG.pathLevel);
+    }
     public void Play(){
-        GetNode<RomaGay>("/root/RomaGay").lives=GetNode<RomaGay>("/root/RomaGay").MaxLives;
+        Roma.lives=Roma.MaxLives;
+        Roma.statsG.Played=false;
+        Roma.statsG.pos=new Vector2(-364,418);
+        GetNode<Save>("/root/Save").Saving();
         GetTree().ChangeSceneToFile("res://Scenes/Levels/Game.tscn");
     }
     public void Options(){
@@ -51,6 +63,11 @@ public partial class menu : BoxContainer{
     }
     public void QuitEx(){
         GetTree().Quit();
+    }
+     public void ContinueParticle(){
+        GetNode<Button>("VBoxContainer/Button5").GrabFocus();
+        Light.Position=new Vector2(XButton,YContinueButton);
+        Particle.Position=new Vector2(-20.298f,YContinueButton);
     }
     public void PlayParticle(){
         play.GrabFocus();

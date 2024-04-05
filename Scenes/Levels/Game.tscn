@@ -846,6 +846,9 @@ texture = ExtResource("5_0k7b6")
 [sub_resource type="TileSet" id="TileSet_g4cxn"]
 sources/0 = SubResource("TileSetAtlasSource_jdquh")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c022v"]
+size = Vector2(30, 14)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w2863"]
 size = Vector2(3118.75, 50.5)
 
@@ -969,9 +972,6 @@ shader = ExtResource("15_i1sww")
 shader_parameter/lod = 0.15
 shader_parameter/blend = 1.5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c022v"]
-size = Vector2(30, 14)
-
 [node name="Test1" type="Node2D"]
 script = ExtResource("1_h3qsq")
 metadata/_edit_horizontal_guides_ = [81.0]
@@ -1054,7 +1054,7 @@ texture_filter = 3
 position = Vector2(1, 0)
 tile_set = ExtResource("1_jqqhd")
 format = 2
-layer_0/tile_data = PackedInt32Array(4390904, 131074, 2, 4390903, 131074, 2, 4390902, 393218, 1, 4390901, 327682, 1, 4390900, 131074, 2, 4325395, 1179649, 0, 4456437, 196610, 3, 4456436, 131074, 3, 4456435, 131074, 3, 4390899, 131074, 2, 4456434, 131074, 3, 4390898, 131074, 2, 4456433, 131074, 3, 4390897, 131074, 2, 4456432, 327682, 1, 4390896, 131074, 2, 4456431, 131074, 2, 4390895, 131074, 2, 4456430, 131074, 2, 4390894, 131074, 2, 4521968, 196610, 3, 4521967, 131074, 3, 4521966, 131074, 3, 4521965, 131074, 3, 4456429, 131074, 2, 4390893, 131074, 2, 4521964, 131074, 3, 4456428, 131074, 2, 4390892, 131074, 2, 4521963, 131074, 3, 4456427, 131074, 2, 4390891, 131074, 2, 4521962, 131074, 3, 4456426, 131074, 2, 4390890, 131074, 2, 4521961, 131074, 3, 4456425, 131074, 2, 4390889, 131074, 2, 4521960, 65538, 3, 4456424, 65538, 2, 4390888, 65538, 2, -3997780, 3, 0, 3145829, 3, 0, 3932397, 3, 0, -2490246, 3, 0)
+layer_0/tile_data = PackedInt32Array(4390904, 131074, 2, 4390903, 131074, 2, 4390902, 393218, 1, 4390901, 327682, 1, 4390900, 131074, 2, 4325395, 1179649, 0, 4456437, 196610, 3, 4456436, 131074, 3, 4456435, 131074, 3, 4390899, 131074, 2, 4456434, 131074, 3, 4390898, 131074, 2, 4456433, 131074, 3, 4390897, 131074, 2, 4456432, 327682, 1, 4390896, 131074, 2, 4456431, 131074, 2, 4390895, 131074, 2, 4456430, 131074, 2, 4390894, 131074, 2, 4521968, 196610, 3, 4521967, 131074, 3, 4521966, 131074, 3, 4521965, 131074, 3, 4456429, 131074, 2, 4390893, 131074, 2, 4521964, 131074, 3, 4456428, 131074, 2, 4390892, 131074, 2, 4521963, 131074, 3, 4456427, 131074, 2, 4390891, 131074, 2, 4521962, 131074, 3, 4456426, 131074, 2, 4390890, 131074, 2, 4521961, 131074, 3, 4456425, 131074, 2, 4390889, 131074, 2, 4521960, 65538, 3, 4456424, 65538, 2, 4390888, 65538, 2, 3932397, 3, 0)
 
 [node name="TileMap2" type="TileMap" parent="Cloods1/Tiles" groups=["navigation_polygon_source_group"]]
 tile_set = SubResource("TileSet_0cowy")
@@ -1100,10 +1100,71 @@ drag_bottom_margin = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
+[node name="benches" type="Node2D" parent="."]
+position = Vector2(-364, 418)
+
+[node name="FurnitStreet" type="Sprite2D" parent="benches"]
+position = Vector2(824, 52)
+texture = ExtResource("43_scwsl")
+script = ExtResource("44_4ub65")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="benches/FurnitStreet"]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="benches/FurnitStreet/Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_c022v")
+
+[node name="FurnitStreet3" type="Sprite2D" parent="benches"]
+position = Vector2(-303, -908)
+texture = ExtResource("43_scwsl")
+script = ExtResource("44_4ub65")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="benches/FurnitStreet3"]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="benches/FurnitStreet3/Area2D"]
+visible = false
+position = Vector2(-1, -3)
+shape = SubResource("RectangleShape2D_c022v")
+
+[node name="FurnitStreet4" type="Sprite2D" parent="benches"]
+position = Vector2(1345, -716)
+texture = ExtResource("43_scwsl")
+script = ExtResource("44_4ub65")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="benches/FurnitStreet4"]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="benches/FurnitStreet4/Area2D"]
+visible = false
+position = Vector2(-1, -3)
+shape = SubResource("RectangleShape2D_c022v")
+
+[node name="FurnitStreet2" type="Sprite2D" parent="benches"]
+position = Vector2(1579, 68)
+texture = ExtResource("43_scwsl")
+script = ExtResource("44_4ub65")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="benches/FurnitStreet2"]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="benches/FurnitStreet2/Area2D"]
+position = Vector2(-1, -3)
+shape = SubResource("RectangleShape2D_c022v")
+
 [node name="Player" parent="." instance=ExtResource("4_yq3c4")]
 light_mask = 4
 visibility_layer = 4
-position = Vector2(-364, 418)
+position = Vector2(576, 171)
 collision_layer = 2946
 collision_mask = 770
 
@@ -1457,33 +1518,10 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 22
 text = "ExitM"
 
-[node name="FurnitStreet" type="Sprite2D" parent="."]
-position = Vector2(-117, 469)
-texture = ExtResource("43_scwsl")
-script = ExtResource("44_4ub65")
-
-[node name="Area2D" type="Area2D" parent="FurnitStreet"]
-collision_layer = 0
-collision_mask = 512
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FurnitStreet/Area2D"]
-visible = false
-position = Vector2(-1, -3)
-shape = SubResource("RectangleShape2D_c022v")
-
-[node name="FurnitStreet2" type="Sprite2D" parent="."]
-position = Vector2(1215, 486)
-texture = ExtResource("43_scwsl")
-script = ExtResource("44_4ub65")
-
-[node name="Area2D" type="Area2D" parent="FurnitStreet2"]
-collision_layer = 0
-collision_mask = 512
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FurnitStreet2/Area2D"]
-position = Vector2(-1, -3)
-shape = SubResource("RectangleShape2D_c022v")
-
+[connection signal="body_entered" from="benches/FurnitStreet/Area2D" to="." method="SavePoint"]
+[connection signal="body_entered" from="benches/FurnitStreet3/Area2D" to="." method="SavePoint"]
+[connection signal="body_entered" from="benches/FurnitStreet4/Area2D" to="." method="SavePoint"]
+[connection signal="body_entered" from="benches/FurnitStreet2/Area2D" to="." method="SavePoint"]
 [connection signal="body_entered" from="Lumps/charge/Lump/ChargeLump" to="Lumps/charge" method="ChargeBullet"]
 [connection signal="body_entered" from="Lumps/charge/Lump/Light" to="Lumps/charge" method="BustCharge1"]
 [connection signal="body_exited" from="Lumps/charge/Lump/Light" to="Lumps/charge" method="DefCharge1"]
@@ -1517,8 +1555,6 @@ shape = SubResource("RectangleShape2D_c022v")
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="_on_button_4_pressed"]
 [connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button" to="UI/GameOverScreen" method="Continue"]
 [connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button2" to="UI/GameOverScreen" method="ExitMenu"]
-[connection signal="body_entered" from="FurnitStreet/Area2D" to="." method="SavePoint"]
-[connection signal="body_entered" from="FurnitStreet2/Area2D" to="." method="SavePoint"]
 
 [editable path="Enemies/Bat5"]
 [editable path="Enemies/Bat4"]

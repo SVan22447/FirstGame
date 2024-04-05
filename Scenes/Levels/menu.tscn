@@ -55,13 +55,14 @@ YPlayButton = 51.579
 YOptionsButton = 87.368
 YCreditsButton = 120.526
 YQuitButton = 155.79
+YContinueButton = 16.316
 metadata/_edit_use_anchors_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="BoxContainer"]
 light_mask = 7
 visibility_layer = 7
 texture_filter = 1
-position = Vector2(142.535, 155.79)
+position = Vector2(142.084, 53.1579)
 scale = Vector2(0.790737, 0.365092)
 color = Color(0.423529, 0.741176, 0.980392, 1)
 energy = 4.66
@@ -221,6 +222,9 @@ position = Vector2(232, 333)
 scale = Vector2(0.15, 0.28)
 texture = ExtResource("3_ohbfa")
 
+[connection signal="focus_entered" from="BoxContainer/VBoxContainer/Button5" to="BoxContainer" method="ContinueParticle"]
+[connection signal="mouse_entered" from="BoxContainer/VBoxContainer/Button5" to="BoxContainer" method="ContinueParticle"]
+[connection signal="pressed" from="BoxContainer/VBoxContainer/Button5" to="BoxContainer" method="Сontinue"]
 [connection signal="focus_entered" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="PlayParticle"]
 [connection signal="mouse_entered" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="PlayParticle"]
 [connection signal="pressed" from="BoxContainer/VBoxContainer/Button" to="BoxContainer" method="Play"]
