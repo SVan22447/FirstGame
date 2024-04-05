@@ -121,7 +121,6 @@ navigation_layers = 6
 avoidance_enabled = true
 max_speed = 21353.7
 avoidance_mask = 3
-debug_enabled = true
 debug_path_custom_line_width = 0.46
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bat"]
