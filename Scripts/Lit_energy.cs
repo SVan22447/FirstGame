@@ -16,6 +16,7 @@ public partial class Lit_energy : Node
 		if(GetNode<Area2D>("Area2D").OverlapsBody(player)&&Input.IsActionJustPressed("Interact")){
 			GD.Print(" смешно");
 			player.Scale=new Vector2(0.5f,0.5f);
+			GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
 			player.recoilX=2000;
 			player.recoilY=610;
 			roma.MaxLives=3;
