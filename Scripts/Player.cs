@@ -46,8 +46,8 @@ public partial class Player : CharacterBody2D{
 		bool shootBool;
 		[Export]int jumpheight = 25;
 		[ExportSubgroup("Выстрел")]
-		[Export]double recoilX= 1700;
-		[Export]double recoilY=215;
+		[Export]public double recoilX= 1700;
+		[Export]public double recoilY=215;
 		[Export(PropertyHint.Range,"0.001,1")] public double BowCooldown = 0.3;
 		[Export(PropertyHint.Range,"0.01,3")] public double ShootCooldown = 1;
 		Resource DialogueResource;
@@ -160,7 +160,7 @@ public partial class Player : CharacterBody2D{
 			Bow.Scale = new Vector2(Bow.Scale.X, 1);
 		}	
 		#region Прыжки движения и диалоги
-			if (Input.IsActionJustPressed("Jump")){ //Джамп баффер
+			if (Input.IsActionJustPressed("Jump")){ // Джамп баффер
 				LastJump.Start();
 			}
 			direction.X = Input.GetAxis("Left", "Right");
@@ -194,7 +194,7 @@ public partial class Player : CharacterBody2D{
 			KnockBackStop.Stop();
 			LastOnGroundTime.Start();
 		}
-		if(!LastJump.IsStopped()&&(!LastOnGroundTime.IsStopped()||AddJumping)){// прыжок
+		if(!LastJump.IsStopped()&&(!LastOnGroundTime.IsStopped()||AddJumping)){ // прыжок
 				AddJumping = false;
 				TimeForEffect.Start();
 				LastOnGroundTime.Stop();
@@ -218,7 +218,7 @@ public partial class Player : CharacterBody2D{
 				velocity.Y=jumpVelocity;	    
 			}
 		}
-		if (direction.X != 0 && !shootBool&& DamagesTimes.IsStopped()){    //движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
+		if (direction.X != 0 && !shootBool&& DamagesTimes.IsStopped()){ // движение ,работает через направление умноженную на скорость и по тихоньку ускоряется или замедляется
 			 if(IsOnFloor()){
 			 	sprite.Play("Walking");
 			 }
@@ -230,7 +230,7 @@ public partial class Player : CharacterBody2D{
 			velocity.X = Mathf.Lerp(velocity.X,0,0.3f);
 		}
 		#endregion
-		if (Input.IsActionJustPressed("Shoot")&&(bulletAmount>0&&BowCooldownV<=0)){   // выстрел персонажа
+		if (Input.IsActionJustPressed("Shoot")&&(bulletAmount>0&&BowCooldownV<=0)){  // выстрел персонажа
 			shoot(delta);
 		}else{
 			shootBool = false;

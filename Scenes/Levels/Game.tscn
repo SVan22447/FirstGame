@@ -1,8 +1,9 @@
-[gd_scene load_steps=81 format=3 uid="uid://d0a4xvxj2i6r1"]
+[gd_scene load_steps=83 format=3 uid="uid://d0a4xvxj2i6r1"]
 
 [ext_resource type="Script" path="res://Scripts/Test1.cs" id="1_h3qsq"]
 [ext_resource type="TileSet" uid="uid://cie30qafrrlhw" path="res://main.tres" id="1_jqqhd"]
 [ext_resource type="Texture2D" uid="uid://cibj2p4ygaxin" path="res://assets/Player/lit_apteka.png" id="2_2ly2i"]
+[ext_resource type="Script" path="res://Scripts/Lit_energy.cs" id="2_odwwa"]
 [ext_resource type="Texture2D" uid="uid://chfs5av5fcot3" path="res://assets/Player/waterfall_tile_001.png" id="3_4xvlk"]
 [ext_resource type="Texture2D" uid="uid://bspb40lpqu2dt" path="res://assets/Player/sley_castl.png" id="3_p6nvq"]
 [ext_resource type="Texture2D" uid="uid://da6isjyahqtf1" path="res://assets/Player/sleyl2.png" id="4_m00ld"]
@@ -87,6 +88,9 @@ animations = [{
 "name": &"default",
 "speed": 4.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hgnu"]
+size = Vector2(28, 52)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_eih2p"]
 vertices = PackedVector2Array(171, 546, 822, 538, 858, 538, 998, 682, 58, 570, -502, -166, 822, -198, 854, -198, 854, -166, -470, -138, 2802, -116, 2827, 715, 2634, 586, 2634, 502, 1894, -99, 874, 390, -310, 282, -310, 214, 1066, -198, 1907, -622, 1034, -166, 1066, -298, 90, -603, 822, -298, 90, -422, 694, 442, 726, 442, 726, 538, 494, 521, 494, 470, 74, 522, 74, 470, 143, 518, 143, 546, -502, -490, -106, -406, -877, -594, -394, -598, -394, -486, 890, -166, 890, -198, 918, -198, 918, -166, 954, -166, 954, -198, 998, -198, 998, -166, 1034, -198, -311, 286, -311, 282, 358, 466, 322, 470, 441, 470, 441, 466, 358, 470, 346, 521, 346, 506, 470, 506, 470, 521, 762, 538, 762, 442, 774, 442, 774, 538, 810, 538, 810, 442, 822, 442, 322, 521, 171, 518, -442, 522, -426, 522, -426, 570, -887, 715, -390, 570, -390, 522, -362, 522, -362, 570, -326, 570, -326, 522, -298, 522, -298, 570, -262, 570, -262, 522, -234, 522, -234, 570, -198, 570, -198, 562, -170, 562, -170, 570, -134, 570, -134, 562, -109, 562, -106, 570, -109, 554, -106, 554, -70, 570, -70, 554, -69, 554, -42, 570, -69, 546, -45, 546, -45, 522, -42, 522, -6, 570, -6, 522, 22, 522, 22, 570, 58, 522, 858, 442, 874, 442, 998, 486, 2006, 586, 2054, 586, 2054, 602, 1946, 682, 2070, 602, 2070, 618, 2086, 618, 2086, 666, 2202, 666, 2202, 618, 2218, 618, 2218, 602, 2234, 602, 2234, 586, 2310, 586, 2310, 602, 2326, 602, 2326, 618, 2342, 618, 2342, 666, 2458, 666, 2458, 618, 2474, 618, 2474, 602, 2490, 602, 2490, 586, 1706, 715, 1706, 682, 1014, 682, 1014, 714, 1258, 714, 1258, 698, 1542, 698, 1542, 715, -470, 506, -470, 449, -466, 449, -442, 470, -466, 374, -470, 374, -378, 214, -154, -486, -154, -470, -138, -470, -138, -438, -106, -438, 74, -406, 74, -422, -885, 506, 1946, 486, 694, 390, 2006, 502, -378, 286, -746, -490, -881, -138, -746, -166)
@@ -732,11 +736,20 @@ script = ExtResource("1_h3qsq")
 metadata/_edit_horizontal_guides_ = [81.0]
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-813, -152)
+script = ExtResource("2_odwwa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
-position = Vector2(-813, -152)
 sprite_frames = SubResource("SpriteFrames_qftob")
 autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(-5, -1)
+shape = SubResource("RectangleShape2D_1hgnu")
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]
 visible = false
@@ -1314,8 +1327,8 @@ text = "ExitM"
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button" to="UI" method="Resume"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button3" to="UI" method="Options"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button2" to="UI" method="exit_to"]
-[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="Exit"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="_on_button_4_pressed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Button4" to="UI" method="Exit"]
 [connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button" to="UI/GameOverScreen" method="Continue"]
 [connection signal="pressed" from="UI/GameOverScreen/VBoxContainer/Button2" to="UI/GameOverScreen" method="ExitMenu"]
 

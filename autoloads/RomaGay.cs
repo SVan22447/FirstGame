@@ -54,6 +54,9 @@ public partial class RomaGay : Node{
 		Ui.LoadHearts();
 		if (lives <=0){	
 		    GetTree().Paused = true;
+			GetNode<RomaGay>("/root/RomaGay").MaxLives=5;
+			var heart = Ui.GetNode<TextureRect>("Control/HeartUp");
+        	heart.Size = new Vector2(GetNode<RomaGay>("/root/RomaGay").lives*27, heart.Size.Y);		
             GetNode<Control>($"/root/{GetTree().CurrentScene.Name}/UI/Control").Visible = false;
 		    GetNode<CharacterBody2D>($"/root/{GetTree().CurrentScene.Name}/Player").Visible = false;
 			GetNode<Control>($"/root/{GetTree().CurrentScene.Name}/UI/GameOverScreen").Visible = true;
