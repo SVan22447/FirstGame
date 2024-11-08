@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://3kco211wr1ly"]
 
 [ext_resource type="Texture2D" uid="uid://d30a5v61sxaqi" path="res://assets/Player/аыфe.png" id="1_qx183"]
 
@@ -69,7 +69,7 @@ texture = ExtResource("1_qx183")
 polygon = PackedVector2Array(11.2686, -4.63768, -8.98448, -5.29497, -9.39012, 1.69287, 10.863, 2.35016)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollow2D"]
-autoplay = "new_animation"
 libraries = {
 "": SubResource("AnimationLibrary_oo0v0")
 }
+autoplay = "new_animation"

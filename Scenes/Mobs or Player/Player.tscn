@@ -135,7 +135,7 @@ jumpTimeToDescent = 0.28
 coyoteTime = 0.2
 recoilX = 1000.0
 recoilY = 305.0
-BowCooldown = 0.5
+BowCooldown = 0.001
 ShootCooldown = 1.05
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
