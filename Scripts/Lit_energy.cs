@@ -16,8 +16,8 @@ public partial class Lit_energy : Node
 		if(GetNode<Area2D>("Area2D").OverlapsBody(player)&&Input.IsActionJustPressed("Interact")){
 			GD.Print(" смешно");
 			player.Scale=new Vector2(0.5f,0.5f);
-			player.recoilX*=2f;
-			player.recoilY*=2f;
+			player.recoilX=2000;
+			player.recoilY=610;
 			roma.MaxLives=3;
 			roma.lives=3;
 			var heart = roma.Ui.GetNode<TextureRect>("Control/HeartUp");

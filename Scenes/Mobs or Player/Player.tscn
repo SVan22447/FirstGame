@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://d3jlidg6uy7kk"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ufbqk"]
-[ext_resource type="Texture2D" uid="uid://baeu0lhuoki4c" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
+[ext_resource type="Texture2D" uid="uid://bewkwfo3mdix5" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
 [ext_resource type="Texture2D" uid="uid://h4to1grlt0i6" path="res://assets/Player/St_animation_1.png" id="3_h2qb5"]
 [ext_resource type="Texture2D" uid="uid://bxf1qvhf83trj" path="res://assets/Player/c0.png" id="4_52wtu"]
 [ext_resource type="Texture2D" uid="uid://55v3djlipigt" path="res://assets/Player/c1.png" id="5_4xd00"]
