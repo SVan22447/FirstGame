@@ -55,7 +55,6 @@ YPlayButton = 51.579
 YOptionsButton = 87.368
 YCreditsButton = 120.526
 YQuitButton = 155.79
-YContinueButton = 16.316
 metadata/_edit_use_anchors_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="BoxContainer"]

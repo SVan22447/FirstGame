@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://d3jlidg6uy7kk"]
+[gd_scene load_steps=23 format=3 uid="uid://d3jlidg6uy7kk"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ufbqk"]
-[ext_resource type="Texture2D" uid="uid://bewkwfo3mdix5" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
+[ext_resource type="Texture2D" uid="uid://baeu0lhuoki4c" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
 [ext_resource type="Texture2D" uid="uid://h4to1grlt0i6" path="res://assets/Player/St_animation_1.png" id="3_h2qb5"]
 [ext_resource type="Texture2D" uid="uid://bxf1qvhf83trj" path="res://assets/Player/c0.png" id="4_52wtu"]
 [ext_resource type="Texture2D" uid="uid://55v3djlipigt" path="res://assets/Player/c1.png" id="5_4xd00"]
+[ext_resource type="Texture2D" uid="uid://b0bih8q8002dd" path="res://assets/Player/banan_gun.png" id="6_8kh4k"]
 [ext_resource type="Texture2D" uid="uid://b5gy2iydqh403" path="res://assets/Player/bowf.png" id="6_h2jtp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wp5gs"]
@@ -94,6 +95,9 @@ region = Rect2(39, 0, 13, 22)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_8kh4k")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0yama")
 }, {
 "duration": 1.0,
@@ -125,7 +129,7 @@ floor_constant_speed = true
 platform_floor_layers = 3855
 platform_wall_layers = 15
 script = ExtResource("1_ufbqk")
-Speed = 136
+Speed = 176
 jumpTimeToPeak = 0.22
 jumpTimeToDescent = 0.28
 coyoteTime = 0.2
@@ -173,7 +177,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-8, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bow/Node2D"]
-position = Vector2(2, 0)
+position = Vector2(-7, 1)
 sprite_frames = SubResource("SpriteFrames_krql5")
 frame_progress = 0.253115
 
