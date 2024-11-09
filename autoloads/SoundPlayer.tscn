@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bimctqf8hq5bv"]
 
 [ext_resource type="Script" path="res://Scripts/SoundPlayer.cs" id="1_h6jed"]
-[ext_resource type="AudioStream" uid="uid://bhmq8dufx16nm" path="res://Audio/Sounds/uhodyaschee-vdal-eho-posle-pistoletnogo-vyistrela.wav" id="2_r77r2"]
+[ext_resource type="AudioStream" uid="uid://dlpmlum5jo5xv" path="res://Audio/Sounds/sound_gun.wav" id="2_7767r"]
 [ext_resource type="AudioStream" uid="uid://bexsu8kdsgum2" path="res://Audio/Sounds/kill.wav" id="3_vfkqh"]
 
 [node name="SoundPlayer" type="Node"]
@@ -10,7 +10,7 @@ script = ExtResource("1_h6jed")
 [node name="AudioPlayers" type="Node" parent="."]
 
 [node name="Bow" type="AudioStreamPlayer" parent="AudioPlayers"]
-stream = ExtResource("2_r77r2")
+stream = ExtResource("2_7767r")
 bus = &"audio"
 
 [node name="Hurt" type="AudioStreamPlayer" parent="AudioPlayers"]
