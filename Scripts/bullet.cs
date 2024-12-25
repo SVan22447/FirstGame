@@ -4,7 +4,7 @@ using System.CodeDom.Compiler;
 using System.Xml.Resolvers;
 
 public partial class bullet : CharacterBody2D{
-	int speed = 26000;
+	int speed = 20000;
 	float gravity = 1250;
 	Timer BulletTime;
 	CpuParticles2D particle;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3jlidg6uy7kk"]
+[gd_scene load_steps=26 format=3 uid="uid://d3jlidg6uy7kk"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ufbqk"]
 [ext_resource type="Texture2D" uid="uid://baeu0lhuoki4c" path="res://assets/Player/sley_animationl.png" id="2_7gdu7"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bxf1qvhf83trj" path="res://assets/Player/c0.png" id="4_52wtu"]
 [ext_resource type="Texture2D" uid="uid://55v3djlipigt" path="res://assets/Player/c1.png" id="5_4xd00"]
 [ext_resource type="Texture2D" uid="uid://b0bih8q8002dd" path="res://assets/Player/banan_gun.png" id="6_8kh4k"]
+[ext_resource type="Texture2D" uid="uid://1y4emypjsf7x" path="res://assets/Player/TROS_GUN.png" id="6_gi16x"]
 [ext_resource type="Texture2D" uid="uid://b5gy2iydqh403" path="res://assets/Player/bowf.png" id="6_h2jtp"]
 [ext_resource type="Texture2D" uid="uid://dbxn78jhnw6o6" path="res://assets/Player/mini_gun.png" id="6_hdobw"]
+[ext_resource type="Texture2D" uid="uid://dcapc3qtqsjbt" path="res://assets/Player/crossbow.png" id="6_lervk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wp5gs"]
 atlas = ExtResource("2_7gdu7")
@@ -96,6 +98,12 @@ region = Rect2(39, 0, 13, 22)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_lervk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gi16x")
+}, {
+"duration": 1.0,
 "texture": ExtResource("6_hdobw")
 }, {
 "duration": 1.0,
@@ -181,7 +189,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-8, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bow/Node2D"]
-position = Vector2(-4, 11)
+position = Vector2(-2, 1)
 sprite_frames = SubResource("SpriteFrames_krql5")
 frame_progress = 0.253115
 
